@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '@/assets/logo.jpg'
 import Image from 'next/image'
 import { CiMenuFries } from "react-icons/ci";
@@ -14,6 +14,11 @@ const Navbar = () => {
         { name: 'FAQ', link: '/faq' }, 
     ]
 
+    const [isOpen, setIsOpen] = useState(false)
+    const toggleNav = () => {
+        setIsOpen(!isOpen)
+    }
+
     const path = usePathname()
     console.log(path)
   return (
@@ -23,7 +28,7 @@ const Navbar = () => {
                 <Image className='h-16 w-16 rounded-full' src={logo} alt='logo' />
             </div>
             <div className='flex items-center space-x-4'>
-                <ul className='flex lg:flex-row flex-col space-y-4 lg:text-left text-center lg:relative absolute left-0 lg:top-0 top-10 space-x-11'>
+                <ul className='flex lg:flex-row flex-col lg:space-y-0 space-y-4 lg:text-left lg:relative absolute left-0 lg:top-0 top-10 lg:space-x-11 space-x-0 mx-auto w-full items-center text-center'>
                     {navItems.map((item, idx) => (
                         <li key={idx} className={path === item.link ? 'font-bold cursor-pointer transition-all' : 'text-gray-400 hover:text-white cursor-pointer transition-all'}>{item.name}</li>
                     ))}

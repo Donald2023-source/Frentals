@@ -23,7 +23,7 @@ const Navbar = () => {
                 <Image className='h-16 w-16 rounded-full' src={logo} alt='logo' />
             </div>
             <div className='flex items-center space-x-4'>
-                <ul className='flex lg:flex-row flex-col lg:relative absolute left-0 lg:top-0 top-10 space-x-11'>
+                <ul className='flex lg:flex-row flex-col space-y-4 lg:text-left text-center lg:relative absolute left-0 lg:top-0 top-10 space-x-11'>
                     {navItems.map((item, idx) => (
                         <li key={idx} className={path === item.link ? 'font-bold cursor-pointer transition-all' : 'text-gray-400 hover:text-white cursor-pointer transition-all'}>{item.name}</li>
                     ))}

@@ -5,11 +5,17 @@ import Navbar from "./Navbar";
 const Hero = () => {
   return (
     <div className="h-screen w-full ">
-      <div className="h-3/4 relative">
-        <Image className="w-full max-h-full object-cover" src={hero} alt="hero Image" />
+      <div className="h-[55%] relative ">
+        <Image className="w-full  max-h-full object-cover" src={hero} alt="hero Image" />
+        <div className="absolute top-0 w-full bg-black/40 h-full z-10" />
+
+        <div className="w-[80%] absolute flex flex-col text-white py-3 gap-4 z-40 px-5 items-start h-full justify-center top-0">
+        <h2 className="text-xl">Connecting Farmers to Equipment, Land, and Labor for a Sustainable Future</h2>
+        <p className="text-sm">Your Farming Success Starts Here....</p>
+        <button className="py-2 px-5 hover:scale-105 transition-all cursor-pointer rounded-lg bg-[#3E803E] text-white">Get started</button>
+     </div>
       </div>
       <span className="absolute top-0 w-full"><Navbar  /></span>
-      <div className="absolute top-0 w-full bg-black/40 z-10 h-3/4" />
     </div>
   );
 };

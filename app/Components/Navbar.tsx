@@ -1,51 +1,95 @@
-'use client'
-import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
-import logo from '@/assets/logo.jpg'
-import Image from 'next/image'
+"use client";
+import { usePathname } from "next/navigation";
+import React, { useState } from "react";
+import Image from "next/image";
 import { CiMenuFries } from "react-icons/ci";
+import { motion } from "framer-motion";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
-    const navItems = [
-        { name: 'Home', link: '/' }, 
-        { name: 'Services', link: '/services' }, 
-        { name: 'About Us', link: '/about' }, 
-        { name: 'Contact Us', link: '/contact' }, 
-        { name: 'FAQ', link: '/faq' }, 
-    ]
+  const navItems = [
+    { name: "Home", link: "/" },
+    { name: "Services", link: "/services" },
+    { name: "About Us", link: "/about" },
+    { name: "Contact Us", link: "/contact" },
+    { name: "FAQ", link: "/faq" },
+  ];
 
-    const [isOpen, setIsOpen] = useState(false)
-    const toggleNav = () => {
-        setIsOpen(!isOpen)
-    }
+  const [nav, setNav] = useState(false);
+  const toggleNav = () => {
+    setNav(!nav);
+  };
 
-    const path = usePathname()
-    console.log(path)
+  const path = usePathname();
+
   return (
-    <div className='relative h-16'>
-        <div className='absolute top-0 left-0 w-full z-20 text-white py-2 px-5 items-center flex justify-between h-full'>
-            <div>
-                <Image className='h-16 w-16 rounded-full' src={logo} alt='logo' />
-            </div>
-            <div className='flex items-center space-x-4'>
-                <ul className='flex lg:flex-row flex-col lg:space-y-0 space-y-4 lg:text-left lg:relative absolute left-0 lg:top-0 top-10 lg:space-x-11 space-x-0 mx-auto w-full items-center text-center'>
-                    {navItems.map((item, idx) => (
-                        <li key={idx} className={path === item.link ? 'font-bold cursor-pointer transition-all' : 'text-gray-400 hover:text-white cursor-pointer transition-all'}>{item.name}</li>
-                    ))}
-                </ul>
-            </div>
+    <div className="relative h-16">
+      <div className="absolute top-0 left-0 w-full z-20 text-white py-2 px-5 items-center flex justify-between h-full">
 
-            <CiMenuFries className='lg:hidden cursor-pointer' />
+        <Image className="lg:h-16 w-10 h-10 lg:w-16 rounded-full" src={logo} alt="logo" />
 
-            <div className='lg:flex space-x-4 hidden'>
-                <button className='border py-2 hover:scale-105 transition-all px-5 cursor-pointer rounded-lg'>Sign In</button>
-                <button className='py-2 hover:scale-105 transition-all cursor-pointer px-5 rounded-lg bg-[#3E803E]'>Sign up</button>
-            </div>
+
+        <ul className="hidden lg:flex space-x-11">
+          {navItems.map((item, idx) => (
+            <li
+              key={idx}
+              className={`cursor-pointer transition-all ${
+                path === item.link ? "font-bold" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {item.name}
+            </li>
+          ))}
+        </ul>
+
+        <div className="lg:flex space-x-4 hidden">
+          <button className="border py-2 px-5 rounded-lg hover:scale-105 transition-all">
+            Sign In
+          </button>
+          <button className="py-2 px-5 rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+            Sign up
+          </button>
         </div>
 
-        
-    </div>
-  )
-}
+     
+        <CiMenuFries onClick={toggleNav} className="lg:hidden cursor-pointer text-2xl" />
 
-export default Navbar
+
+        {nav && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30"
+            onClick={() => setNav(false)}
+          />
+        )}
+        
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: nav ? "0%" : "100%" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-green-900/25 backdrop-blur-lg p-5 z-40 flex flex-col items-center justify-center space-y-6 text-white"
+        >
+          {navItems.map((item, idx) => (
+            <li
+              key={idx}
+              onClick={() => setNav(false)}
+              className={`cursor-pointer transition-all text-lg ${
+                path === item.link ? "font-bold" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {item.name}
+            </li>
+          ))}
+
+          <button className="border py-2 px-5 rounded-lg hover:scale-105 transition-all">
+            Sign In
+          </button>
+          <button className="py-2 px-5 rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+            Sign up
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

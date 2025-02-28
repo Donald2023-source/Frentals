@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div className="relative h-16">
-      <div className="absolute top-0 left-0 w-full z-20 text-white py-2 px-5 items-center flex justify-between h-full">
+      <div className="absolute top-0 left-0 w-full z-20 text-white py-2 px-10 items-center flex justify-between h-full">
 
         <Image className="lg:h-16 w-10 h-10 lg:w-16 rounded-full" src={logo} alt="logo" />
 

@@ -66,7 +66,7 @@ const Navbar = () => {
           initial={{ x: "100%" }}
           animate={{ x: nav ? "0%" : "100%" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-green-900/25 backdrop-blur-lg p-5 z-40 flex flex-col items-center justify-center space-y-6 text-white"
+          className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-green-900/25 backdrop-blur-lg p-5 z-50 flex flex-col items-center justify-center space-y-6 text-white"
         >
           {navItems.map((item, idx) => (
             <li

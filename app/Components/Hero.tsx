@@ -4,11 +4,12 @@ import Image from "next/image";
 import Navbar from "./Navbar";
 const Hero = () => {
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full relative">
       <div className="h-3/4">
         <Image className="w-full max-h-full object-cover" src={hero} alt="hero Image" />
       </div>
-      <Navbar  />
+      <span className="absolute top-0 w-full"><Navbar  /></span>
+      <div className="absolute top-0 w-full bg-black/40 z-10 h-full" />
     </div>
   );
 };

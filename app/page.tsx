@@ -7,11 +7,7 @@ const page = () => {
   return (
     <div>
       <div>
-        <Hero 
-          text="Connecting Farmers To Equipment, Land, and Labor For A Sustainable Future" 
-          subText="Your Farming Success Starts Here...." 
-          imageUrl={hero} 
-        />
+        <Hero />
       </div> 
       <Stats />
     </div>

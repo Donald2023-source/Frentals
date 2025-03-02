@@ -15,7 +15,7 @@ const Stats = () => {
 
   return (
     <div>
-      <div className='flex items-center justify-between w-[90%] px-4 border-gray-400 shadow-xl py-7 mx-auto rounded-xl'>
+      <div className='flex flex-wrap items-center justify-between gap-6 px-4 lg:w-[90%] lg:px-5 border-gray-400 shadow-xl py-7 mx-auto rounded-xl'>
         {
             stats.map((item, idx) => (
                 <div className='flex items-center' key={idx}>

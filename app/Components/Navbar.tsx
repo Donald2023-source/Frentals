@@ -25,16 +25,20 @@ const Navbar = () => {
   return (
     <div className="relative h-16">
       <div className="absolute top-0 left-0 w-full z-20 text-white py-2 px-3 lg:px-20 items-center flex justify-between h-full">
-
-        <Image className="lg:h-16 w-10 h-10 lg:w-16 rounded-full" src={logo} alt="logo" />
-
+        <Image
+          className="lg:h-16 w-10 h-10 lg:w-16 rounded-full"
+          src={logo}
+          alt="logo"
+        />
 
         <ul className="hidden lg:flex space-x-11">
           {navItems.map((item, idx) => (
             <li
               key={idx}
               className={`cursor-pointer transition-all ${
-                path === item.link ? "font-bold" : "text-gray-400 hover:text-white"
+                path === item.link
+                  ? "font-bold"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
               {item.name}
@@ -51,9 +55,10 @@ const Navbar = () => {
           </button>
         </div>
 
-     
-        <CiMenuFries onClick={toggleNav} className="lg:hidden cursor-pointer text-2xl" />
-
+        <CiMenuFries
+          onClick={toggleNav}
+          className="lg:hidden cursor-pointer text-2xl"
+        />
 
         {nav && (
           <div
@@ -61,7 +66,7 @@ const Navbar = () => {
             onClick={() => setNav(false)}
           />
         )}
-        
+
         <motion.div
           initial={{ x: "100%" }}
           animate={{ x: nav ? "0%" : "100%" }}
@@ -73,7 +78,9 @@ const Navbar = () => {
               key={idx}
               onClick={() => setNav(false)}
               className={`cursor-pointer transition-all text-lg ${
-                path === item.link ? "font-bold" : "text-gray-400 hover:text-white"
+                path === item.link
+                  ? "font-bold"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
               {item.name}

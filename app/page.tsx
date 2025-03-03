@@ -15,7 +15,10 @@ import icon3 from '@/assets/why3.svg';
 import icon4 from '@/assets/why4.svg';
 const page = () => {
   const whyItems = [
-    { name: 'Proven Expertise', text:'With years of experience, we deliver solutions that work', icon: }
+    { name: 'Proven Expertise', text:'With years of experience, we deliver solutions that work', icon: icon1},
+    { name: 'Customer-Centric Approach', text:'We prioritize your needs to create custom solutions.', icon: icon2},
+    { name: 'Innovative Solutions', text:'We stay ahead of the curve with the latest tech trends.', icon: icon3},
+    { name: 'Reliable Support', text:'Our team is here for you every step of the way.', icon: icon4},
   ]
  
   return (
@@ -68,9 +71,33 @@ const page = () => {
         <div className='absolute top-1/4 lg:mx-20 px-3 text-white lg:w-[90%] flex flex-col lg:items-start items-center gap-4'>
           <div className='flex flex-col items-center space-y-4'>
             <h2 className='tex-white text-3xl font-bold text-white'>Why Choose Us?</h2>
-            <p className='w-[65%] text-center leading-9'>We are dedicated to providing farmers with a seamless experience by offering access to the essential resources they need—modern farming equipment, fertile farmlands, and skilled labor. </p>
+            <p className='lg:w-[65%] text-center leading-9'>We are dedicated to providing farmers with a seamless experience by offering access to the essential resources they need—modern farming equipment, fertile farmlands, and skilled labor. </p>
           </div>
+
+            <motion.div  
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }} 
+            className='lg:grid grid-cols-4 hidden gap-10 py-10'>
+            {
+              whyItems.map((item, idx) => (
+              <div className='flex gap-4 flex-col w-full lg:w-64' key={idx}>
+                <Image className='h-10' src={item.icon} alt="img" />
+                <div className='flex flex-col'>
+                <h2 className='lg:text-lg text-md font-semibold'>{item.name}</h2>
+                <p className='lg:text-sm text-xs'>{item.text}</p>
+                </div>
+              </div>
+              ))
+            }
+            </motion.div>
         </div>
+      </div>
+
+      {/* Testimonial */}
+
+      <div>
+        
       </div>
     </div>
   )

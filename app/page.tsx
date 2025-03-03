@@ -35,6 +35,20 @@ const page = () => {
             <p className='leading-10 w-[50%]'>Our mission is to empower farmers by providing easy access to the tools, land, and labor they need to succeed. We are committed to fostering agricultural growth by simplifying the process of acquiring modern farming equipment, finding suitable farmlands, and connecting with skilled farmhands. Through our platform, we aim to drive sustainability, increase productivity, and support farmers in achieving their full potential. We believe that by enabling farmers with the right resources, we can contribute to building a stronger, more resilient agricultural community for the future.</p>
           </div>
       </motion.div>
+
+{/* Vision */}
+      <motion.div  
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }} 
+          className='px-20 py-4 mt-5'>
+
+        <h2 className='text-center font-bold text-2xl'>Our Mission</h2>
+          <div className='flex flex-row-reverse items-center gap-10 justify-between'>
+            <Image className='h-[400px] w-[400px]' src={missionImg} alt="Image" />
+            <p className='leading-10 w-[50%]'>Our mission is to empower farmers by providing easy access to the tools, land, and labor they need to succeed. We are committed to fostering agricultural growth by simplifying the process of acquiring modern farming equipment, finding suitable farmlands, and connecting with skilled farmhands. Through our platform, we aim to drive sustainability, increase productivity, and support farmers in achieving their full potential. We believe that by enabling farmers with the right resources, we can contribute to building a stronger, more resilient agricultural community for the future.</p>
+          </div>
+      </motion.div>
     </div>
   )
 }

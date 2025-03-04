@@ -39,3 +39,20 @@ export const whyItems = [
       avatar: Avatar2
     },
   ]
+
+
+  export const FooterItems = [
+    {
+        title: 'INFO',
+        listItem: ['About Us', 'For Customers', 'Contacts']
+    },
+    {
+        title: 'CONTACT US',
+        listItem: ['+234 980 971-24-19', 'checkme@gmail.com']
+    },
+    {
+        title: 'FIND US',
+        listItem: ['Jobs']
+    },
+
+  ]

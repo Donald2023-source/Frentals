@@ -37,7 +37,7 @@ const Hero2 = () => {
             </button>
           </div>
 
-          
+          <mySele
         </div>
       </div>
     </div>

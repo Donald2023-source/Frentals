@@ -29,7 +29,7 @@ const Cards = () => {
     return (
         <div>
             <motion.div 
-                className='flex lg:flex-row flex-col gap-4 w-[90%] items-center justify-between mx-auto'
+                className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 flex-col gap-4 w-[90%] items-center justify-between mx-auto'
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}

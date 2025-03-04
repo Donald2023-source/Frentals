@@ -13,7 +13,7 @@ import { Testimonials, whyItems } from "./Constants";
 import { useState } from "react";
 import Testimonial from "./Components/Testimonial";
 import Footer from "./Components/Footer";
-import secImg from '@/assets/secimg.jpeg'
+import secImg from "@/assets/secimg.jpeg";
 const page = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -164,9 +164,13 @@ const page = () => {
               reach out.
             </p>
           </div>
-            <button className="py-2 px-5 rounded-lg cursor-pointer hover:scale-105 hoverEffect bg-[#3E803E] border">Contact Us</button>
+          <button className="py-2 px-5 rounded-lg cursor-pointer hover:scale-105 hoverEffect bg-[#3E803E] border">
+            Contact Us
+          </button>
         </div>
-        <Footer />
+        <span className="mt-1">
+          <Footer />
+        </span>
       </div>
     </div>
   );

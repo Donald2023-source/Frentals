@@ -6,6 +6,14 @@ import Avatar from '@/assets/Avatar.png'
 import Avatar2 from '@/assets/Avatar (1).png'
 import { FaRegStar } from "react-icons/fa";
 
+ export const navItems = [
+    { name: "Home", link: "/" },
+    { name: "Services", link: "/services" },
+    { name: "About Us", link: "/about" },
+    { name: "Contact Us", link: "/contact" },
+    { name: "FAQ", link: "/faq" },
+  ];
+
 export const whyItems = [
     { name: 'Proven Expertise', text:'With years of experience, we deliver solutions that work', icon: icon1},
     { name: 'Customer-Centric Approach', text:'We prioritize your needs to create custom solutions.', icon: icon2},
@@ -39,7 +47,6 @@ export const whyItems = [
       avatar: Avatar2
     },
   ]
-
 
   export const FooterItems = [
     {

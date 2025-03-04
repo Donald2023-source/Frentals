@@ -5,16 +5,9 @@ import Image from "next/image";
 import { CiMenuFries } from "react-icons/ci";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.jpg";
-
+import { navItems } from "../Constants";
+import Link from "next/link";
 const Navbar = () => {
-  const navItems = [
-    { name: "Home", link: "/" },
-    { name: "Services", link: "/services" },
-    { name: "About Us", link: "/about" },
-    { name: "Contact Us", link: "/contact" },
-    { name: "FAQ", link: "/faq" },
-  ];
-
   const [nav, setNav] = useState(false);
   const toggleNav = () => {
     setNav(!nav);
@@ -33,7 +26,7 @@ const Navbar = () => {
 
         <ul className="hidden lg:flex space-x-11">
           {navItems.map((item, idx) => (
-            <li
+            <Link href={item.link}
               key={idx}
               className={`cursor-pointer transition-all ${
                 path === item.link
@@ -42,7 +35,7 @@ const Navbar = () => {
               }`}
             >
               {item.name}
-            </li>
+            </Link>
           ))}
         </ul>
 

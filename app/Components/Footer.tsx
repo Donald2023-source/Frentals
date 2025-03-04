@@ -4,7 +4,7 @@ import { div } from "framer-motion/client";
 
 const Footer = () => {
   return (
-    <div className="bg-[#1E1E1E] p-10">
+    <div className="bg-[#1E1E1E] p-10 mt-10">
       <footer className="grid lg:grid-cols-2 grid-cols-1 items-center justify-between">
         <fieldset>
           <input
@@ -13,7 +13,7 @@ const Footer = () => {
           />
         </fieldset>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 md:gap-32 gap-10 py-3">
+        <div className="grid md:grid-cols-3 grid-cols-1 md:gap-32 gap-10 py-3">
           {FooterItems.map((item) => (
             <div className="">
               <h2 className="text-white font-bold text-lg">{item.title}</h2>

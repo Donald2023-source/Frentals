@@ -24,11 +24,11 @@ const Testimonial = () => {
             transition={{ duration: 1 }}
             className="flex items-center justify-center gap-5 mx-auto w-full "
           >
-            {Testimonials.slice(currentIndex, currentIndex + 2).map(
+            {Testimonials.slice(currentIndex, currentIndex + (window.innerWidth < 640 ? 1 : 2)).map(
               (testimonial, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center py-10 px-6 shadow-xl w-[35%] rounded-lg"
+                  className="flex flex-col items-center py-10 px-6 shadow-xl w-[90%] sm:w-[35%] rounded-lg"
                 >
                   <Image
                     className="h-16 w-16 rounded-full"
@@ -44,16 +44,16 @@ const Testimonial = () => {
               )
             )}
           </motion.div>
-          <div className="flex gap-4 top-1/2 absolute justify-between w-[85%]">
+          <div className="flex gap-4 md:top-1/2 bottom-0 absolute justify-between md:w-[85%]">
             <button
               onClick={handlePrev}
-              className="p-4 shadow text-lg rounded-full hover:scale-105 cursor-pointer hover:bg-[#3e803e46] hoverEffect"
+              className="md:p-4 md:shadow md:text-lg rounded-full hover:scale-105 cursor-pointer hover:bg-[#3e803e46] hoverEffect"
             >
               <MdArrowBackIosNew />
             </button>
             <button
               onClick={handleNext}
-              className="p-4 shadow text-lg rounded-full hover:scale-105 cursor-pointer hover:bg-[#3e803e46] hoverEffect"
+              className="md:p-4 md:shadow md:text-lg rounded-full hover:scale-105 cursor-pointer hover:bg-[#3e803e46] hoverEffect"
             >
               <MdArrowForwardIos />
             </button>

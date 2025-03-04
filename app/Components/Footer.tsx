@@ -1,7 +1,7 @@
 import React from "react";
 import { FooterItems } from "../Constants";
 import { div } from "framer-motion/client";
-
+import Link from "next/link";
 const Footer = () => {
   return (
     <div className="bg-[#1E1E1E] p-10 mt-10">
@@ -19,9 +19,9 @@ const Footer = () => {
               <h2 className="text-white font-bold text-lg">{item.title}</h2>
               <div>
                 {item.listItem.map((list) => (
-                  <h2 className="text-base py-2 font-semibold text-white/80">
+                  <Link href={''} className="text-base py-2 font-semibold text-white/80">
                     {list}
-                  </h2>
+                  </Link>
                 ))}
               </div>
             </div>

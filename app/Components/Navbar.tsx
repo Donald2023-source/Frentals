@@ -67,7 +67,7 @@ const Navbar = () => {
           className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-green-900/25 backdrop-blur-lg p-5 z-50 flex flex-col items-center justify-center space-y-6 text-white"
         >
           {navItems.map((item, idx) => (
-            <li
+            <Link href={item.link}
               key={idx}
               onClick={() => setNav(false)}
               className={`cursor-pointer transition-all text-lg ${
@@ -77,7 +77,7 @@ const Navbar = () => {
               }`}
             >
               {item.name}
-            </li>
+            </Link>
           ))}
 
           <button className="border py-2 px-5 rounded-lg hover:scale-105 transition-all">

@@ -19,7 +19,7 @@ export default function RootLayout({
       >
         <Hero2 />
         {children}
-        <Footer />
+        
       </body>
     </html>
   );

@@ -27,9 +27,9 @@ const Cards = () => {
     ];
 
     return (
-        <div>
+        <div className='flex justify-center py-8'>
             <motion.div 
-                className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 flex-col gap-4 w-[90%] items-center justify-between mx-auto'
+                className='grid lg:grid-cols-3  md:grid-cols-2 px-2 grid-cols-1 gap-4 md:w-[90%] items-center justify-between'
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -37,7 +37,7 @@ const Cards = () => {
                 {cardItems.map((item, idx) => (
                     <motion.div 
                         key={idx} 
-                        className='flex flex-col gap-4 rounded-md text-white bg-[#3E803E] p-4 w-[380px]'
+                        className='flex flex-col gap-4 rounded-md text-white bg-[#3E803E] p-4 md:w-[380px]'
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.01 }}

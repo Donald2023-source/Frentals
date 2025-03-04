@@ -18,18 +18,26 @@ const Hero2 = () => {
           <Navbar />
         </div>
 
-        <div className="absolute top-1/4 lg:mx-20 px-3 text-white lg:w-[90%] flex flex-col lg:items-start items-center gap-4">
-          <h2 className="text-white lg:text-4xl text-2xl lg:text-left text-center tracking-wide leading-relaxed lg:w-[48%]">
-            Connecting Farmers To Equipment, Land, And Labor for a Sustainable
-            Future
-          </h2>
-          <p className="">Your Farming Success Starts Here....</p>
-          <button className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
-            Get started
-            <span>
-              <Image src={symbol} alt="img" />
-            </span>
-          </button>
+        <div className="absolute lg:mx-20 top-1/4 flex border">
+          <div className="px-3 text-white border w-[50%] flex flex-col lg:items-start items-center gap-4">
+            <h2 className="text-white lg:text-4xl text-2xl lg:text-left text-center tracking-wide leading-relaxed lg:w-full border">
+              Connecting Farmers To Equipment, Land, And Labor for a Sustainable
+              Future
+            </h2>
+            <p className="">Your Farming Success Starts Here....</p>
+            <button className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
+              Get started
+              <span>
+                <Image src={symbol} alt="img" />
+              </span>
+            </button>
+          </div>
+
+          <div>
+            <div>
+                <h2>Need an Equipment on Rent? Start Today</h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>

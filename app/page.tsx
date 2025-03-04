@@ -52,7 +52,7 @@ const page = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="lg:px-20 px-12 py-4 mt-5"
+        className="md:px-20 px-8 py-4 mt-5"
       >
         <h2 className="text-center font-bold text-2xl">Our Mission</h2>
         <div className="flex lg:flex-row flex-col items-center gap-10 justify-between">
@@ -80,9 +80,9 @@ const page = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="lg:px-20 px-12 py-4 mt-5"
+        className="lg:px-20 px-8 py-4 mt-5"
       >
-        <h2 className="text-center font-bold text-2xl">Our Mission</h2>
+        <h2 className="text-center font-bold text-2xl py-5">Our Vision</h2>
         <div className="flex lg:flex-row-reverse flex-col items-center gap-10 justify-between">
           <Image
             className="lg:h-[400px] lg:w-[400px]"

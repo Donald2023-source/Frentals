@@ -11,6 +11,7 @@ import visionImg from '@/assets/Vision.png';
 import whyImg from '@/assets/Why.jpeg';
 import { Testimonials, whyItems } from './Constants';
 import { useState } from 'react';
+import Testimonial from './Components/Testimonial';
 const page = () => {
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,25 +99,7 @@ const page = () => {
 
       {/* Testimonial */}
 
-      <div>
-          {  
-              <div className='flex flex-col items-center'>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-                  {Testimonials.slice(currentIndex, currentIndex + 2).map((testimonial, idx) => (
-                    <div key={idx} className='flex flex-col items-center p-8 shadow-xl w-[80%] rounded-lg'>
-                      <Image className='h-16 w-16 rounded-full' src={testimonial.avatar} alt={testimonial.name} />
-                      <h3 className='text-lg'>{testimonial.name}</h3>
-                      <p className='text-gray-400 text-sm text-center'>{testimonial.text}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className='flex gap-4 mt-4'>
-                  <button onClick={handlePrev} className='px-4 py-2 bg-gray-300 rounded'>Previous</button>
-                  <button onClick={handleNext} className='px-4 py-2 bg-gray-300 rounded'>Next</button>
-                </div>
-              </div>
-}
-      </div>
+     <Testimonial />
     </div>
   )
 }

@@ -13,6 +13,7 @@ import { Testimonials, whyItems } from "./Constants";
 import { useState } from "react";
 import Testimonial from "./Components/Testimonial";
 import Footer from "./Components/Footer";
+import secImg from '@/assets/secimg.jpeg'
 const page = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -148,7 +149,7 @@ const page = () => {
 
       <div className="w-full relative h-[500px]">
         <div className="w-full rounded-xl h-[500px]">
-          <Image className="w-full rounded-lg h-full" src={whyImg} alt="img" />
+          <Image className="w-full rounded-lg h-full" src={secImg} alt="img" />
         </div>
         <div className="bg-[#3e803e4f] rounded-xl w-full h-full absolute top-0" />
 

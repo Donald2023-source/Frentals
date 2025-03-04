@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-const mySelect = () => {
+const Myselect = () => {
   return (
     <div>
       <div className="bg-white p-10 h-full rounded-2xl">
@@ -45,4 +45,4 @@ const mySelect = () => {
   );
 };
 
-export default mySelect;
+export default Myselect;

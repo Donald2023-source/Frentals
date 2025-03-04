@@ -4,6 +4,7 @@ import heroImg from "@/assets/hero.jpeg";
 import Image from "next/image";
 import symbol from "@/assets/Symbol.png";
 import Navbar from "./Navbar";
+import Myselect from "./mySelect";
 
 
 const Hero2 = () => {
@@ -37,7 +38,7 @@ const Hero2 = () => {
             </button>
           </div>
 
-          <mySele
+          <Myselect />
         </div>
       </div>
     </div>

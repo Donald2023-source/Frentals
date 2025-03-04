@@ -21,7 +21,7 @@ const Stats = () => {
       <div className='lg:flex my-4 md:flex grid grid-cols-2 place-items-center items-center justify-between gap-6 px-4 lg:w-[90%] lg:px-5 border-gray-400 shadow-xl py-7 mx-auto rounded-xl'>
         {
             stats.map((item, idx) => (
-                <motion.div initial={{x: -100 }} animate={{ x: 0}} transition={{ duration: 1, ease: easeInOut}} className='flex items-center w-52' key={idx}>
+                <motion.div initial={{x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1}} transition={{ duration: 1, ease: easeInOut}} className='flex items-center w-52' key={idx}>
                     <Image src={item.icon} alt="img" />
                     <div>
                         <h2 className='text-xl font-semibold'>{item.num}</h2>

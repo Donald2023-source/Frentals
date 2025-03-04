@@ -9,47 +9,10 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import visionImg from '@/assets/Vision.png';
 import whyImg from '@/assets/Why.jpeg';
-import icon1 from '@/assets/why1.svg';
-import icon2 from '@/assets/why2.svg';
-import icon3 from '@/assets/why3.svg';
-import icon4 from '@/assets/why4.svg';
-import Avatar from '@/assets/Avatar.png'
-import Avatar2 from '@/assets/Avatar (1).png'
+import { Testimonials, whyItems } from './Constants';
 import { useState } from 'react';
 const page = () => {
-  const whyItems = [
-    { name: 'Proven Expertise', text:'With years of experience, we deliver solutions that work', icon: icon1},
-    { name: 'Customer-Centric Approach', text:'We prioritize your needs to create custom solutions.', icon: icon2},
-    { name: 'Innovative Solutions', text:'We stay ahead of the curve with the latest tech trends.', icon: icon3},
-    { name: 'Reliable Support', text:'Our team is here for you every step of the way.', icon: icon4},
-  ]
-
-  const Testimonials = [
-    { 
-      name: 'Jeremiah Sunday', 
-      text: 'Thanks to Kudev they really did a great job on remodeling my living room and my bedroom!', 
-      avatar: Avatar
-    },
-
-    { 
-      name: 'Jeremiah Sunday', 
-      text: 'Thanks to Kudev they really did a great job on remodeling my living room and my bedroom!', 
-      avatar: Avatar2
-    },
-
-    { 
-      name: 'Jeremiah Sunday', 
-      text: 'This is the third testimonial', 
-      avatar: Avatar
-    },
-
-    { 
-      name: 'Jeremiah Sunday', 
-      text: 'TThis is the fourth testimonial', 
-      avatar: Avatar2
-    },
-  ]
-
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -142,8 +105,8 @@ const page = () => {
                   {Testimonials.slice(currentIndex, currentIndex + 2).map((testimonial, idx) => (
                     <div key={idx} className='flex flex-col items-center p-8 shadow-xl w-[80%] rounded-lg'>
                       <Image className='h-16 w-16 rounded-full' src={testimonial.avatar} alt={testimonial.name} />
-                      <h3 className='font-semibold text-lg'>{testimonial.name}</h3>
-                      <p className='text-gray-500'>{testimonial.text}</p>
+                      <h3 className='text-lg'>{testimonial.name}</h3>
+                      <p className='text-gray-400 text-sm text-center'>{testimonial.text}</p>
                     </div>
                   ))}
                 </div>

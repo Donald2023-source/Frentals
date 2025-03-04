@@ -4,6 +4,7 @@ import icon3 from '@/assets/why3.svg';
 import icon4 from '@/assets/why4.svg';
 import Avatar from '@/assets/Avatar.png'
 import Avatar2 from '@/assets/Avatar (1).png'
+import { FaRegStar } from "react-icons/fa";
 
 export const whyItems = [
     { name: 'Proven Expertise', text:'With years of experience, we deliver solutions that work', icon: icon1},
@@ -16,7 +17,8 @@ export const whyItems = [
     { 
       name: 'Jeremiah Sunday', 
       text: 'Thanks to Kudev they really did a great job on remodeling my living room and my bedroom!', 
-      avatar: Avatar
+      avatar: Avatar,
+      icon: FaRegStar
     },
 
     { 

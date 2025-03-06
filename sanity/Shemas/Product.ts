@@ -22,8 +22,8 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "title",
-      title: "Title",
+      name: "description",
+      title: "Description",
       type: "string",
       description: "Enter the specification for this product",
     }),

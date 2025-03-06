@@ -42,14 +42,26 @@ export default defineType({
       title: "Category",
       type: "array",
       of: [{ type: "reference", to: [{ type: "category" }] }],
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
 
     defineField({
-        name: 'price',
-        title: 'Price',
-        type: 'number',
-        validation: (rule) => rule.required()
-    })
+      name: "price",
+      title: "Price",
+      type: "number",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "quantity",
+      title: "Quantity",
+      type: "string",
+    }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      media: "image",
+      position: "position",
+    },
+  },
 });

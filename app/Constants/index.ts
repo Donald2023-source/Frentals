@@ -63,3 +63,12 @@ export const whyItems = [
     },
 
   ]
+
+  export const Category = [
+    { name: 'Lorry and Trucks', value: 'lorry and trucks' },
+    { name: 'Site Dumpers', value: 'site dumpers' },
+    { name: 'Bulldozers', value: 'bulldozers' },
+    { name: 'Tractors', value: 'tractors' },
+    { name: 'Sprayer', value: 'sprayers' },
+    { name: 'Torary Tiller', value: 'rotary tiller' },
+  ]

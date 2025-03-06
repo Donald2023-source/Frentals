@@ -4,7 +4,7 @@ import heroImg from "@/assets/hero.jpeg";
 import Image from "next/image";
 import symbol from "@/assets/Symbol.png";
 import Navbar from "./Navbar";
-import Myselect from "./mySelect";
+import Myselect from "./Selectcmp";
 
 
 const Hero2 = () => {
@@ -23,9 +23,9 @@ const Hero2 = () => {
           <Navbar />
         </div>
 
-        <div className="absolute lg:mx-20 h-[80%] w-[80%] top-20 flex items-center justify-between">
-          <div className="px-3 text-white w-[50%] flex flex-col lg:items-start items-center gap-4">
-            <h2 className="text-white lg:text-4xl text-2xl lg:text-left text-center tracking-wide leading-relaxed lg:w-full">
+        <div className="absolute lg:mx-20 h-[80%] lg:w-[80%] top-20 flex items-center justify-between">
+          <div className="px-3 text-white md:w-[50%] flex flex-col md:items-start items-center justify-center mx-auto gap-4">
+            <h2 className="text-white lg:text-4xl text-2xl md:text-left text-center tracking-wide leading-relaxed lg:w-full">
               Connecting Farmers To Equipment, Land, And Labor for a Sustainable
               Future
             </h2>
@@ -38,7 +38,7 @@ const Hero2 = () => {
             </button>
           </div>
 
-          <Myselect />
+          <Myselect className="md:block hidden  md:mr-5" />
         </div>
       </div>
     </div>

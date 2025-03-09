@@ -88,6 +88,7 @@ const page = () => {
             className="lg:h-[400px] lg:w-[400px]"
             src={visionImg}
             alt="Image"
+            priority  
           />
           <p className="leading-10 lg:w-[50%]">
             Our mission is to empower farmers by providing easy access to the

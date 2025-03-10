@@ -47,7 +47,6 @@ const ProductCard = ({ item }: Props) => {
             </span>
           </div>
             <div className="flex flex-col flex-grow">
-            {/* Render the description as a list */}
             {descriptionList?.length > 0 && (
               <ul
               className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}

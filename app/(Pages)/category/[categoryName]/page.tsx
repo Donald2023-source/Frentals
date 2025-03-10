@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Page = async ({ params }: { params: Props }) => {
-
   const products: ProductData[] = await getProducts();
   console.log(products);
 
@@ -18,17 +17,21 @@ const Page = async ({ params }: { params: Props }) => {
   console.log(filteredProducts);
 
   return (
-    <div>
-      <h2>Products under {params.categoryName}</h2>
-
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((item) => (
-          <ProductCard key={item?.title} item={item} />
-          
-        ))
-      ) : (
-        <h2>No products found for {params.categoryName}</h2>
-      )}
+    <div className="px-20">
+      <h2 className="text-xl tracking-wide py-5 font-bold">
+        Products under {params.categoryName}
+      </h2>
+      <div className="flex gap-5 ">
+        {" "}
+        {/* Use 'gap-2' or a smaller value */}
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((item) => (
+            <ProductCard key={item?.title} item={item} />
+          ))
+        ) : (
+          <h2>No products found for {params.categoryName}</h2>
+        )}
+      </div>
     </div>
   );
 };

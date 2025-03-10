@@ -28,7 +28,7 @@ export interface ProductData {
   category: Category[];
   slug: Slug;
   _createdAt: string;
-  description: string;
+  description: [];
   _updatedAt: string;
   _type: "product";
   _id: string;

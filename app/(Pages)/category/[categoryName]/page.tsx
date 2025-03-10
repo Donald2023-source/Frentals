@@ -1,3 +1,4 @@
+import ProductCard from "@/app/Components/ProductCard";
 import { getProducts } from "@/lib/getData";
 import { ProductData } from "@/types";
 import React from "react";
@@ -7,7 +8,6 @@ interface Props {
 }
 
 const Page = async ({ params }: { params: Props }) => {
-  console.log(params);
 
   const products: ProductData[] = await getProducts();
   console.log(products);
@@ -23,9 +23,8 @@ const Page = async ({ params }: { params: Props }) => {
 
       {filteredProducts.length > 0 ? (
         filteredProducts.map((item) => (
-          <div key={item?._id}>
-            <div>{item?.title}</div>
-          </div>
+          <ProductCard key={item?.title} item={item} />
+          
         ))
       ) : (
         <h2>No products found for {params.categoryName}</h2>

@@ -19,7 +19,7 @@ const Footer = () => {
               <h2 className="text-white font-bold text-lg">{item.title}</h2>
               <div>
                 {item.listItem.map((list) => (
-                  <Link href={''} className="text-base py-2 font-semibold text-white/80">
+                  <Link href={'/'} className="text-base py-2 font-semibold text-white/80">
                     {list}
                   </Link>
                 ))}

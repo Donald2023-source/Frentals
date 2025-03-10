@@ -24,8 +24,8 @@ export default defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "string",
-      description: "Enter the specification for this product",
+      type: "array",
+      of: [{ type: "block" }],
     }),
 
     defineField({
@@ -51,6 +51,7 @@ export default defineType({
       type: "number",
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "quantity",
       title: "Quantity",

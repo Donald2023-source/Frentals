@@ -30,19 +30,19 @@ export const whyItems = [
     },
 
     { 
-      name: 'Jeremiah Sunday', 
+      name: 'Esther James', 
       text: 'Thanks to Kudev they really did a great job on remodeling my living room and my bedroom!', 
       avatar: Avatar2
     },
 
     { 
-      name: 'Jeremiah Sunday', 
+      name: 'Grace Aremu', 
       text: 'This is the third testimonial', 
       avatar: Avatar
     },
 
     { 
-      name: 'Jeremiah Sunday', 
+      name: 'John Altibu', 
       text: 'TThis is the fourth testimonial', 
       avatar: Avatar2
     },

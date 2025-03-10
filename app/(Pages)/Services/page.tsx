@@ -4,6 +4,7 @@ import { getCategory, getHotProducts, getProducts } from "@/lib/getData";
 import { urlFor } from "@/sanity/lib/image";
 import { Category, ProductData } from "@/types";
 import Image from "next/image";
+import HotProducts from "@/app/Components/HotProducts";
 
 const Page = async () => {
   const categories: Category[] = await getCategory();
@@ -37,6 +38,10 @@ const Page = async () => {
             </div>
           </Link>
         ))}
+      </div>
+      <div className="flex flex-col py-5 pl-3 w-full">
+        <h2 className="text-2xl tracking-wide font-semibold py-4">Hot Deals For The Weeks</h2>
+        <HotProducts  /> 
       </div>
     </div>
   );

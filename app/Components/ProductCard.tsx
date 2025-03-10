@@ -35,7 +35,7 @@ const ProductCard = ({ item }: Props) => {
           <h4 className="font-semibold text-lg border-b text-center py-1">
             {item?.title}
           </h4>
-          <div className="flex items-center border-b justify-between px-3 py-1">
+          <div className="flex items-center border-b justify-between  py-1 md:px-3">
             <p className="text-semibold text-gray-500">Rent Price</p>
             <span className="text-sm text-green-500">
               <FormatedPrice

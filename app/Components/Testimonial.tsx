@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import { Testimonials } from "../Constants";
 import Image from "next/image";
@@ -15,7 +16,7 @@ const Testimonial = () => {
     setCurrentIndex((prev) => (prev + 2) % Testimonials.length);
   };
   return (
-    <div>
+    <div className="py-10">
       {
         <div className="flex flex-col items-center relative">
           <motion.div

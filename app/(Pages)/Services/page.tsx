@@ -14,7 +14,7 @@ const Page = async () => {
       <h2 className="font-semibold text-center text-2xl py-5">
         Browse Machinery Categories
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-10">
+      <div className="grid grid-cols-2 p-2 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-10">
         {categories.map((item) => (
           <Link
             href={`/category/${item?.title}`}
@@ -27,7 +27,7 @@ const Page = async () => {
               width={300}
               src={urlFor(item?.image).url()}
               alt={item?.title}
-              className="h-52 rounded-xl hoverEffect hover:scale-105"
+              className="md:h-52 h-40 rounded-xl hoverEffect hover:scale-105"
             />
             <div className="absolute top-0 rounded-xl hoverEffect hover:scale-105 h-full w-full bg-black/70" />
             <div className="absolute group-hover:scale-105 hoverEffect flex flex-col items-center x-10 top-1/2 left-0 right-0">

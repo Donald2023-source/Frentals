@@ -23,9 +23,8 @@ const Page = async ({ params }: { params: Props }) => {
       <h2 className="text-3xl tracking-wide py-5 font-bold">
         Products From {params.categoryName}
       </h2>
-      <div className="flex gap-5 ">
+      <div className="md:flex grid grid-cols-2 gap-5 ">
         {" "}
-        {/* Use 'gap-2' or a smaller value */}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((item) => (
             <ProductCard key={item?.title} item={item} />

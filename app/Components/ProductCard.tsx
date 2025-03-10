@@ -23,20 +23,20 @@ const ProductCard = ({ item }: Props) => {
 
   return (
     <div > 
-      <div className={twMerge("border shadow rounded-lg h-[26rem] w-72")}>
+      <div className={twMerge("border shadow rounded-lg md:h-fit sticky lg:w-72 p-1")}>
         <Image
-          className="h-52 w-72 rounded-lg object-cover"
+          className="md:h-52 h-32  w-72 rounded-lg object-cover"
           priority
           height={300}
           width={300}
           src={urlFor(item?.image).url()}
           alt={item?.title}
         />
-        <div className="flex flex-col gap-2 px-3">
+        <div className="flex flex-col gap-2 lg:px-3">
           <h4 className="font-semibold text-lg border-b text-center py-1">
             {item?.title}
           </h4>
-          <div className="flex items-center border-b justify-between px-3 py-1">
+          <div className="flex items-center border-b justify-between md:px-3 px-1 py-1">
             <p className="text-semibold text-gray-500">Rent Price</p>
             <span className="text-sm text-green-500">
               <FormatedPrice

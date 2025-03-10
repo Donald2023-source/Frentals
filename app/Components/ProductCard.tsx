@@ -23,7 +23,7 @@ const ProductCard = ({ item }: Props) => {
 
   return (
     <div > 
-      <div className={twMerge("border shadow rounded-lg w-72")}>
+      <div className={twMerge("border shadow rounded-lg h-[26rem] w-72")}>
         <Image
           className="h-52 w-72 rounded-lg object-cover"
           priority
@@ -46,17 +46,17 @@ const ProductCard = ({ item }: Props) => {
               per day
             </span>
           </div>
-          <div className="flex flex-col">
+            <div className="flex flex-col flex-grow">
             {/* Render the description as a list */}
             {descriptionList?.length > 0 && (
               <ul
-                className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
+              className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
               >
-                {descriptionList.map((text, idx) => (
-                  <li className="list-disc" key={idx}>
-                    {text}{" "}
-                  </li>
-                ))}
+              {descriptionList.map((text, idx) => (
+                <li className="list-disc" key={idx}>
+                {text}{" "}
+                </li>
+              ))}
               </ul>
             )}
             <span
@@ -65,8 +65,11 @@ const ProductCard = ({ item }: Props) => {
             >
               {isVisible ? "Hide" : "See More"}
             </span>
-          </div>
-          <Button text="Reserve Now" />
+            </div>
+            <div className="mt-auto">
+            <Button className="flex items-end justify-end" text="Reserve Now" />
+            </div>  
+         
         </div>
       </div>
     </div>

@@ -26,7 +26,8 @@ const Navbar = () => {
 
         <ul className="hidden lg:flex space-x-11">
           {navItems.map((item, idx) => (
-            <Link href={item.link}
+            <Link
+              href={item.link}
               key={idx}
               className={`cursor-pointer transition-all ${
                 path === item.link
@@ -67,7 +68,8 @@ const Navbar = () => {
           className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-green-900/25 backdrop-blur-lg p-5 z-50 flex flex-col items-center justify-center space-y-6 text-white"
         >
           {navItems.map((item, idx) => (
-            <Link href={item.link}
+            <Link
+              href={item.link}
               key={idx}
               onClick={() => setNav(false)}
               className={`cursor-pointer transition-all text-lg ${

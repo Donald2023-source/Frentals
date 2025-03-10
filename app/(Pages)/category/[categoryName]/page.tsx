@@ -12,12 +12,14 @@ const Page = async ({ params }: { params: Props }) => {
   console.log(products);
 
   const filteredProducts = products.filter((item) =>
-    item?.category?.some((cat) => cat.title === params.categoryName)
+    item?.category?.some(
+      (cat) => decodeURIComponent(cat.title) === params.categoryName
+    )
   );
   console.log(filteredProducts);
 
   return (
-    <div className="px-20">
+    <div className="lg:px-20 flex flex-col md:items-start items-center justify-center">
       <h2 className="text-3xl tracking-wide py-5 font-bold">
         Products From {params.categoryName}
       </h2>

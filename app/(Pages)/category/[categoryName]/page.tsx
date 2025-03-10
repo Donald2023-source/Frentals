@@ -20,10 +20,10 @@ const Page = async ({ params }: { params: Props }) => {
 
   return (
     <div className="lg:px-20 flex flex-col md:items-start items-center justify-center">
-      <h2 className="text-3xl tracking-wide py-5 font-bold">
+      <h2 className="md:text-3xl text-2xl tracking-wide py-5 font-bold">
         Products From {params.categoryName}
       </h2>
-      <div className="md:flex grid grid-cols-2 gap-5 ">
+      <div className="flex overflow-auto max-sm:w-full gap-5 ">
         {" "}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((item) => (

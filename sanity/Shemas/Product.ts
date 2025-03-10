@@ -28,6 +28,7 @@ export default defineType({
       of: [{ type: "block" }],
     }),
 
+
     defineField({
       name: "image",
       title: "Image",
@@ -37,12 +38,19 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "category",
       title: "Category",
       type: "array",
       of: [{ type: "reference", to: [{ type: "category" }] }],
       validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "isnew",
+      title: "New Arrival",
+      type: "boolean",
     }),
 
     defineField({

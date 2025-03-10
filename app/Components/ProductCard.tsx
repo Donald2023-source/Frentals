@@ -19,13 +19,12 @@ const ProductCard = ({ item }: Props) => {
       block.children.map((child) => child.text)
   );
 
-  console.log(descriptionList);
 
   return (
     <div > 
-      <div className={twMerge("border shadow rounded-lg h-[26rem] w-72")}>
+      <div className={twMerge("border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72")}>
         <Image
-          className="h-52 w-72 rounded-lg object-cover"
+          className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
           priority
           height={300}
           width={300}

@@ -18,8 +18,8 @@ const Page = async ({ params }: { params: Props }) => {
 
   return (
     <div className="px-20">
-      <h2 className="text-xl tracking-wide py-5 font-bold">
-        Products under {params.categoryName}
+      <h2 className="text-3xl tracking-wide py-5 font-bold">
+        Products From {params.categoryName}
       </h2>
       <div className="flex gap-5 ">
         {" "}

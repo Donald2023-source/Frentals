@@ -1,33 +1,13 @@
-"use client";
-
-import { useRouter } from "next/navigation"; // Import useRouter for navigation
 import ProductCard from "@/app/Components/ProductCard";
-import { getCategory, getProducts } from "@/lib/getData";
+import Link from "next/link";
+import { getCategory, getHotProducts, getProducts } from "@/lib/getData";
 import { urlFor } from "@/sanity/lib/image";
 import { Category, ProductData } from "@/types";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 
-const Page = () => {
-  const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [products, setProducts] = useState<ProductData[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedCategories = await getCategory();
-      setCategories(fetchedCategories);
-
-      const fetchedProducts = await getProducts();
-      setProducts(fetchedProducts);
-    };
-
-    fetchData();
-  }, []);
-
-  const handleCategoryClick = (categoryId: string) => {
-    router.push(`/category/${categoryId}`);
-  };
+const Page = async () => {
+  const categories: Category[] = await getCategory();
+  console.log(categories);
 
   return (
     <div>
@@ -36,10 +16,10 @@ const Page = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-10">
         {categories.map((item) => (
-          <div
+          <Link
+            href={`/category/${item?.title}`}
             key={item._id}
             className="relative group cursor-pointer"
-            onClick={() => handleCategoryClick(item._id)} // Pass category ID
           >
             <Image
               priority
@@ -55,12 +35,7 @@ const Page = () => {
                 {item?.title}
               </p>
             </div>
-          </div>
-        ))}
-      </div>
-      <div>
-        {products.map((item) => (
-          <ProductCard key={item?._id} title="Hot Deals For The Week" item={item} />
+          </Link>
         ))}
       </div>
     </div>

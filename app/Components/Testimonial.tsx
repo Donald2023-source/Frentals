@@ -25,9 +25,9 @@ const Testimonial = () => {
             className="flex items-center justify-center gap-5 mx-auto w-full "
           >
             {Testimonials.slice(currentIndex, currentIndex + (window.innerWidth < 640 ? 1 : 2)).map(
-              (testimonial, idx) => (
+              (testimonial) => (
                 <div
-                  key={idx}
+                  key={testimonial?.name}
                   className="flex flex-col items-center py-10 px-6 shadow-xl w-[90%] sm:w-[35%] rounded-lg"
                 >
                   <Image

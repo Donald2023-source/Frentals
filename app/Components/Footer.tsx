@@ -15,7 +15,7 @@ const Footer = () => {
 
         <div className="grid md:grid-cols-3 grid-cols-1 md:gap-32 gap-10 py-3">
           {FooterItems.map((item) => (
-            <div className="">
+            <div key={item.title} className="">
               <h2 className="text-white font-bold text-lg">{item.title}</h2>
               <div>
                 {item.listItem.map((list) => (

@@ -15,15 +15,15 @@ interface Props {
 
 const ProductCard = ({ item }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const descriptionList = item?.description?.flatMap(
-    (block: { children: { text: string }[] }) =>
-      block.children.map((child) => child.text)
-  );
-
+  const descriptionList = item?.description?.flatMap((block: { children: { text: string }[] }) =>block.children.map((child) => child.text));
 
   return (
-    <Link href={`/products/${item?.slug.current}`}> 
-      <div className={twMerge("border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72")}>
+    <Link href={`/products/${item?.slug.current}`}>
+      <div
+        className={twMerge(
+          "border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72"
+        )}
+      >
         <Image
           className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
           priority
@@ -46,17 +46,17 @@ const ProductCard = ({ item }: Props) => {
               per day
             </span>
           </div>
-            <div className="flex flex-col flex-grow">
+          <div className="flex flex-col flex-grow">
             {/* Render the description as a list */}
             {descriptionList?.length > 0 && (
               <ul
-              className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
+                className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
               >
-              {descriptionList.map((text, idx) => (
-                <li className="list-disc" key={idx}>
-                {text}{" "}
-                </li>
-              ))}
+                {descriptionList.map((text, idx) => (
+                  <li className="list-disc" key={idx}>
+                    {text}{" "}
+                  </li>
+                ))}
               </ul>
             )}
             <span
@@ -65,11 +65,10 @@ const ProductCard = ({ item }: Props) => {
             >
               {isVisible ? "Hide" : "See More"}
             </span>
-            </div>
-            <div className="mt-auto">
+          </div>
+          <div className="mt-auto">
             <Button className="flex items-end justify-end" text="Reserve Now" />
-            </div>  
-         
+          </div>
         </div>
       </div>
     </Link>

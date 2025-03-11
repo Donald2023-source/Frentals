@@ -82,8 +82,8 @@ const page = async ({ params: { slug } }: Props) => {
       </div>
 
       <div>
-        <h2 className="text-3xl font-bold tracking-wider">More Like This</h2>
-        <div>
+        <h2 className="text-3xl font-bold tracking-wider py-10">More Like This</h2>
+        <div className="flex overflow-auto gap-10">
           {
             Products.map((item, idx) => (
               <ProductCard key={idx} item={item} />

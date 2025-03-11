@@ -18,7 +18,7 @@ const ProductCard = ({ item }: Props) => {
   const descriptionList = item?.description?.flatMap((block: { children: { text: string }[] }) =>block.children.map((child) => child.text));
 
   return (
-    <Link href={`/products/${item?.slug.current}`}>
+    <Link href={`/products/${item?.slug?.current}`}>
       <div
         className={twMerge(
           "border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72"

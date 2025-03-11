@@ -14,7 +14,7 @@ export const productQuery = groq`*[_type == "product"] | order(_createdAt asc) {
   _createdAt,
   _updatedAt,
   "category": category[]-> { _id, title, slug },
-  "slug": slug.current,
+  "slug": slug,
   "image": image.asset->_id
 }
 

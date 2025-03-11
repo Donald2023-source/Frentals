@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-const page = async ({ params: { slug } }: Props) => {
+const Page = async ({ params: { slug } }: Props) => {
   console.log(slug);
   const query = groq`*[_type == 'product' && slug.current == $slug][0]{
     ...
@@ -22,6 +22,7 @@ const page = async ({ params: { slug } }: Props) => {
 
   const product: ProductData = await client.fetch(query, { slug });
   const Products: ProductData[] = await getProducts();
+  console.log("Fetched Products:", Products);
 
   const descriptionList = product?.description.flatMap(
     (block: { children: { text: string }[] }) =>
@@ -30,27 +31,30 @@ const page = async ({ params: { slug } }: Props) => {
 
   console.log(product);
   return (
-    <div className="w-full px-20 py-10">
-      
-      <div className="flex items-center gap-10">
-        <div className="w-[70%]">
+    <div className="w-full md:px-20 px-5 py-10">
+      <div className="flex lg:flex-row w-full flex-col items-center gap-10">
+        <div className="lg:w-[70%] w-full ">
           {product?.image && (
             <Image
               width={500}
               height={500}
               src={urlFor(product.image).url()}
               alt={product.title}
-              className=" w-full rounded-lg h-[28rem] object-cover"
+              className=" w-full rounded-lg md:h-[28rem] object-cover"
             />
           )}
         </div>
 
         {/* Description List */}
         <div className="flex flex-col gap-8">
-          <h2 className="text-2xl font-bold tracking-wider">{product?.title}</h2>
+          <h2 className="text-2xl font-bold tracking-wider">
+            {product?.title}
+          </h2>
           <div>
             {descriptionList.map((item, idx) => (
-              <li className="list-item text-gray-500 py-1" key={idx}>{item}</li>
+              <li className="list-item text-gray-500 py-1" key={idx}>
+                {item}
+              </li>
             ))}
           </div>
 
@@ -82,17 +86,17 @@ const page = async ({ params: { slug } }: Props) => {
       </div>
 
       <div>
-        <h2 className="text-3xl font-bold tracking-wider py-10">More Like This</h2>
+        <h2 className="text-3xl font-bold tracking-wider py-10">
+          More Like This
+        </h2>
         <div className="flex overflow-auto gap-10">
-          {
-            Products.map((item, idx) => (
-              <ProductCard key={idx} item={item} />
-            ))
-          }
+          {Products.map((item, idx) => (
+            <ProductCard key={idx} item={item} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import FormatedPrice from "@/app/Components/FormatedPrice";
 import Button from "@/app/Components/Button";
+import ProductCard from "@/app/Components/ProductCard";
 interface Props {
   params: {
     slug: string;
@@ -77,6 +78,17 @@ const page = async ({ params: { slug } }: Props) => {
           </div>
 
           <Button className="font-semibold text-lg py-5" text="Reserve Now!" />
+        </div>
+      </div>
+
+      <div>
+        <h2 className="text-3xl font-bold tracking-wider">More Like This</h2>
+        <div>
+          {
+            Products.map((item, idx) => (
+              <ProductCard key={idx} item={item} />
+            ))
+          }
         </div>
       </div>
     </div>

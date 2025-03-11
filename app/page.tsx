@@ -14,6 +14,7 @@ import { useState } from "react";
 import Testimonial from "./Components/Testimonial";
 import Footer from "./Components/Footer";
 import ButtomSection from "./Components/ButtomSection";
+import  Loader  from "./Components/Loader";
 
 const page = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -150,7 +151,7 @@ const page = () => {
       </div>
 
             <ButtomSection />
-      
+
     </div>
   );
 };

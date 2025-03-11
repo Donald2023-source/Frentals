@@ -39,7 +39,7 @@ const Page = async () => {
           </Link>
         ))}
       </div>
-      <div className="flex flex-col py-5 pl-3 w-full">
+      <div className="flex flex-col py-5 md:pl-3 mx-16 w-full">
         <h2 className="text-2xl tracking-wide font-semibold py-4">Hot Deals For The Weeks</h2>
         <HotProducts  /> 
       </div>

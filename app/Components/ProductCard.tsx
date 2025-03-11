@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import FormatedPrice from "./FormatedPrice";
 import Button from "./Button";
+import Link from "next/link";
 
 interface Props {
   item: ProductData;
@@ -21,7 +22,7 @@ const ProductCard = ({ item }: Props) => {
 
 
   return (
-    <div > 
+    <Link href={`/products/${item?.slug.current}`}> 
       <div className={twMerge("border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72")}>
         <Image
           className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
@@ -71,7 +72,7 @@ const ProductCard = ({ item }: Props) => {
          
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

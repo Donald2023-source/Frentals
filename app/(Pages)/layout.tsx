@@ -15,14 +15,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${nunitoSans.variable} antialiased flex flex-col gap-10`}
-      >
-        <Hero2 />
-        {children}
-        <ButtomSection />
-      </body>
-    </html>
+    <>
+      <Hero2 />
+      {children}
+      <ButtomSection />
+    </>
   );
 }
+

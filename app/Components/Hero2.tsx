@@ -16,6 +16,7 @@ const Hero2 = () => {
           className="w-full h-full object-cover"
           src={heroImg}
           alt="hero"
+          priority
         />
         <div className="absolute top-0 w-full h-full bg-black/50" />
 

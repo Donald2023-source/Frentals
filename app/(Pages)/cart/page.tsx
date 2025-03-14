@@ -29,8 +29,12 @@ const page = () => {
                 className="h-32 w-32 rounded-lg"
               />
 
-              <h2 className="text-xl font-bold">{item?.title}</h2>
-              
+              <h2 className="text-xl font-semibold">{item?.title}</h2>
+              <div>
+                <button className="w-7 h-7 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200">+</button>
+                <h2>{item?.quantity}</h2>
+                <button className="w-7 h-7 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200">-</button>
+              </div>
             </div>
           ))}
         </div>

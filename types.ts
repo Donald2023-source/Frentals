@@ -33,3 +33,9 @@ export interface ProductData {
   _type: "product";
   _id: string;
 }
+
+export interface StoreState {
+  frentals: {
+    cart: ProductData[]
+  }
+}

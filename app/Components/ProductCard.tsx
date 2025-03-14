@@ -1,12 +1,13 @@
 "use client";
 import { urlFor } from "@/sanity/lib/image";
-import { ProductData } from "@/types";
+import { ProductData, StoreState } from "@/types";
 import Image from "next/image";
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import FormatedPrice from "./FormatedPrice";
 import Button from "./Button";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 interface Props {
   item: ProductData;
@@ -15,23 +16,30 @@ interface Props {
 
 const ProductCard = ({ item }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const descriptionList = item?.description?.flatMap((block: { children: { text: string }[] }) =>block.children.map((child) => child.text));
+  const descriptionList = item?.description?.flatMap(
+    (block: { children: { text: string }[] }) =>
+      block.children.map((child) => child.text)
+  );
 
+  const { cart } = useSelector((state: StoreState) => state.frentals);
+  console.log(cart);
   return (
-    <Link href={`/products/${item?.slug?.current}`}>
+    <div>
       <div
         className={twMerge(
           "border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72"
         )}
       >
-        <Image
-          className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
-          priority
-          height={300}
-          width={300}
-          src={urlFor(item?.image).url()}
-          alt={item?.title}
-        />
+        <Link href={`/products/${item?.slug?.current}`}>
+          <Image
+            className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
+            priority
+            height={300}
+            width={300}
+            src={urlFor(item?.image).url()}
+            alt={item?.title}
+          />
+        </Link>
         <div className="flex flex-col gap-2 px-3">
           <h4 className="font-semibold text-lg border-b text-center py-1">
             {item?.title}
@@ -67,11 +75,15 @@ const ProductCard = ({ item }: Props) => {
             </span>
           </div>
           <div className="mt-auto">
-            <Button item={item} className="flex items-end justify-end" text="Reserve Now" />
+            <Button
+              item={item}
+              className="flex items-end justify-end"
+              text="Reserve Now"
+            />
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

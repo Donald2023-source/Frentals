@@ -4,6 +4,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import Footer from "./Components/Footer";
 import { HeroUIProvider } from "@heroui/system";
+import { Toaster } from "sonner";
 
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
@@ -30,9 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${nunitoSans.variable}  antialiased`}>
-        <HeroUIProvider>
+      
           {children}
-        </HeroUIProvider>
+        <Toaster />
         <Footer />
       </body>
     </html>

@@ -67,7 +67,7 @@ const ProductCard = ({ item }: Props) => {
             </span>
           </div>
           <div className="mt-auto">
-            <Button className="flex items-end justify-end" text="Reserve Now" />
+            <Button item={item} className="flex items-end justify-end" text="Reserve Now" />
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Nunito } from "next/font/google";
 import Footer from "../Components/Footer";
 import Testimonial from "../Components/Testimonial";
 import ButtomSection from "../Components/ButtomSection";
+import Layout from "../Components/Layout";
 
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
@@ -16,10 +17,11 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <>
-      <Hero2 />
-      {children}
-      <ButtomSection />
+      <Layout>
+        <Hero2 />
+        {children}
+        <ButtomSection />
+      </Layout>
     </>
   );
 }
-

@@ -20,6 +20,7 @@ const Page = async ({ params: { slug } }: Props) => {
     ...
   }`;
 
+
   const product: ProductData = await client.fetch(query, { slug });
   const Products: ProductData[] = await getProducts();
   console.log("Fetched Products:", Products);

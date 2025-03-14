@@ -47,7 +47,7 @@ const persistedReducer = persistReducer(persistConfig, cartSlice);
 
 export const store = configureStore({
   reducer: {
-    shoppers: persistedReducer,
+    frentals: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

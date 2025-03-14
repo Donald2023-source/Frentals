@@ -21,8 +21,6 @@ const ProductCard = ({ item }: Props) => {
       block.children.map((child) => child.text)
   );
 
-  const { cart } = useSelector((state: StoreState) => state.frentals);
-  console.log(cart);
   return (
     <div>
       <div

@@ -26,12 +26,16 @@ const page = () => {
                 height={300}
                 src={urlFor(item?.image).url()}
                 alt={item?.title}
+                className="h-32 w-32 rounded-lg"
               />
+
+              <h2 className="text-xl font-bold">{item?.title}</h2>
+              
             </div>
           ))}
         </div>
         <button
-          className="py-3 rounded-xl px-10 text-gray-200 bg-red-600 cursor-pointer"
+          className="py-3 rounded-lg hover:scale-105 hoverEffect px-10 text-gray-200 bg-red-600 cursor-pointer"
           onClick={handleResetCart}
         >
           Clear Cart

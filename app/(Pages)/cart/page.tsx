@@ -1,50 +1,23 @@
-"use client";
+'use client'
+import CartItem from "@/app/Components/CartItem";
 import React from "react";
-import { useDispatch, useSelector, UseSelector } from "react-redux";
-import { StoreState } from "@/types";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { resetCart } from "@/redux/cartSlice";
+import { useSelector, UseSelector } from "react-redux";
+import { ProductData, StoreState } from "@/types";
+
+
+interface Props {
+  cart: ProductData[],
+  item: ProductData
+}
 const page = () => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
   console.log(cart);
 
-  const dispatch = useDispatch();
-  const handleResetCart = () => {
-    dispatch(resetCart());
-    console.log("cart was reset");
-  };
-
   return (
-    <div className="px-20 py-10">
-      <div>
-        <div>
-          {cart.map((item) => (
-            <div key={item?._id}>
-              <Image
-                width={300}
-                height={300}
-                src={urlFor(item?.image).url()}
-                alt={item?.title}
-                className="h-32 w-32 rounded-lg"
-              />
-
-              <h2 className="text-xl font-semibold">{item?.title}</h2>
-              <div>
-                <button className="w-7 h-7 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200">+</button>
-                <h2>{item?.quantity}</h2>
-                <button className="w-7 h-7 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200">-</button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button
-          className="py-3 rounded-lg hover:scale-105 hoverEffect px-10 text-gray-200 bg-red-600 cursor-pointer"
-          onClick={handleResetCart}
-        >
-          Clear Cart
-        </button>
-      </div>
+    <div className="flex flex-col md:gap-2 gap-8 justify-items-stretch justify-center w-full">
+      {cart.map((item: ProductData) => (
+        <CartItem item={item} />
+      ))}
     </div>
   );
 };

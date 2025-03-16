@@ -39,7 +39,7 @@ const storage =
     : createPersistStore();
 
 const persistConfig = {
-  key: "root",
+  key: "frentals",
   storage,
 };
 

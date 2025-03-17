@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 const HotProducts = async () => {
   const HotProducts: ProductData[] = await getHotProducts();
   console.log("Hot Products", HotProducts);
-  return <div className="flex overflow-auto max-sm:w-full gap-5 ">
+  return <div className="flex overflow-auto max-w-full gap-5 ">
     {
         HotProducts.map((item) => (
             <ProductCard item={item} />

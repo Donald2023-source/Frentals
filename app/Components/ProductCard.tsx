@@ -35,7 +35,7 @@ const ProductCard = ({ item }: Props) => {
             height={300}
             width={300}
             src={urlFor(item?.image).url()}
-            alt={item?.title}
+            alt={item?.title} 
           />
         </Link>
         <div className="flex flex-col gap-2 px-3">

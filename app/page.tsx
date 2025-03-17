@@ -14,7 +14,7 @@ import { useState } from "react";
 import Testimonial from "./Components/Testimonial";
 import Footer from "./Components/Footer";
 import ButtomSection from "./Components/ButtomSection";
-import  Loader  from "./Components/Loader";
+import Loader from "./Components/Loader";
 
 const page = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -87,10 +87,10 @@ const page = () => {
         <h2 className="text-center font-bold text-2xl py-5">Our Vision</h2>
         <div className="flex lg:flex-row-reverse flex-col items-center gap-10 justify-between">
           <Image
-            className="lg:h-[400px] lg:w-[400px]"
+            className="lg:h-[400px] lg:w-[400px] object-cover rounded-xl"
             src={visionImg}
             alt="Image"
-            priority  
+            priority
           />
           <p className="leading-10 lg:w-[50%]">
             Our mission is to empower farmers by providing easy access to the
@@ -145,13 +145,12 @@ const page = () => {
         </div>
       </div>
 
-      {/* Testimonial */}
+      {/* Testimonial
       <div className="py-10">
         <Testimonial />
-      </div>
+      </div> */}
 
-            <ButtomSection />
-
+      <ButtomSection />
     </div>
   );
 };

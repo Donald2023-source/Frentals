@@ -1,4 +1,4 @@
-"use client";
+
 import { getHotProducts } from "@/lib/getData";
 import { ProductData, StoreState } from "@/types";
 import React from "react";

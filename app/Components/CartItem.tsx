@@ -52,6 +52,13 @@ const CartItem = ({ item }: { item: ProductData }) => {
   return (
     <div className="lg:px-20 px-5 py-2">
       <div>
+        <div className="flex justify-between font-bold items-center">
+          <h2>Image</h2>
+          <h2>Title</h2>
+          <h2>Quantity</h2>
+          <h2>Price</h2>
+          <h2>Total Price</h2>
+        </div>
         <div className="w-full">
           <div className="flex items-center justify-between w-full">
             <Image
@@ -59,7 +66,7 @@ const CartItem = ({ item }: { item: ProductData }) => {
               height={300}
               src={urlFor(item?.image).url()}
               alt={item?.title}
-              className="lg:h-32 lg:w-32 rounded-lg h-12 object-cover w-12"
+              className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
             />
 
             <h2 className="md:text-xl font-semibold">{item?.title}</h2>

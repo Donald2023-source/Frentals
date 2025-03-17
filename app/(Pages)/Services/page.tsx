@@ -40,7 +40,7 @@ const Page = async () => {
           </Link>
         ))}
       </div>
-      <div className="flex flex-col mx-3 md:mx-16 md:pl-3 w-full">
+      <div className="flex flex-col mx-3 lg:mx-16 md:mx-12 w-full">
         <h2 className="text-2xl tracking-wide font-semibold py-4">
           Hot Deals For The Weeks
         </h2>

@@ -2,9 +2,10 @@ import ProductCard from "@/app/Components/ProductCard";
 import Link from "next/link";
 import { getCategory, getHotProducts, getProducts } from "@/lib/getData";
 import { urlFor } from "@/sanity/lib/image";
-import { Category, ProductData } from "@/types";
+import { Category, ProductData, StoreState } from "@/types";
 import Image from "next/image";
 import HotProducts from "@/app/Components/HotProducts";
+import { useSelector } from "react-redux";
 
 const Page = async () => {
   const categories: Category[] = await getCategory();
@@ -39,9 +40,11 @@ const Page = async () => {
           </Link>
         ))}
       </div>
-      <div className="flex flex-col py-5 md:pl-3 mx-16 w-full">
-        <h2 className="text-2xl tracking-wide font-semibold py-4">Hot Deals For The Weeks</h2>
-        <HotProducts  /> 
+      <div className="flex flex-col mx-3 md:mx-16 md:pl-3 w-full">
+        <h2 className="text-2xl tracking-wide font-semibold py-4">
+          Hot Deals For The Weeks
+        </h2>
+        <HotProducts />
       </div>
     </div>
   );

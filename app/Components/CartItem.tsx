@@ -50,7 +50,6 @@ const CartItem = ({ item }: { item: ProductData }) => {
     }
   };
 
-
   return (
     <div className="lg:px-20 px-5 py-2">
       <div>
@@ -63,32 +62,38 @@ const CartItem = ({ item }: { item: ProductData }) => {
               alt={item?.title}
               className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
             />
-
-            <h2 className="md:text-xl texe-center  w-32 font-semibold">{item?.title}</h2>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleMinus}
-                className="md:w-7 md:h-7 w-5 h-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
-              >
-                -
-              </button>
-              <h2>{item?.quantity}</h2>
-              <button
-                onClick={() => {
-                  if ((existingProduct?.quantity as number) >= 10) {
-                    toast.error("Sorry we can't hire above ten products");
-                  } else {
-                    dispatch(increaseQuantity(item._id));
-                    toast.success("Increased successfully");
-                  }
-                  
-                }}
-                className="md:w-7 md:h-7 h-5 w-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
-              >
-                +
-              </button>
+            <div className="flex flex-col gap-2 items-center">
+              <h2 className="md:text-xl texe-center  md:w-32 font-semibold">
+                {item?.title}
+              </h2>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleMinus}
+                  className="md:w-7 md:h-7 w-5 h-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+                >
+                  -
+                </button>
+                <h2>{item?.quantity}</h2>
+                <button
+                  onClick={() => {
+                    if ((existingProduct?.quantity as number) >= 10) {
+                      toast.error("Sorry we can't hire above ten products");
+                    } else {
+                      dispatch(increaseQuantity(item._id));
+                      toast.success("Increased successfully");
+                    }
+                  }}
+                  className="md:w-7 md:h-7 h-5 w-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+                >
+                  +
+                </button>
+              </div>
             </div>
-            <FormatedPrice className="md:text-base text-xs" amount={item?.price} />
+
+            <FormatedPrice
+              className="md:text-base text-xs"
+              amount={item?.price}
+            />
 
             <FormatedPrice
               className="md:text-base text-sm"

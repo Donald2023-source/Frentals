@@ -5,10 +5,15 @@ import Image from "next/image";
 import symbol from "@/assets/Symbol.png";
 import Navbar from "./Navbar";
 import Myselect from "./Selectcmp";
+import { useSelector } from "react-redux";
+import { StoreState } from "@/types";
 
 
 const Hero2 = () => {
   const [selected, setSelected] = useState("");
+
+  const { user } = useSelector((state:StoreState) => state?.frentals)
+  
   return (
     <div className="h-[90vh] relative">
       <div className="h-full relative">
@@ -32,7 +37,7 @@ const Hero2 = () => {
             </h2>
             <p className="">Your Farming Success Starts Here....</p>
             <button className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
-              Get started
+              { user? "Shop Now" : "Get Started"}
               <span>
                 <Image src={symbol} alt="img" />
               </span>

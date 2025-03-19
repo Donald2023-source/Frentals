@@ -35,13 +35,12 @@ const page = () => {
       <div
         className={
           cart.length > 0
-            ? "flex px-20 py-1  justify-between font-semibold items-center"
+            ? "flex md:px-20 py-1  justify-between md:font-semibold items-center"
             : "hidden"
         }
       >
         <h2 className="py-2 text-sm rounded-lg  px-6">Image</h2>
         <h2 className="py-2 text-sm rounded-lg  px-6">Title</h2>
-        <h2 className="py-2 text-sm rounded-lg  px-6">Quantity</h2>
         <h2 className="py-2 text-sm rounded-lg  px-6">Price</h2>
         <h2 className="py-2 text-sm rounded-lg  px-6">Total Price</h2>
       </div>
@@ -104,10 +103,10 @@ const page = () => {
 
       <div
         onClick={() => dispatch(resetCart())}
-        className="w-full flex items-end justify-end mx-auto pr-20"
+        className="w-full flex items-end justify-end mx-auto md:pr-20 pr-4"
       >
         {cart.length > 0 && (
-          <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-gray-300 hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
+          <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
             Reset Cart
           </button>
         )}

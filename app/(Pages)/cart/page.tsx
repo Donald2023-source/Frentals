@@ -9,6 +9,7 @@ import ProductCard from "@/app/Components/ProductCard";
 import { ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import AmountCard from "@/app/Components/AmountCard";
 
 interface Props {
   cart: ProductData[];
@@ -106,9 +107,12 @@ const page = () => {
         className="w-full flex items-end justify-end mx-auto md:pr-20 pr-4"
       >
         {cart.length > 0 && (
-          <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
-            Reset Cart
-          </button>
+          <div>
+            <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
+              Reset Cart
+            </button>
+            <AmountCard />
+          </div>
         )}
       </div>
     </div>

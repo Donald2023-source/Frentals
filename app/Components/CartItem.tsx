@@ -62,8 +62,8 @@ const CartItem = ({ item }: { item: ProductData }) => {
               alt={item?.title}
               className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
             />
-            <div className="flex flex-col gap-2 items-center">
-              <h2 className="md:text-xl texe-center  md:w-32 font-semibold">
+            <div className="flex flex-col gap-2 items-center justify-center ">
+              <h2 className="md:text-xl text-center  md:w-32 font-semibold">
                 {item?.title}
               </h2>
               <div className="flex items-center gap-3">

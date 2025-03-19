@@ -64,7 +64,7 @@ const CartItem = ({ item }: { item: ProductData }) => {
               className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
             />
 
-            <h2 className="md:text-xl font-semibold">{item?.title}</h2>
+            <h2 className="md:text-xl texe-center  w-32 font-semibold">{item?.title}</h2>
             <div className="flex items-center gap-3">
               <button
                 onClick={handleMinus}

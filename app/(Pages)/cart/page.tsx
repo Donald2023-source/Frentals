@@ -51,6 +51,7 @@ const page = () => {
             <CartItem key={item._id} item={item} />
           ))
         ) : (
+          // Desktop View
           <div className="md:px-1 px-3">
             <motion.div
               initial={{ x: -100, opacity: 0.6 }}
@@ -79,6 +80,7 @@ const page = () => {
               </div>
             </motion.div>
 
+            {/* Mobile View */}
             <div className="block md:hidden border my-5 md:p-9 p-3 w-fit mx-auto rounded-lg shadow-lg">
               <div className="flex flex-col items-center justify-center gap-4">
                 <ShoppingCart size={53} />

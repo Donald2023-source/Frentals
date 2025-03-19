@@ -29,11 +29,11 @@ const Page = async () => {
               width={300}
               src={urlFor(item?.image).url()}
               alt={item?.title}
-              className="md:h-52 w- h-40 rounded-xl hoverEffect hover:scale-105"
+              className="md:h-52 w- h-40 object-cover  rounded-xl hoverEffect hover:scale-105"
             />
             <div className="absolute top-0 rounded-xl hoverEffect hover:scale-105 h-full w-full bg-black/70" />
             <div className="absolute group-hover:scale-105 hoverEffect flex flex-col items-center x-10 top-1/2 left-0 right-0">
-              <p className="font-semibold text-center text-white text-lg">
+              <p className="font-semibold text-center text-white md:text-lg">
                 {item?.title}
               </p>
             </div>

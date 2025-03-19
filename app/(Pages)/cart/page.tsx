@@ -1,6 +1,6 @@
 "use client";
 import CartItem from "@/app/Components/CartItem";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector, UseSelector } from "react-redux";
 import { ProductData, StoreState } from "@/types";
 import Button from "@/app/Components/Button";
@@ -9,7 +9,8 @@ import ProductCard from "@/app/Components/ProductCard";
 import { ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AmountCard from "@/app/Components/AmountCard";
+import FormatedPrice from "@/app/Components/FormatedPrice";
+import { useEffect } from "react";
 
 interface Props {
   cart: ProductData[];
@@ -19,16 +20,25 @@ const page = () => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
   console.log(cart);
 
+  const [total, setTotal] = useState(0);
+
   const handleCheckout = async () => {
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
-        // body: JSON.stringify(cart, user?.email)
+        
       });
     } catch (error) {
       console.log("Error", error);
     }
   };
+
+  useEffect(() => {
+    let price = 0;
+    cart.map((item) => (price += item?.price * item?.quantity));
+    setTotal(price);
+    console.log(price);
+  }, [cart]);
 
   const dispatch = useDispatch();
   return (
@@ -108,10 +118,14 @@ const page = () => {
       >
         {cart.length > 0 && (
           <div>
+            <div className="py-3">
+              <h2 className="text-lg border-b py-3">
+                Total : <FormatedPrice amount={total} />
+              </h2>
+            </div>
             <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
               Reset Cart
             </button>
-            <AmountCard />
           </div>
         )}
       </div>

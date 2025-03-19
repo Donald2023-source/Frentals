@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ProductData } from '@/types';
+import { ProductData, User } from '@/types';
 import { ActiveWorkspaceMatcher } from 'sanity';
 interface InitialState {
     cart: ProductData[];
     favourite: ProductData[];
+    user: User[];
 }
 
 const initialState: InitialState = {
     cart: [],
-    favourite: []
+    favourite: [],
+    user: []
 }
 export const cartSlice = createSlice({
     name: 'cart',
@@ -51,6 +53,14 @@ export const cartSlice = createSlice({
             } else {
                 state.favourite.push(action.payload)
             }
+        },
+
+        addUser: (state, action) => {
+            state.user.push(action.payload)
+        },
+
+        removeUser: (state) => {
+            state.user = []
         },
         
         resetFavourite: (state) => {

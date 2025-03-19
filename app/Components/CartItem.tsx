@@ -49,6 +49,8 @@ const CartItem = ({ item }: { item: ProductData }) => {
       toast.error("Quantity cannot be less than 1");
     }
   };
+
+
   return (
     <div className="lg:px-20 px-5 py-2">
       <div>

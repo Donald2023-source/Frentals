@@ -16,6 +16,19 @@ const page = () => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
   console.log(cart);
 
+  
+
+  const handleCheckout = async() => {
+    try {
+      const response = await fetch("/api/checkout", {
+        method: 'POST',
+        // body: JSON.stringify(cart, user?.email)
+      });
+    } catch(error) {
+      console.log("Error", error);
+    }
+  }
+
   const dispatch = useDispatch();
   return (
     <div>

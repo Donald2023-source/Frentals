@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import img from "@/assets/SignImg.jpeg";
 import Image from "next/image";
+import { Eye, EyeClosed } from "lucide-react";
 const page = () => {
   // const [name, setName] = useState("")
   // const [email, setEmail] = useState("")
@@ -19,6 +20,8 @@ const page = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="w-full max-h-screen h-full">
@@ -38,6 +41,9 @@ const page = () => {
                 <fieldset className="w-full flex items-center py-1 px-3 rounded-md border border-gray-300">
                   <legend className="px-3 text-sm text-gray-800">Name</legend>
                   <input
+                    onChange={handleChange}
+                    value={formData.name}
+                    name="name"
                     className="focus:border-none py-1 tracking-wide text-sm h-full w-full flex items-center justify-center outline-none"
                     type="text"
                     placeholder="James Audu"
@@ -47,6 +53,9 @@ const page = () => {
                 <fieldset className="w-full flex items-center py-1 px-3 rounded-md border border-gray-300">
                   <legend className="px-3 text-sm text-gray-800">Email</legend>
                   <input
+                    onChange={handleChange}
+                    value={formData.email}
+                    name="email"
                     className="focus:border-none py-1 tracking-wide text-sm h-full w-full flex items-center justify-center outline-none"
                     type="text"
                     placeholder="jamesaudu@gmail.com"
@@ -58,8 +67,14 @@ const page = () => {
                     Phone Number
                   </legend>
                   <input
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    name="phoneNumber"
                     className="focus:border-none py-1 tracking-wide text-sm h-full w-full flex items-center justify-center outline-none"
+                    maxLength={11}
                     type="tel"
+                    pattern="[0-9]*"
+                    inputMode="numeric"
                     placeholder="08123000238"
                   />
                 </fieldset>
@@ -68,11 +83,21 @@ const page = () => {
                   <legend className="px-3 text-sm text-gray-800">
                     Password
                   </legend>
+
                   <input
+                    onChange={handleChange}
+                    value={formData.password}
+                    name="password"
                     className="focus:border-none py-1 tracking-wide text-sm h-full w-full flex items-center justify-center outline-none"
-                    type="password"
+                    type={isVisible ? "text" : "password"}
                     placeholder="password"
                   />
+                  <span
+                    className="cursor-pointer text-sm"
+                    onClick={() => setIsVisible(!isVisible)}
+                  >
+                    {isVisible ? <Eye size={17} /> : <EyeClosed size={17} />}
+                  </span>
                 </fieldset>
 
                 <button className="py-2 my-4 px-10 bg-[#3E803E] text-white rounded-lg cursor-pointer hover:scale-105 hoverEffect">

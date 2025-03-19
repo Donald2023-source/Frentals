@@ -34,16 +34,17 @@ export interface ProductData {
   _id: string;
 }
 
-export interface User{
+export interface User {
   name: string;
   email: string;
   password: string;
   _id: string;
+  type: "user";
 }
 
 export interface StoreState {
   frentals: {
-    cart: ProductData[],
-    user: User[]
-  }
+    cart: ProductData[];
+    user: User[];
+  };
 }

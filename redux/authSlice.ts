@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "@/types";
 
+interface User {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  token: string | null;
+  id: string;
+}
 interface AuthState {
-  user: User[] | null;
+  user: User | null;
 }
 
 const initialState: AuthState = {
@@ -17,7 +23,7 @@ export const authSlice = createSlice({
       state.user = action.payload;
     },
     removeUser: (state) => {
-      state.user = [];
+      state.user = null;
     },
   },
 });

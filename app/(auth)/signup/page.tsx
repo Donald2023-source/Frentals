@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/redux/authSlice";
 import { userAgent } from "next/server";
 import { StoreState } from "@/types";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 const page = () => {
   // const [name, setName] = useState("")
   // const [email, setEmail] = useState("")
@@ -32,30 +34,45 @@ const page = () => {
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+
       const response = await fetch("/api/signup", {
-        body: JSON.stringify(formData),
         method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Ensure content type is set
+        },
+        body: JSON.stringify(formData),
       });
+
       const data = await response.json();
+
       if (response.ok) {
-        console.log(data, "User created successfully");
+        console.log("User created successfully:", data);
+        console.log(data.user);
+        const user = data.user;
 
         dispatch(
           addUser({
-            name: formData.name,
-            email: formData.email,
-            phoneNumber: formData.phoneNumber,
-            password: formData.password,
+            name: user.displayName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            id: user.uid,
           })
         );
+      } else {
+        console.error("Signup failed:", data);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error);
     }
   };
 
   const { user } = useSelector((state: StoreState) => state.frentals);
-  console.log(user);
+  const router = useRouter()
+  console.log(user)
+  if (user) {
+    console.log("user", user);
+    router.push("/");
+  }
 
   return (
     <div className="w-full max-h-screen h-full">

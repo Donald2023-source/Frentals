@@ -41,12 +41,12 @@ const Navbar = () => {
         </ul>
 
         <div className="lg:flex space-x-4 hidden">
-          <button className="border py-2 px-5 rounded-lg hover:scale-105 transition-all">
+          <Link href={'/signin'} className="border py-2 cursor-pointer px-5 rounded-lg hover:scale-105 transition-all">
             Sign In
-          </button>
-          <button className="py-2 px-5 rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+          </Link>
+          <Link href={'/signup'} className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
             Sign up
-          </button>
+          </Link>
         </div>
 
         <CiMenuFries
@@ -82,10 +82,16 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <Link href={'/signin'} className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all">
+          <Link
+            href={"/signin"}
+            className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all"
+          >
             Sign In
           </Link>
-          <Link href={'/signup'} className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+          <Link
+            href={"/signup"}
+            className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"
+          >
             Sign up
           </Link>
         </motion.div>

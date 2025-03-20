@@ -82,12 +82,12 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <button className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all">
+          <Link href={'/signin'} className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all">
             Sign In
-          </button>
-          <button className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+          </Link>
+          <Link href={'/signup'} className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
             Sign up
-          </button>
+          </Link>
         </motion.div>
       </div>
     </div>

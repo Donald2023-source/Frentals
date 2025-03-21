@@ -23,7 +23,7 @@ export default function GeometricCyclist() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full h-[50%] max-w-md mx-auto">
       <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
         {/* Geometric Elements */}
 
@@ -38,7 +38,7 @@ export default function GeometricCyclist() {
               fill="none"
               stroke={colors.accent2}
               strokeWidth="1.5"
-              opacity={0.7 - i * 0.1}
+              opacity={0.9 - i * 0.1}
             />
           ))}
         </g>

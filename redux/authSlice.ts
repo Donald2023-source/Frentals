@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 interface User {
   name: string;
   email: string;
-  phoneNumber: string;
-  token: string | null;
   id: string;
 }
 interface AuthState {

@@ -38,7 +38,7 @@ const page = () => {
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Ensure content type is set
+          "Content-Type": "application/json", 
         },
         body: JSON.stringify(formData),
       });
@@ -54,7 +54,6 @@ const page = () => {
           addUser({
             name: user.displayName,
             email: user.email,
-            phoneNumber: user.phoneNumber,
             id: user.uid,
           })
         );
@@ -67,8 +66,11 @@ const page = () => {
   };
 
   const { user } = useSelector((state: StoreState) => state.frentals);
-  const router = useRouter()
-  console.log(user)
+
+  const router = useRouter();
+
+  console.log(user);
+  
   if (user) {
     console.log("user", user);
     router.push("/");

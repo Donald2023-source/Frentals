@@ -16,6 +16,7 @@ interface Props {
 
 const ProductCard = ({ item }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
+
   const descriptionList = item?.description?.flatMap(
     (block: { children: { text: string }[] }) =>
       block.children.map((child) => child.text)

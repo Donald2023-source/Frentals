@@ -46,7 +46,8 @@ const persistConfig = {
 
 
 const rootReducer = combineReducers({
-  cartSlice, authSlice
+  cart: cartSlice,
+  auth: authSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

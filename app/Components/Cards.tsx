@@ -29,7 +29,7 @@ const Cards = () => {
     return (
         <div className='flex justify-center py-8'>
             <motion.div 
-                className='grid lg:grid-cols-3  md:grid-cols-2 px-2 grid-cols-1 gap-4 md:w-[90%] items-center justify-between'
+                className='grid lg:grid-cols-3  md:grid-cols-2 px-2 grid-cols-1 gap-8 md:w-[90%] items-center justify-between'
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}

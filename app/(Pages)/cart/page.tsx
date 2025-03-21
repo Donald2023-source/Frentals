@@ -26,7 +26,6 @@ const page = () => {
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
-        
       });
     } catch (error) {
       console.log("Error", error);
@@ -34,11 +33,15 @@ const page = () => {
   };
 
   useEffect(() => {
-    let price = 0;
-    cart.map((item) => (price += item?.price * item?.quantity));
-    setTotal(price);
-    console.log(price);
+    if (cart.length > 0) {
+      let price = 0;
+      cart.map((item) => (price += item?.price * item?.quantity));
+      setTotal(price);
+      console.log(price);
+    }
   }, [cart]);
+
+  
 
   const dispatch = useDispatch();
   return (

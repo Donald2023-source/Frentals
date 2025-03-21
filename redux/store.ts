@@ -12,7 +12,7 @@ import {
   WebStorage,
 } from "redux-persist";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
-import { authSlice } from "./authSlice";
+
 
 export function createPersistStore(): WebStorage {
   const isServer = typeof window === "undefined";
@@ -44,13 +44,7 @@ const persistConfig = {
   storage,
 };
 
-
-const rootReducer = combineReducers({
-  cart: cartSlice,
-  auth: authSlice,
-})
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, cartSlice);
 
 export const store = configureStore({
   reducer: {

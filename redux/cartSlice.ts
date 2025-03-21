@@ -1,19 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ProductData, User } from "@/types";
-import { ActiveWorkspaceMatcher } from "sanity";
+import { ProductData } from "@/types";
+
+interface UserInfo {
+  id: string;
+  name: string;
+  email: string
+}
+
 interface InitialState {
   cart: ProductData[];
-  favourite: ProductData[];
-  user: User[];
+  favorite: ProductData[];
+  userInfo: UserInfo | null;
 }
 
 const initialState: InitialState = {
   cart: [],
-  favourite: [],
-  user: [],
+  favorite: [],
+  userInfo: null,
 };
-export const cartSlice = createSlice({
-  name: "cart",
+export const shoppersSlice = createSlice({
+  name: "frentals",
   initialState,
   reducers: {
     addToCart: (state, action) => {
@@ -21,12 +27,11 @@ export const cartSlice = createSlice({
         (item) => item?._id === action.payload._id
       );
       if (existingProduct) {
-        existingProduct.quantity! = +1;
+        existingProduct.quantity! += 1;
       } else {
         state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
-
     increaseQuantity: (state, action) => {
       const existingProduct = state?.cart?.find(
         (item) => item?._id === action.payload
@@ -35,50 +40,55 @@ export const cartSlice = createSlice({
         existingProduct.quantity! += 1;
       }
     },
-
     decreaseQuantity: (state, action) => {
-      const exisitingProduct = state?.cart?.find(
+      const existingProduct = state?.cart?.find(
         (item) => item?._id === action.payload
       );
-      if (exisitingProduct) {
-        exisitingProduct.quantity! -= 1;
+      if (existingProduct) {
+        existingProduct.quantity! -= 1;
       }
     },
-
     removeFromCart: (state, action) => {
       state.cart = state.cart.filter((item) => item?._id !== action.payload);
     },
     resetCart: (state) => {
       state.cart = [];
     },
-
-    addToFavourite: (state, action) => {
-      const existingProduct = state?.favourite.find(
+    // Favorite cart
+    addToFavorite: (state, action) => {
+      const existingProduct = state?.favorite?.find(
         (item) => item?._id === action.payload?._id
       );
       if (existingProduct) {
-        state.favourite = state.favourite.filter(
-          (item) => item?._id !== action.payload?._id
+        state.favorite = state.favorite.filter(
+          (item) => item?._id !== action.payload._id
         );
       } else {
-        state.favourite.push(action.payload);
+        state.favorite.push(action.payload);
       }
     },
+    resetFavorite: (state) => {
+      state.favorite = [];
+    },
 
-    resetFavourite: (state) => {
-      state.favourite = [];
+    addUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+    removeUser: (state) => {
+      state.userInfo = null;
     },
   },
 });
 
 export const {
   addToCart,
-  removeFromCart,
-  resetCart,
+  addUser,
+  removeUser,
   increaseQuantity,
   decreaseQuantity,
-  addToFavourite,
-  resetFavourite,
-} = cartSlice.actions;
-
-export default cartSlice.reducer;
+  removeFromCart,
+  resetCart,
+  addToFavorite,
+  resetFavorite,
+} = shoppersSlice.actions;
+export default shoppersSlice.reducer;

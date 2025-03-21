@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { addToCart } from "@/redux/cartSlice";
 import { ProductData } from "@/types";
 import React from "react";
@@ -15,7 +15,7 @@ const Button = ({ text, item, className }: Props) => {
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart(item));
-    toast.success(`${item?.title.substring(0, 15)} was Reserved`)
+    toast.success(`${item?.title.substring(0, 15)} was Reserved`);
   };
 
   return (

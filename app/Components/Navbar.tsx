@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import logo from "@/assets/logo.jpg";
 import { navItems } from "../Constants";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { StoreState } from "@/types";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const toggleNav = () => {
@@ -14,6 +16,9 @@ const Navbar = () => {
   };
 
   const path = usePathname();
+
+  const { userInfo } = useSelector((state: StoreState) => state.frentals);
+  console.log(userInfo)
 
   return (
     <div className="relative h-16">
@@ -40,11 +45,17 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="lg:flex space-x-4 hidden">
-          <Link href={'/signin'} className="border py-2 cursor-pointer px-5 rounded-lg hover:scale-105 transition-all">
+        <div className={userInfo ? "hidden" : "lg:flex space-x-4 hiddem"}>
+          <Link
+            href={"/signin"}
+            className="border py-2 cursor-pointer px-5 rounded-lg hover:scale-105 transition-all"
+          >
             Sign In
           </Link>
-          <Link href={'/signup'} className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all">
+          <Link
+            href={"/signup"}
+            className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"
+          >
             Sign up
           </Link>
         </div>
@@ -82,18 +93,20 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <Link
-            href={"/signin"}
-            className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all"
-          >
-            Sign In
-          </Link>
-          <Link
-            href={"/signup"}
-            className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"
-          >
-            Sign up
-          </Link>
+          <div>
+            <Link
+              href={"/signin"}
+              className="border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all"
+            >
+              Sign In
+            </Link>
+            <Link
+              href={"/signup"}
+              className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"
+            >
+              Sign up
+            </Link>
+          </div>
         </motion.div>
       </div>
     </div>

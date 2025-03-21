@@ -4,11 +4,12 @@ import img from "@/assets/SignImg.jpeg";
 import Image from "next/image";
 import { Eye, EyeClosed } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "@/redux/authSlice";
+import { addUser, removeUser } from "@/redux/cartSlice";
 import { userAgent } from "next/server";
 import { StoreState } from "@/types";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 const page = () => {
   // const [name, setName] = useState("")
   // const [email, setEmail] = useState("")
@@ -38,25 +39,25 @@ const page = () => {
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
+      dispatch(
+        addUser({
+          name: data.user.displayName,
+          email: data.user.email,
+          id: data.user.uid,
+        })
+      );
+
       if (response.ok) {
         console.log("User created successfully:", data);
         console.log(data.user);
         const user = data.user;
-
-        dispatch(
-          addUser({
-            name: user.displayName,
-            email: user.email,
-            id: user.uid,
-          })
-        );
       } else {
         console.error("Signup failed:", data);
       }
@@ -65,16 +66,24 @@ const page = () => {
     }
   };
 
-  const { user } = useSelector((state: StoreState) => state.frentals);
+  const { userInfo } = useSelector((state: StoreState) => state.frentals);
+  const { cart } = useSelector((state: StoreState) => state.frentals);
+
+  console.log(cart);
 
   const router = useRouter();
 
-  console.log(user);
-  
-  if (user) {
-    console.log("user", user);
-    router.push("/");
-  }
+  console.log(userInfo);
+
+  if (userInfo) {
+    console.log("user", userInfo);
+    router.push("/services");
+  } 
+
+  const handleSignout = () => {
+    dispatch(removeUser());
+    toast.success("user logged out successfully");
+  };
 
   return (
     <div className="w-full max-h-screen h-full">
@@ -165,6 +174,14 @@ const page = () => {
                 </button>
               </form>
             </div>
+
+            <button
+              onClick={handleSignout}
+              type="submit"
+              className="py-2 my-4 px-10 bg-[#3E803E] text-white rounded-lg cursor-pointer hover:scale-105 hoverEffect"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

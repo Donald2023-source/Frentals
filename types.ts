@@ -43,6 +43,6 @@ export interface User {
 export interface StoreState {
   frentals: {
     cart: ProductData[];
-    user: User | null;
+    userInfo: any
   };
 }

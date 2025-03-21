@@ -1,9 +1,12 @@
 import React from 'react'
 import Container from '@/app/Components/Container'
+import Barner from '@/app/Components/Barner'
 const page = () => {
   return (
     <Container>
-      <div>This is the child of the dashboard</div>
+      <div className='mx-1'>
+        <Barner />
+      </div>
     </Container>
   )
 }

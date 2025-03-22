@@ -27,7 +27,6 @@ export default function Dashboardlayout({
 }>) {
   return (
     <Layout>
-
       <div >
       <DashboardNav />
       {children}

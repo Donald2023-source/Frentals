@@ -18,9 +18,11 @@ export default function RootLayout({
   return (
     <>
       <Layout>
-        <Hero2 />
-        {children}
-        <ButtomSection />
+        <div className={`${nunitoSans} antialiased`}>
+          <Hero2 />
+          {children}
+          <ButtomSection />
+        </div>
       </Layout>
     </>
   );

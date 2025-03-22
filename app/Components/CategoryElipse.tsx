@@ -15,11 +15,13 @@ const CategoryElipse = () => {
       setCategories(categoriesData);
     };
     fetchCategories();
-  }, []);
+  }, [categories]);
+
+  console.log(categories)
 
   return (
     <div className="py-3 w-full">
-      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-5 w-full justify-items-stretch">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-10 w-full justify-items-stretch">
         {categories.map((item) => (
           <Link
             key={item.title}
@@ -33,7 +35,7 @@ const CategoryElipse = () => {
               src={urlFor(item?.image).url()}
               alt={item?.title}
             />
-            <h2 className="font-semibold">{item?.title}</h2>
+            <h2 className="md:text-base text-sm font-semibold">{item?.title}</h2>
           </Link>
         ))}
       </div>

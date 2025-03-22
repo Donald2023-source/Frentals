@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import FormatedPrice from "./FormatedPrice";
 import Button from "./Button";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+
 
 interface Props {
   item: ProductData;
@@ -32,7 +32,7 @@ const ProductCard = ({ item }: Props) => {
         <Link href={`/products/${item?.slug?.current}`}>
           <Image
             className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
-            
+            priority
             height={300}
             width={300}
             src={urlFor(item?.image).url()}

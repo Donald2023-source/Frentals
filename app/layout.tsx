@@ -1,10 +1,10 @@
-
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import Footer from "./Components/Footer";
 import { HeroUIProvider } from "@heroui/system";
 import { Toaster } from "sonner";
+import Layout from "./Components/Layout";
 
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   description: "Your farming success starts here ",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,13 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${nunitoSans.variable}  antialiased`}>
-      
+      <Layout>
+        <div className={`${nunitoSans.variable}  antialiased`}>
           {children}
-        <Toaster />
-        
-      </body>
+          <Toaster />
+        </div>
+      </Layout>
     </html>
   );
 }

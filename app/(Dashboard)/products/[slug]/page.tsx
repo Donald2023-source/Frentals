@@ -8,6 +8,8 @@ import { urlFor } from "@/sanity/lib/image";
 import FormatedPrice from "@/app/Components/FormatedPrice";
 import Button from "@/app/Components/Button";
 import ProductCard from "@/app/Components/ProductCard";
+import Container from "@/app/Components/Container";
+
 interface Props {
   params: {
     slug: string;
@@ -15,52 +17,56 @@ interface Props {
 }
 
 const Page = async ({ params: { slug } }: Props) => {
-  console.log(slug);
-  const query = groq`*[_type == 'product' && slug.current == $slug][0]{
-    ...
-  }`;
+  if (!slug) {
+    return <p className="text-red-500">Invalid product slug</p>;
+  }
 
+  console.log("Product Slug:", slug);
 
+  const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
   const product: ProductData = await client.fetch(query, { slug });
   const Products: ProductData[] = await getProducts();
+
   console.log("Fetched Products:", Products);
 
-  const descriptionList = product?.description.flatMap(
+  const descriptionList = product?.description?.flatMap(
     (block: { children: { text: string }[] }) =>
       block.children.map((child) => child.text)
-  );
+  ) || [];
 
-  console.log(product);
+  console.log("Fetched Product:", product);
+
   return (
-    <div className="w-full md:px-20 px-5 py-10">
-      <div className="flex lg:flex-row w-full flex-col items-center gap-10">
-        <div className="lg:w-[70%] w-full ">
-          {product?.image && (
+    <Container className="border">
+      <div className="flex lg:flex-row w-full flex-col px-1 items-center gap-10">
+        <div className="lg:w-[70%] w-full">
+          {product?.image ? (
             <Image
               width={500}
               height={500}
               src={urlFor(product.image).url()}
               alt={product.title}
-              className=" w-full rounded-lg md:h-[28rem] object-cover"
+              className="w-full rounded-lg md:h-[28rem] object-cover"
             />
+          ) : (
+            <p className="text-gray-500">No image available</p>
           )}
         </div>
 
         {/* Description List */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col px-10 gap-8">
           <h2 className="text-2xl font-bold tracking-wider">
             {product?.title}
           </h2>
           <div>
             {descriptionList.map((item, idx) => (
-              <li className="list-item text-gray-500 py-1" key={idx}>
+              <li className="list-item px-3 text-gray-500 py-1" key={idx}>
                 {item}
               </li>
             ))}
           </div>
 
           {/* Price section */}
-
           <div className="flex gap-10">
             <p className="text-green-400 font-semibold">
               <FormatedPrice className="text-black" amount={product?.price} /> /
@@ -91,12 +97,12 @@ const Page = async ({ params: { slug } }: Props) => {
           More Like This
         </h2>
         <div className="flex overflow-auto gap-10">
-          {Products.map((item, idx) => (
-            <ProductCard key={idx} item={item} />
+          {Products.map((item) => (
+            <ProductCard key={item._id} item={item} />
           ))}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

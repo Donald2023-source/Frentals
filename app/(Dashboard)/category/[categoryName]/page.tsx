@@ -4,12 +4,13 @@ import { getProducts } from "@/lib/getData";
 import { ProductData } from "@/types";
 import React from "react";
 
-interface Props {
-  categoryName: string;
+interface PageProps {
+  params: { categoryName: string };
 }
 
-const Page = async ({ params }: { params: Props }) => {
+const Page = async ({ params }: PageProps) => {
   const products: ProductData[] = await getProducts();
+
   console.log(products);
 
   const filteredProducts = products.filter((item) =>
@@ -17,6 +18,7 @@ const Page = async ({ params }: { params: Props }) => {
       (cat) => decodeURIComponent(cat.title) === params.categoryName
     )
   );
+
   console.log(filteredProducts);
 
   return (
@@ -24,8 +26,7 @@ const Page = async ({ params }: { params: Props }) => {
       <h2 className="md:text-3xl text-2xl text-left tracking-wide py-5 font-bold">
         Products From {params.categoryName}
       </h2>
-      <div className="flex pl-3 overflow-auto max-sm:w-full gap-5 ">
-        {" "}
+      <div className="flex pl-3 overflow-auto max-sm:w-full gap-5">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((item) => (
             <ProductCard key={item?.title} item={item} />
@@ -36,10 +37,11 @@ const Page = async ({ params }: { params: Props }) => {
       </div>
 
       <div className="flex flex-col py-5 pl-3 w-full">
-        <h2 className="text-2xl tracking-wide font-semibold py-4">Hot Products</h2>
-        <HotProducts  /> 
+        <h2 className="text-2xl tracking-wide font-semibold py-4">
+          Hot Products
+        </h2>
+        <HotProducts />
       </div>
-        
     </div>
   );
 };

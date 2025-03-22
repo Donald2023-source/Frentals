@@ -4,11 +4,11 @@ import { motion } from "framer-motion"
 
 export default function AnimatedCart() {
   return (
-    <div className="flex items-center justify-center p-10">
-      <div className="relative h-[300px] w-[300px]">
+    <div className="flex items-center justify-center">
+      <div className="relative h-[200px] w-[200px]">
         {/* Background decorative elements */}
         <motion.div
-          className="absolute left-[10%] top-[15%] h-6 w-6 rounded-full bg-primary/20"
+          className="absolute left-0 right-1 top-[15%] h-6 w-6 rounded-full bg-primary/20"
           animate={{
             x: [0, 20, -20, 0],
             y: [0, -15, 10, 0],
@@ -53,12 +53,12 @@ export default function AnimatedCart() {
 
         {/* Main cart SVG with continuous animations */}
         <motion.svg
-          width="300"
-          height="300"
+          width="150"
+          height="150"
           viewBox="0 0 300 300"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-0 top-0"
+          className="absolute md:left-0 left-20  top-1/6"
           animate={{
             y: [0, -10, 0, -5, 0],
             rotate: [-1, 1, -0.5, 0.5, -1],

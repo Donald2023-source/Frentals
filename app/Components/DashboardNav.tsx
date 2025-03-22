@@ -23,7 +23,7 @@ import logo from "@/assets/logo.jpg";
 const DashboardNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navItems = [
-    { icon: <Home />, name: "Home", link: "/dashboard" },
+    { icon: <Home />, name: "Dashboard", link: "/dashboard" },
     { icon: <ShoppingBag />, name: "Shop", link: "/shop" },
     { icon: <CheckCheckIcon />, name: "Orders", link: "/order" },
     { icon: <Settings />, name: "Settings", link: "/settings" },

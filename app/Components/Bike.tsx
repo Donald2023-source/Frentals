@@ -23,8 +23,8 @@ export default function GeometricCyclist() {
   }
 
   return (
-    <div className="w-full h-[50%] max-w-md mx-auto">
-      <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <div className="w-full h-[30%] flex items-end justify-end max-w-md ">
+      <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" className="w-full md:h-full h-40 flex items-end justify-end ml-32">
         {/* Geometric Elements */}
 
         {/* Circles pattern - top left */}

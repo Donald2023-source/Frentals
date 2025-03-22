@@ -104,7 +104,7 @@ const DashboardNav = () => {
             animate={{ x: 0, opacity: 1 }} //
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
-            className="fixed right-0 top-0 w-64 h-full bg-white rounded-lg shadow-lg flex flex-col p-5"
+            className="fixed z-20 right-0 top-0 w-64 h-full bg-white rounded-lg shadow-lg flex flex-col p-5"
           >
             <button
               className="self-end text-gray-500 hover:text-[#3E803E] transition"

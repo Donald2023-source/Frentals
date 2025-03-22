@@ -8,7 +8,7 @@ export default function AnimatedCart() {
       <div className="relative h-[200px] w-[200px]">
         {/* Background decorative elements */}
         <motion.div
-          className="absolute left-0 right-1 top-[15%] h-6 w-6 rounded-full bg-primary/20"
+          className="absolute left-0 right-0 top-[15%] h-6 w-6 rounded-full bg-primary/20"
           animate={{
             x: [0, 20, -20, 0],
             y: [0, -15, 10, 0],
@@ -22,7 +22,7 @@ export default function AnimatedCart() {
         />
 
         <motion.div
-          className="absolute right-[15%] top-[20%] h-4 w-4 rounded-full bg-secondary/30"
+          className="absolute right-[10%] top-[20%] h-4 w-4 rounded-full bg-secondary/30"
           animate={{
             x: [0, -15, 15, 0],
             y: [0, 10, -10, 0],
@@ -53,7 +53,7 @@ export default function AnimatedCart() {
 
         {/* Main cart SVG with continuous animations */}
         <motion.svg
-          width="150"
+          width="120"
           height="150"
           viewBox="0 0 300 300"
           fill="none"

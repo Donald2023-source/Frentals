@@ -22,7 +22,7 @@ const Barner = ({ title, text, Svg }: Props) => {
             </h2>
             <p className="md:leading-8 leading-[23px] w-full md:text-sm text-xs">{text}</p>
           </div>
-          <div className="flex justify-end items-end w-full">{Svg}</div>
+          <div className="flex justify-end relative left-7 items-end w-full">{Svg}</div>
         </div>
       </div>
     </div>

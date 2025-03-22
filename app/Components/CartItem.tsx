@@ -51,10 +51,10 @@ const CartItem = ({ item }: { item: ProductData }) => {
   };
 
   return (
-    <div className="lg:px-20 px-5 py-2">
+    <div className="lg:px-20 py-2">
       <div>
         <div className="w-full">
-          <div className="flex items-center justify-between w-full">
+          <div className="flex items-center bg-accent p-4 rounded-lg justify-between w-full">
             <Image
               width={300}
               height={300}

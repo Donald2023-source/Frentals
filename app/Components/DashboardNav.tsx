@@ -38,16 +38,16 @@ const DashboardNav = () => {
       {/* Logo & Branding */}
       <div className="flex items-center gap-12">
         <div className="flex items-center gap-4">
-        <button
-          className="lg:hidden text-gray-500 hover:text-[#3E803E] transition"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? (
-            <X className="cursor-pointer" size={28} />
-          ) : (
-            <Menu className="cursor-pointer" size={28} />
-          )}
-        </button>
+          <button
+            className="lg:hidden text-gray-500 hover:text-[#3E803E] transition"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? (
+              <X className="cursor-pointer" size={28} />
+            ) : (
+              <Menu className="cursor-pointer" size={28} />
+            )}
+          </button>
           <Image
             className="md:h-16 md:w-16 w-10 h-10 rounded-full object-cover"
             src={logo}
@@ -75,17 +75,18 @@ const DashboardNav = () => {
       </div>
 
       <div className="flex items-center gap-6">
-        <ShoppingCart
-          className="hover:scale-105 cursor-pointer transition-all"
-          size={23}
-        />
+        <Link href={'/cart'}>
+          
+          <ShoppingCart
+            className="hover:scale-105 cursor-pointer transition-all"
+            size={23}
+          />
+        </Link>
         <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
           <AvatarFallback className="font-bold text-lg p-3">
             {userLogo}
           </AvatarFallback>
         </Avatar>
-
-        
       </div>
 
       {menuOpen && (

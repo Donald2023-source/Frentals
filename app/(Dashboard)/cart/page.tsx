@@ -53,12 +53,13 @@ const page = () => {
             : "hidden"
         }
       >
-        <h2 className="py-2 text-sm rounded-lg  px-6">Image</h2>
-        <h2 className="py-2 text-sm rounded-lg  px-6">Title</h2>
-        <h2 className="py-2 text-sm rounded-lg  px-6">Price</h2>
-        <h2 className="py-2 text-sm rounded-lg  px-6">Total Price</h2>
+        <h2 className="p-3 font-semibold text-2xl w-full border-b">Cart</h2>
+        {/* <h2 className="py-2 text-sm rounded-lg px-3 md:px-6">Image</h2>
+        <h2 className="py-2 text-sm rounded-lg px-3 md:px-6">Title</h2>
+        <h2 className="py-2 text-sm rounded-lg px-3 md:px-6">Price</h2>
+        <h2 className="py-2 text-sm rounded-lg px-3 md:px-6">Total Price</h2> */}
       </div>
-      <div className="flex flex-col md:gap-2 gap-8 justify-items-stretch justify-center w-full">
+      <div className="flex flex-col md:gap-2 gap-6 justify-items-stretch justify-center w-full">
         {cart.length > 0 ? (
           cart.map((item: ProductData) => (
             <CartItem key={item._id} item={item} />
@@ -84,7 +85,7 @@ const page = () => {
                     shopping
                   </p>
                   <Link
-                    href={"/services"}
+                    href={"/shop"}
                     className="border py-2 px-10 rounded-lg bg-[#3E803E] text-gray-100 cursor-pointer hover:scale-105 hoverEffect"
                   >
                     Continue Shopping

@@ -29,9 +29,10 @@ const DashboardNav = () => {
     { icon: <Settings />, name: "Settings", link: "/settings" },
   ];
 
-  const { userInfo } = useSelector((state: StoreState) => state.frentals);
+  const { userInfo,cart } = useSelector((state: StoreState) => state.frentals);
   const userLogo = userInfo?.name.slice(0, 1);
   const path = usePathname();
+  
 
   return (
     <div className="md:px-5 px-3 py-3 flex items-center justify-between border-b border-gray-100">
@@ -75,12 +76,13 @@ const DashboardNav = () => {
       </div>
 
       <div className="flex items-center gap-6">
-        <Link href={'/cart'}>
+        <Link className="relative" href={'/cart'}>
           
           <ShoppingCart
-            className="hover:scale-105 cursor-pointer transition-all"
+            className="hover:scale-105  cursor-pointer transition-all"
             size={23}
           />
+          <h2 className="absolute -top-2 -right-3 p-2 text-gray-100 border rounded-full h-5 w-5 bg-green-600 flex items-center text-sm justify-center">{ cart.length}</h2>
         </Link>
         <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
           <AvatarFallback className="font-bold text-lg p-3">

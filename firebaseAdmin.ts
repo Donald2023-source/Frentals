@@ -30,7 +30,7 @@ async function myAccessToken(): Promise<void> {
     if (token) {
       console.log("Successfully retrieved token", token);
     } else {
-      console.log("Failed to retrieved token");
+      console.log("Failed to retrieve token");
     }
   } catch (error) {
     console.error("Error in my Access token", error);

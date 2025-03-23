@@ -25,6 +25,7 @@ const PriceSelection = ({ item }: Props) => {
             priceOptions.map((option) => {
                 const amount = item?.price * item?.quantity * option.multiplier;
                 return (
+                    <div>
                   <label
                     key={option.label}
                     className="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
@@ -39,10 +40,18 @@ const PriceSelection = ({ item }: Props) => {
                     <h2 className="text-sm font-medium">
                       <FormatedPrice amount={amount} /> {option.label}
                     </h2>
+                    
                   </label>
+                  <button
+                    onClick={() => setIsVisible(false)}
+                    className="mt-4 text-sm text-green-800 hover:underline"
+                  >
+                    Hide
+                  </button>
+                  </div>
                 );
               })
-        ) : (<h2 onClick={() => setIsVisible(!isVisible)} className="font-semibold mb-3 cursor-pointer">Select Duration</h2>)
+        ) : (<h2 onClick={() => setIsVisible(!isVisible)} className="mt-4 text-sm text-green-800 hover:underline cursor-pointer">Select Duration</h2>)
     }
     </div>
   );

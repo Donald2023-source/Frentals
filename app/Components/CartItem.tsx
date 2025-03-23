@@ -19,7 +19,7 @@ const CartItem = ({ item }: { item: ProductData }) => {
   const [selectedPrice, setSelectedPrice] = useState<number>(item?.price); // Default to per day price
 
   const handlePriceChange = (price: number) => {
-    setSelectedPrice(price); // Update selected price in state
+    setSelectedPrice(price);
   };
 
   return (

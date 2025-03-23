@@ -4,6 +4,7 @@ import "../globals.css";
 import { Toaster } from "sonner";
 import DashboardNav from "../Components/DashboardNav";
 import Layout from "../Components/Layout";
+import Footer from "../Components/Footer";
 
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
@@ -30,6 +31,7 @@ export default function Dashboardlayout({
       <div >
       <DashboardNav />
       {children}
+      <Footer />
       <Toaster />
       </div>
 

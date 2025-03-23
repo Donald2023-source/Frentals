@@ -11,6 +11,7 @@ import {
 } from "@/redux/cartSlice";
 import { toast } from "sonner";
 import FormatedPrice from "./FormatedPrice";
+import PriceSelection from "./PriceSelection";
 const CartItem = ({ item }: { item: ProductData }) => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
   console.log(cart);
@@ -49,6 +50,7 @@ const CartItem = ({ item }: { item: ProductData }) => {
       toast.error("Quantity cannot be less than 1");
     }
   };
+  
 
   return (
     <div className="lg:px-20 py-2">
@@ -90,10 +92,7 @@ const CartItem = ({ item }: { item: ProductData }) => {
               </div>
             </div>
 
-            <FormatedPrice
-              className="md:text-base text-xs"
-              amount={item?.price}
-            />
+                <PriceSelection item={item} />
 
             <FormatedPrice
               className="md:text-base text-sm"

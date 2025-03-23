@@ -5,7 +5,7 @@ interface Props {
     id: string | null
 }
 
-const SucessContainer = ({ id }: { id: string }) => {
+const SucessContainer = ({ id }: Props) => {
   console.log(id);
 
   return (

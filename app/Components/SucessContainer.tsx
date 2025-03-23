@@ -1,6 +1,9 @@
 import { CheckCircle } from "lucide-react";
 import React from "react";
 
+interface Props {
+    id: string | null
+}
 const SucessContainer = ({ id }: { id: string }) => {
   console.log(id);
 

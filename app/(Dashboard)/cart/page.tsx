@@ -26,6 +26,7 @@ const page = () => {
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
+        
       });
     } catch (error) {
       console.log("Error", error);
@@ -131,6 +132,7 @@ const page = () => {
           </div>
         )}
       </div>
+      <button className="rounded-md bg-[#3E803E] md:w-[30%] cursor-pointer  py-4 hoverEffect hover:scale-105 mx-auto flex items-center justify-center text-white px-10">Checkout</button>
     </div>
   );
 };

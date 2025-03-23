@@ -59,9 +59,9 @@ const CartItem = ({ item }: { item: ProductData }) => {
           
           <FormatedPrice className="md:text-base text-sm" amount={selectedPrice} />
 
-          <button className="py-3">CheckOut</button>
         </div>
       </div>
+          
     </div>
   );
 };

@@ -17,22 +17,28 @@ interface Props {
   item: ProductData;
 }
 const page = () => {
-  const { cart } = useSelector((state: StoreState) => state?.frentals);
+  const { cart, userInfo } = useSelector((state: StoreState) => state?.frentals);
   console.log(cart);
+  console.log(userInfo)
 
   const [total, setTotal] = useState(0);
 
-  const handleCheckout = async () => {
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        
-      });
-    } catch (error) {
-      console.log("Error", error);
+  const handleCheckout = async() => {
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart,
+        email: userInfo?.email,
+      }),
+    });
+    const { url } = await response.json()
+    if(url) {
+      window.location.href = url
     }
-  };
-
+  }
   useEffect(() => {
     if (cart.length > 0) {
       let price = 0;
@@ -132,7 +138,7 @@ const page = () => {
           </div>
         )}
       </div>
-      <button className="rounded-md bg-[#3E803E] md:w-[30%] cursor-pointer  py-4 hoverEffect hover:scale-105 mx-auto flex items-center justify-center text-white px-10">Checkout</button>
+      <button onClick={handleCheckout} className="rounded-md bg-[#3E803E] md:w-[30%] cursor-pointer  py-4 hoverEffect hover:scale-105 mx-auto flex items-center justify-center text-white px-10">Checkout</button>
     </div>
   );
 };

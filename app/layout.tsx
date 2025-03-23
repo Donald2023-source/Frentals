@@ -28,12 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Layout>
-        <div className={`${nunitoSans.variable}  antialiased`}>
+      <body>
+        <Layout>
           {children}
           <Toaster />
-        </div>
-      </Layout>
+        </Layout>
+      </body>
     </html>
   );
 }

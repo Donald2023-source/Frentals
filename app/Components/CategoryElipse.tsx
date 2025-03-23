@@ -17,8 +17,6 @@ const CategoryElipse = () => {
     fetchCategories();
   }, [categories]);
 
-  console.log(categories)
-
   return (
     <div className="py-3 w-full">
       <div className="grid grid-cols-3 md:grid-cols-6 gap-10 w-full justify-items-stretch">
@@ -35,7 +33,9 @@ const CategoryElipse = () => {
               src={urlFor(item?.image).url()}
               alt={item?.title}
             />
-            <h2 className="md:text-base text-sm font-semibold">{item?.title}</h2>
+            <h2 className="md:text-base text-sm font-semibold">
+              {item?.title}
+            </h2>
           </Link>
         ))}
       </div>

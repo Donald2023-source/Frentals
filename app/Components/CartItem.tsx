@@ -14,91 +14,52 @@ import FormatedPrice from "./FormatedPrice";
 import PriceSelection from "./PriceSelection";
 const CartItem = ({ item }: { item: ProductData }) => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
-  console.log(cart);
-
   const dispatch = useDispatch();
-  const handleResetCart = () => {
-    dispatch(resetCart());
-    console.log("cart was reset");
+
+  const [selectedPrice, setSelectedPrice] = useState<number>(item?.price); // Default to per day price
+
+  const handlePriceChange = (price: number) => {
+    setSelectedPrice(price); // Update selected price in state
   };
-
-  const [totalAmt, setTotalAmt] = useState(0);
-  useEffect(() => {
-    let price = 0;
-    cart.map((item) => (price += item?.price * item?.quantity));
-    setTotalAmt(price);
-  }, [cart]);
-
-  const [existingProduct, setExisitingProduct] = useState<ProductData | null>(
-    null
-  );
-
-  useEffect(() => {
-    const availableProduct = cart.find(
-      (product: ProductData) => product._id === item?._id
-    );
-    if (availableProduct) {
-      setExisitingProduct(availableProduct);
-    }
-  }, [cart, item]);
-
-  const handleMinus = () => {
-    if ((existingProduct?.quantity as number) > 1) {
-      dispatch(decreaseQuantity(item._id));
-      toast.success("Quantity was decreased");
-    } else {
-      toast.error("Quantity cannot be less than 1");
-    }
-  };
-  
 
   return (
     <div className="lg:px-20 py-2">
-      <div>
-        <div className="w-full">
-          <div className="flex items-center bg-accent p-4 rounded-lg justify-between w-full">
-            <Image
-              width={300}
-              height={300}
-              src={urlFor(item?.image).url()}
-              alt={item?.title}
-              className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
-            />
-            <div className="flex flex-col gap-2 items-center justify-center ">
-              <h2 className="md:text-xl text-center  md:w-32 font-semibold">
-                {item?.title}
-              </h2>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={handleMinus}
-                  className="md:w-7 md:h-7 w-5 h-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
-                >
-                  -
-                </button>
-                <h2>{item?.quantity}</h2>
-                <button
-                  onClick={() => {
-                    if ((existingProduct?.quantity as number) >= 10) {
-                      toast.error("Sorry we can't hire above ten products");
-                    } else {
-                      dispatch(increaseQuantity(item._id));
-                      toast.success("Increased successfully");
-                    }
-                  }}
-                  className="md:w-7 md:h-7 h-5 w-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
-                >
-                  +
-                </button>
-              </div>
+      <div className="w-full">
+        <div className="flex items-center bg-accent p-4 rounded-lg justify-between w-full">
+          <Image
+            width={300}
+            height={300}
+            src={urlFor(item?.image).url()}
+            alt={item?.title}
+            className="lg:h-20 lg:w-20 rounded-lg h-12 object-cover w-12"
+          />
+          <div className="flex flex-col gap-2 items-center justify-center">
+            <h2 className="md:text-xl text-center md:w-32 font-semibold">
+              {item?.title}
+            </h2>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => dispatch(decreaseQuantity(item._id))}
+                className="md:w-7 md:h-7 w-5 h-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+              >
+                -
+              </button>
+              <h2>{item?.quantity}</h2>
+              <button
+                onClick={() => dispatch(increaseQuantity(item._id))}
+                className="md:w-7 md:h-7 h-5 w-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+              >
+                +
+              </button>
             </div>
-
-                <PriceSelection item={item} />
-
-            <FormatedPrice
-              className="md:text-base text-sm"
-              amount={item?.price * item?.quantity}
-            />
           </div>
+
+          <PriceSelection item={item} onPriceChange={handlePriceChange} />
+
+          
+          <FormatedPrice className="md:text-base text-sm" amount={selectedPrice} />
+
+          <button className="py-3">CheckOut</button>
         </div>
       </div>
     </div>
@@ -106,3 +67,4 @@ const CartItem = ({ item }: { item: ProductData }) => {
 };
 
 export default CartItem;
+

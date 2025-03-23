@@ -1,9 +1,11 @@
 "use client";
 import Container from "@/app/Components/Container";
 import Loader from "@/app/Components/Loader";
+import { AvatarFallback } from "@/components/ui/avatar";
 import { db } from "@/firebase";
 import { removeUser } from "@/redux/cartSlice";
 import { StoreState } from "@/types";
+import { Avatar } from "@radix-ui/react-avatar";
 import { doc, getDoc } from "firebase/firestore";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -59,12 +61,11 @@ const Page = () => {
           <Loader />
         ) : (
           <div className="mt-4 flex flex-col gap-5 px-3 md:px-1">
-            <div className="flex flex-col gap-2">
-              <h2 className="md:text-base text-sm font-semibold">Name</h2>
-              <span className="p-3 border rounded">
-                {userData?.name || "N/A"}
-              </span>
-            </div>
+            <Avatar className="h-20 w-20 mx-auto text-2xl">
+                <AvatarFallback>{userInfo.name.slice(0,1)}</AvatarFallback>
+            </Avatar>
+            <h2 className="text-sm font-semibold mx-auto">{userInfo.name}</h2>
+            
             <div className="flex flex-col gap-2">
               <h2 className="md:text-base text-sm font-semibold">Email</h2>
               <span className="p-3 border rounded">

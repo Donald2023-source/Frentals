@@ -41,8 +41,6 @@ const page = () => {
     }
   }, [cart]);
 
-  
-
   const dispatch = useDispatch();
   return (
     <div>
@@ -116,10 +114,7 @@ const page = () => {
         )}
       </div>
 
-      <div
-        onClick={() => dispatch(resetCart())}
-        className="w-full flex items-end justify-end mx-auto md:pr-20 pr-4"
-      >
+      <div className="w-full flex items-end justify-end mx-auto md:pr-20 pr-4">
         {cart.length > 0 && (
           <div>
             <div className="py-3">
@@ -127,7 +122,10 @@ const page = () => {
                 Total : <FormatedPrice amount={total} />
               </h2>
             </div>
-            <button className="py-2 bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg">
+            <button
+              onClick={() => dispatch(resetCart())}
+              className="py-2  bg-red-400 hover:scale-105 hover:bg-red-600 text-white hoverEffect cursor-pointer rounded-lg flex items-left justify-end px-10 border rouuded-lg"
+            >
               Reset Cart
             </button>
           </div>

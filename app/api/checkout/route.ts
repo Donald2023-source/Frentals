@@ -6,7 +6,6 @@ export const POST = async (request: NextRequest) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
   try {
-    // Destructure the request body directly
     const { items, email } = await request.json();
 
     if (!items || !email) {
@@ -22,7 +21,7 @@ export const POST = async (request: NextRequest) => {
       )
     );
 
-    // Map the cart items to the correct format for Stripe
+   
     const extractingItems = items.map((item: ProductData) => ({
       quantity: item.quantity,
 
@@ -36,9 +35,8 @@ export const POST = async (request: NextRequest) => {
       },
     }));
 
-    const origin = request.headers.get("origin"); // Default fallback
+    const origin = request.headers.get("origin"); 
 
-    // Create a Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: extractingItems,
@@ -55,7 +53,7 @@ export const POST = async (request: NextRequest) => {
     console.error(
       "Error during Stripe checkout session creation:",
       error.message
-    ); // Log the error message
+    ); 
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };

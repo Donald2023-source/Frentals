@@ -1,5 +1,6 @@
+'use client'
 import { CheckCircle } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
     id: string | null
@@ -7,6 +8,14 @@ interface Props {
 
 const SucessContainer = ({ id }: Props) => {
   console.log(id);
+
+  const [totalAmt, setTotalAmt] = useState(0);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    
+  })
 
   return (
     <div>

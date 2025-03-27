@@ -6,25 +6,21 @@ import { getProducts } from "@/lib/getData";
 import { ProductData } from "@/types";
 import React from "react";
 
-// Update the interface to match Next.js expectations
-interface PageProps {
-  params: {
-    categoryName: string;
-  };
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
-}
+// ✅ Define params as a Promise type
+type ParamsType = Promise<{ categoryName: string[] }>;
 
-const Page = async ({ params }: PageProps) => {
-  if (!params?.categoryName) {
+const Page = async ({ params }: { params: ParamsType }) => {
+  const resolvedParams = await params; // ✅ Await the promise
+
+  if (!resolvedParams?.categoryName?.[0]) {
     return <h2>Category not found</h2>;
   }
 
+  const categoryName = decodeURIComponent(resolvedParams.categoryName[0]); // ✅ Convert first element to string
   const products: ProductData[] = await getProducts();
   const filteredProducts = products.filter((item) =>
     item?.category?.some(
-      (cat) => decodeURIComponent(cat.title) === params.categoryName
+      (cat) => decodeURIComponent(cat.title) === categoryName
     )
   );
 
@@ -32,13 +28,13 @@ const Page = async ({ params }: PageProps) => {
     <div className="lg:px-20 flex flex-col md:items-start items-center justify-center">
       <div className="w-full px-3">
         <Barner
-          title={`Products from ${params.categoryName}`}
-          text={`Choose the best products from ${params.categoryName} to suite your need`}
+          title={`Products from ${categoryName}`}
+          text={`Choose the best products from ${categoryName} to suit your need`}
           Svg={<AnimatedCart />}
         />
       </div>
       <h2 className="md:text-3xl text-2xl text-left tracking-wide py-5 font-bold">
-        Products From {params.categoryName}
+        Products From {categoryName}
       </h2>
       <div className="flex pl-3 overflow-auto max-sm:w-full gap-5">
         {filteredProducts.length > 0 ? (
@@ -46,7 +42,7 @@ const Page = async ({ params }: PageProps) => {
             <ProductCard key={item?.title} item={item} />
           ))
         ) : (
-          <h2>No products found for {params.categoryName}</h2>
+          <h2>No products found for {categoryName}</h2>
         )}
       </div>
 

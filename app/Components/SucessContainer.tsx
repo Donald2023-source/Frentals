@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SucessContainer = ({ id }: Props) => {
-  console.log(id);
+  // console.log(id);
 
   const { cart, userInfo } = useSelector((state: StoreState) => state.frentals);
 
@@ -49,7 +49,7 @@ const SucessContainer = ({ id }: Props) => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (data?.success) {
         setLoading(false);

@@ -20,7 +20,7 @@ const Selectcmp = ({className }: Props) => {
 
   const handleChange = (value: string) => {
     setSelectValue(value);
-    console.log(value);
+    // console.log(value);
   };
 
   return (

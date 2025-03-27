@@ -12,7 +12,7 @@ const Hero2 = () => {
 
   const { userInfo } = useSelector((state:StoreState) => state.frentals)
 
-  console.log(userInfo);
+
 
   
   return (

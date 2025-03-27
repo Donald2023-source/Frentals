@@ -11,7 +11,7 @@ interface Props {
 
 const Barner = ({ title, text, Svg }: Props) => {
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
-  console.log(userInfo)
+
 
   return (
     <div className="w-full flex flex-col justify-end">

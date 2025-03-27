@@ -18,7 +18,7 @@ const Navbar = () => {
   const path = usePathname();
 
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
-  console.log(userInfo)
+  // console.log(userInfo)
 
   return (
     <div className="relative h-16">

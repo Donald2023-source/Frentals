@@ -1,21 +1,11 @@
-import React from 'react';
-import SucessContainer from '@/app/Components/SucessContainer';
+import React from "react";
+import SucessContainer from "@/app/Components/SucessContainer";
 
-// Option 1: Explicitly define searchParams as an object
-interface Props {
-  searchParams: {
-    session_id?: string | null; // Optional with ? since it might not exist
-  };
-}
+type ParamsType = Promise<{ session_id: string }>;
 
-// Option 2: Use Next.js built-in types (recommended)
-// import { type NextPage } from 'next';
-// interface Props {
-//   searchParams: Record<string, string | string[] | undefined>;
-// }
-
-const page = ({ searchParams }: Props) => {
-  const id = searchParams?.session_id ?? null; // Use nullish coalescing for safety
+const page = async ({ searchParams }: { searchParams: ParamsType }) => {
+  const resolvedParams = await searchParams; // Resolve the Promise
+  const id = resolvedParams.session_id; // Extract the string value
 
   return (
     <div>

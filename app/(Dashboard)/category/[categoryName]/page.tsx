@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: ParamsType }) => {
     return <h2>Category not found</h2>;
   }
 
-  const categoryName = decodeURIComponent(resolvedParams.categoryName[0]); // ✅ Convert first element to string
+  const categoryName = decodeURIComponent(resolvedParams.categoryName[0]); 
   const products: ProductData[] = await getProducts();
   const filteredProducts = products.filter((item) =>
     item?.category?.some(

@@ -10,7 +10,8 @@ interface PageProps {
   params: { categoryName: string };
 }
 
-const Page = async ({ params }: PageProps) => {
+const Page = async (props: PageProps) => {
+  const { params } = props;
   if (!params || !params.categoryName) {
     return <h2>Category not found</h2>;
   }
@@ -30,7 +31,11 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div className="lg:px-20 flex flex-col md:items-start items-center justify-center">
       <div className="w-full px-3">
-        <Barner title={`Products from ${params.categoryName}`} text={`Choose the best products from ${params.categoryName} to suite your need`} Svg={<AnimatedCart/>} />
+        <Barner
+          title={`Products from ${params.categoryName}`}
+          text={`Choose the best products from ${params.categoryName} to suite your need`}
+          Svg={<AnimatedCart />}
+        />
       </div>
       <h2 className="md:text-3xl t text-2xl text-left tracking-wide py-5 font-bold">
         Products From {params.categoryName}

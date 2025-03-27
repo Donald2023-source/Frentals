@@ -12,17 +12,14 @@
       "methods": ["POST"],
       "dest": "/api/saveorder"
     },
-
     {
-      "src": "/api/checkout",
-      "methods": ["POST"],
-      "dest": "/api/checkout"
+      "src": "/api/users",
+      "methods": ["GET"],
+      "dest": "/api/users"
     },
-
     {
-      "src": "/api/signup",
-      "methods": ["POST"],
-      "dest": "/api/signup"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
@@ -30,11 +27,12 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "FIREBASE_ACCOUNT_KEY": "$FIREBASE_ACCOUNT_KEY"
   },
   "build": {
     "env": {
-      "FIREBASE_ACCOUNT_KEY": "@firebase_account_key"
+      "FIREBASE_ACCOUNT_KEY": "$FIREBASE_ACCOUNT_KEY"
     }
   }
 }

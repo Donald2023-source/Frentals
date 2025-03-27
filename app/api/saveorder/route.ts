@@ -4,8 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
-
-    const { cart, email, id, totalAmt } = await reqBody;
+    const { cart, email, id, totalAmt } = reqBody; // No need for await here, reqBody is already resolved
 
     const orderItem = {
       amount: totalAmt,
@@ -21,18 +20,17 @@ export const POST = async (request: NextRequest) => {
 
       const userDoc = await userOrderRef.get();
       if (!userDoc.exists) {
-        await userOrderRef.set({ email });
+        await userOrderRef.set({ email }); // Initialize with email
       }
-      await userOrderRef.set({ value: orderItem, merge: true });
+      await userOrderRef.set(orderItem, { merge: true }); // Correct syntax for merge option
     }
 
     return NextResponse.json(
       { success: true, message: "Order saved successfully" },
-      {
-        status: 200,
-      }
+      { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ success: false, error: error });
+    console.error("Error in POST /api/saveorder:", error);
+    return NextResponse.json({ success: false, error }, { status: 500 });
   }
 };

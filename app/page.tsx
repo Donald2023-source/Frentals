@@ -15,8 +15,17 @@ import Testimonial from "./Components/Testimonial";
 import Footer from "./Components/Footer";
 import ButtomSection from "./Components/ButtomSection";
 import Loader from "./Components/Loader";
+import { useSelector } from "react-redux";
+import { StoreState } from "@/types";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const { userInfo } = useSelector((state: StoreState) => state.frentals);
+
+  const router = useRouter();
+  if (userInfo.email) {
+    router.push("/dashboard");
+  }
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {

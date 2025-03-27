@@ -1,38 +1,24 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/saveorder",
-      "methods": ["POST"],
-      "dest": "/api/saveorder"
-    },
-    {
-      "src": "/api/users",
-      "methods": ["GET"],
-      "dest": "/api/users"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "FIREBASE_ACCOUNT_KEY": "$FIREBASE_ACCOUNT_KEY"
-  },
-  "build": {
-    "env": {
-      "FIREBASE_ACCOUNT_KEY": "$FIREBASE_ACCOUNT_KEY"
-    }
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/next"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/saveorder",
+        "methods": ["POST"],
+        "dest": "/api/saveorder"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ]
   }
-}

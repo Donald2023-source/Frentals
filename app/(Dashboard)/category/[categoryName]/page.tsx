@@ -6,27 +6,27 @@ import { getProducts } from "@/lib/getData";
 import { ProductData } from "@/types";
 import React from "react";
 
+// Update the interface to match Next.js expectations
 interface PageProps {
-  params: { categoryName: string };
+  params: {
+    categoryName: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
 }
 
-const Page = async (props: PageProps) => {
-  const { params } = props;
-  if (!params || !params.categoryName) {
+const Page = async ({ params }: PageProps) => {
+  if (!params?.categoryName) {
     return <h2>Category not found</h2>;
   }
 
   const products: ProductData[] = await getProducts();
-
-  console.log(products);
-
   const filteredProducts = products.filter((item) =>
     item?.category?.some(
       (cat) => decodeURIComponent(cat.title) === params.categoryName
     )
   );
-
-  console.log(filteredProducts);
 
   return (
     <div className="lg:px-20 flex flex-col md:items-start items-center justify-center">
@@ -37,7 +37,7 @@ const Page = async (props: PageProps) => {
           Svg={<AnimatedCart />}
         />
       </div>
-      <h2 className="md:text-3xl t text-2xl text-left tracking-wide py-5 font-bold">
+      <h2 className="md:text-3xl text-2xl text-left tracking-wide py-5 font-bold">
         Products From {params.categoryName}
       </h2>
       <div className="flex pl-3 overflow-auto max-sm:w-full gap-5">

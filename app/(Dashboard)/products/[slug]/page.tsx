@@ -32,8 +32,8 @@ const Page = async ({ params }: PageProps) => {
   });
   const Products: ProductData[] = await getProducts();
 
-  console.log("Fetched Products:", Products);
-  console.log("Fetched Product:", product);
+  // console.log("Fetched Products:", Products);
+  // console.log("Fetched Product:", product);
 
   // Extract description list
   const descriptionList =

@@ -20,8 +20,8 @@ const page = () => {
   const { cart, userInfo } = useSelector(
     (state: StoreState) => state?.frentals
   );
-  console.log(cart);
-  console.log(userInfo);
+  // console.log(cart);
+  // console.log(userInfo);
 
   const [total, setTotal] = useState(0);
 
@@ -46,7 +46,7 @@ const page = () => {
       let price = 0;
       cart.map((item) => (price += item?.price * item?.quantity));
       setTotal(price);
-      console.log(price);
+      // console.log(price);
     }
   }, [cart]);
 

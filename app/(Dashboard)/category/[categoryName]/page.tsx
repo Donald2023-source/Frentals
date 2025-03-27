@@ -10,7 +10,8 @@ import React from "react";
 type ParamsType = Promise<{ categoryName: string[] }>;
 
 const Page = async ({ params }: { params: ParamsType }) => {
-  const resolvedParams = await params; // ✅ Await the promise
+  const resolvedParams = await params;
+  console.log(resolvedParams)
 
   if (!resolvedParams?.categoryName?.[0]) {
     return <h2>Category not found</h2>;

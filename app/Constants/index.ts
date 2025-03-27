@@ -8,7 +8,7 @@ import { FaRegStar } from "react-icons/fa";
 
  export const navItems = [
     { name: "Home", link: "/" },
-    { name: "Services", link: "/services" },
+    { name: "Services", link: "/Services" },
     { name: "About Us", link: "/about" },
     { name: "Contact Us", link: "/contact" },
     { name: "Cart", link: "/cart" },

@@ -12,28 +12,28 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-async function getAccessToken() {
+async function getAccessToken(): Promise<string | undefined> {
   try {
     console.log("Attempting to fetch token...");
-
-    const acessToken = await auth.getAccessToken();
-
-    console.log("AccessToken feched successfully ", acessToken);
+    const accessToken = await auth.getAccessToken(); // string | null | undefined
+    console.log("AccessToken fetched successfully ", accessToken);
+    return accessToken ?? undefined; // Convert null to undefined
   } catch (error) {
-    console.error("Error fetching access");
+    console.error("Error fetching access token:", error);
+    return undefined;
   }
 }
 
 async function myAccessToken(): Promise<void> {
   try {
     const token = await getAccessToken();
-    if (token) {
+    if (token) { // Works: string is truthy, undefined is falsy
       console.log("Successfully retrieved token", token);
     } else {
       console.log("Failed to retrieve token");
     }
   } catch (error) {
-    console.error("Error in my Access token", error);
+    console.error("Error in myAccessToken:", error);
   }
 }
 

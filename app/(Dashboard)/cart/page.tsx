@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import FormatedPrice from "@/app/Components/FormatedPrice";
 import { useEffect } from "react";
+import CheckoutButton from "@/app/Components/CheckoutButton";
 
 interface Props {
   cart: ProductData[];
@@ -21,7 +22,7 @@ const page = () => {
     (state: StoreState) => state?.frentals
   );
   // console.log(cart);
-  // console.log(userInfo);
+  console.log(!userInfo);
 
   const [total, setTotal] = useState(0);
 
@@ -140,12 +141,15 @@ const page = () => {
           </div>
         )}
       </div>
-      <button
+      <CheckoutButton
+        text="Checkout"
         onClick={handleCheckout}
-        className="rounded-md bg-[#3E803E] md:w-[30%] cursor-pointer  py-4 hoverEffect hover:scale-105 mx-auto flex items-center justify-center text-white px-10"
-      >
-        Checkout
-      </button>
+        disabled={!userInfo}
+      />
+
+      <p className="text-center py-4">
+        You have not signed In. <Link className="text-green-900 font-bold" href={"/signup"}>Sign-up</Link>
+      </p>
     </div>
   );
 };

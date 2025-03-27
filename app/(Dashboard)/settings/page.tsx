@@ -50,7 +50,11 @@ const Page = () => {
   }, [userInfo?.id]);
 
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
+
+  if (!userInfo) {
+    router.push("/");
+  }
 
   return (
     <Container>
@@ -59,13 +63,13 @@ const Page = () => {
 
         {loading ? (
           <Loader />
-        ) : (
+        ) : userInfo ? (
           <div className="mt-4 flex flex-col gap-5 px-3 md:px-1">
             <Avatar className="h-20 w-20 mx-auto text-2xl">
-                <AvatarFallback>{userInfo.name.slice(0,1)}</AvatarFallback>
+              <AvatarFallback>{userInfo.name.slice(0, 1)}</AvatarFallback>
             </Avatar>
             <h2 className="text-sm font-semibold mx-auto">{userInfo.name}</h2>
-            
+
             <div className="flex flex-col gap-2">
               <h2 className="md:text-base text-sm font-semibold">Email</h2>
               <span className="p-3 border rounded">
@@ -98,14 +102,21 @@ const Page = () => {
                   {isVisible ? <EyeClosed /> : <Eye />}
                 </button>
               </div>
-              <button onClick={() => {
-                if(userInfo) {
-                    dispatch(removeUser())
-                    router.push('/')
-                }
-              }} className="py-3 px-10 rounded-lg border ml-auto bg-red-500 hover:bg-red-600 hoverEffect cursor-pointer text-white">Sign Out</button>
+              <button
+                onClick={() => {
+                  if (userInfo) {
+                    dispatch(removeUser());
+                    router.push("/");
+                  }
+                }}
+                className="py-3 px-10 rounded-lg border ml-auto bg-red-500 hover:bg-red-600 hoverEffect cursor-pointer text-white"
+              >
+                Sign Out
+              </button>
             </div>
           </div>
+        ) : (
+          ""
         )}
       </div>
     </Container>

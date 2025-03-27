@@ -19,6 +19,7 @@ import {
   User,
 } from "lucide-react";
 import logo from "@/assets/logo.jpg";
+import { toast } from "sonner";
 
 const DashboardNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,11 +30,17 @@ const DashboardNav = () => {
     { icon: <Settings />, name: "Settings", link: "/settings" },
   ];
 
-  const { userInfo,cart } = useSelector((state: StoreState) => state.frentals);
+  const { userInfo, cart } = useSelector((state: StoreState) => state.frentals);
   const userLogo = userInfo?.name.slice(0, 1);
   const path = usePathname();
-  
 
+  const handleOpen = () => {
+    if (userInfo) {
+      setMenuOpen(!menuOpen);
+    } else {
+      toast.error("Please sign up");
+    }
+  };
   return (
     <div className="md:px-5 px-3 py-3 flex items-center justify-between border-b border-gray-100">
       {/* Logo & Branding */}
@@ -41,7 +48,7 @@ const DashboardNav = () => {
         <div className="flex items-center gap-4">
           <button
             className="lg:hidden text-gray-500 hover:text-[#3E803E] transition"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={handleOpen}
           >
             {menuOpen ? (
               <X className="cursor-pointer" size={28} />
@@ -76,13 +83,14 @@ const DashboardNav = () => {
       </div>
 
       <div className="flex items-center gap-6">
-        <Link className="relative" href={'/cart'}>
-          
+        <Link className="relative" href={"/cart"}>
           <ShoppingCart
             className="hover:scale-105  cursor-pointer transition-all"
             size={23}
           />
-          <h2 className="absolute -top-2 -right-3 p-2 text-gray-100 border rounded-full h-5 w-5 bg-green-600 flex items-center text-sm justify-center">{ cart.length}</h2>
+          <h2 className="absolute -top-2 -right-3 p-2 text-gray-100 border rounded-full h-5 w-5 bg-green-600 flex items-center text-sm justify-center">
+            {cart.length}
+          </h2>
         </Link>
         <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
           <AvatarFallback className="font-bold text-lg p-3">

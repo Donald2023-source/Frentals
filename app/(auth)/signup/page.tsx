@@ -55,8 +55,8 @@ const page = () => {
       );
 
       if (response.ok) {
-        console.log("User created successfully:", data);
-        console.log(data.user);
+        // console.log("User created successfully:", data);
+        // console.log(data.user);
         const user = data.user;
       } else {
         console.error("Signup failed:", data);
@@ -69,11 +69,11 @@ const page = () => {
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
   const { cart } = useSelector((state: StoreState) => state.frentals);
 
-  console.log(cart);
+  // console.log(cart);
 
   const router = useRouter();
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   if (userInfo) {
     console.log("user", userInfo);
@@ -175,13 +175,7 @@ const page = () => {
               </form>
             </div>
 
-            <button
-              onClick={handleSignout}
-              type="submit"
-              className="py-2 my-4 px-10 bg-[#3E803E] text-white rounded-lg cursor-pointer hover:scale-105 hoverEffect"
-            >
-              Submit
-            </button>
+            
           </div>
         </div>
       </div>

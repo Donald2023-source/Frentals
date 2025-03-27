@@ -23,8 +23,11 @@ const page = () => {
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
 
   const router = useRouter();
-  if (userInfo.email) {
+  
+  if (userInfo?.email) {
     router.push("/dashboard");
+  } else {
+    router.push('/')
   }
   const [currentIndex, setCurrentIndex] = useState(0);
 

@@ -1,8 +1,8 @@
-"use client";
+"use client"
 import { addToCart } from "@/redux/cartSlice";
-import { ProductData } from "@/types";
+import { ProductData, StoreState } from "@/types";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
@@ -11,18 +11,25 @@ interface Props {
   className?: string;
   item?: ProductData;
 }
+
+const { userInfo} = useSelector((state: StoreState) => state.frentals)
+
 const Button = ({ text, item, className }: Props) => {
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart(item));
-    toast.success(`${item?.title.substring(0, 15)} was Reserved`);
+    if(userInfo) {
+      toast.success(`${item?.title.substring(0, 15)} was Reserved`);
+    } else {
+      toast.success(`Item added to cart, signup to see cart`)
+    }
   };
 
   return (
     <button
       onClick={handleAddToCart}
       className={twMerge(
-        "py-2 px-10 border bg-[#3E803E] hover:scale-105 hover:bg-[rgb(62,130,20)] cursor-pointer hoverEffect rounded-lg text-gray-200 w-full"
+        "py-2 px-10 border bg-[#3E803E] hover:scale-105 hover:bg-[rgb(62,130,20)] cursor-pointer hoverEffect rounded-lg text-gray-200 w-full", className
       )}
     >
       {text}

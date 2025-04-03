@@ -32,6 +32,8 @@ const page = () => {
 
   const dispatch = useDispatch();
 
+  const router = useRouter();
+  
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -46,18 +48,19 @@ const page = () => {
 
       const data = await response.json();
 
-      dispatch(
-        addUser({
-          name: data.user.displayName,
-          email: data.user.email,
-          id: data.user.uid,
-        })
-      );
-
       if (response.ok) {
         // console.log("User created successfully:", data);
         // console.log(data.user);
+        router.push("/dashboard");
         const user = data.user;
+        console.log(user);
+        dispatch(
+          addUser({
+            name: user?.displayName,
+            email: user?.email,
+            id: user?.uid,
+          })
+        );
       } else {
         console.error("Signup failed:", data);
       }
@@ -71,14 +74,12 @@ const page = () => {
 
   // console.log(cart);
 
-  const router = useRouter();
-
   // console.log(userInfo);
 
   if (userInfo) {
     console.log("user", userInfo);
-    router.push("/services");
-  } 
+    router.push("/dashboard");
+  }
 
   const handleSignout = () => {
     dispatch(removeUser());
@@ -174,8 +175,6 @@ const page = () => {
                 </button>
               </form>
             </div>
-
-            
           </div>
         </div>
       </div>

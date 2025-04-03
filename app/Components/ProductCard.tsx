@@ -8,7 +8,6 @@ import FormatedPrice from "./FormatedPrice";
 import Button from "./Button";
 import Link from "next/link";
 
-
 interface Props {
   item: ProductData;
   className?: string;
@@ -36,7 +35,7 @@ const ProductCard = ({ item }: Props) => {
             height={300}
             width={300}
             src={urlFor(item?.image).url()}
-            alt={item?.title} 
+            alt={item?.title}
           />
         </Link>
         <div className="flex flex-col gap-2 px-3">
@@ -54,7 +53,6 @@ const ProductCard = ({ item }: Props) => {
             </span>
           </div>
           <div className="flex flex-col flex-grow">
-           
             {descriptionList?.length > 0 && (
               <ul
                 className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
@@ -74,11 +72,11 @@ const ProductCard = ({ item }: Props) => {
             </span>
           </div>
           <div className="mt-auto">
-            <Button
+            {/* <Button
               item={item}
               className="flex items-end justify-end"
               text="Reserve Now"
-            />
+            /> */}
           </div>
         </div>
       </div>

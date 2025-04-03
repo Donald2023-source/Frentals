@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "./Components/Hero1";
 import hero from "@/assets/hero.jpeg";
 import Stats from "./Components/Stats";
@@ -24,11 +24,14 @@ const page = () => {
 
   const router = useRouter();
   
-  if (userInfo?.email) {
-    router.push("/dashboard");
-  } else {
-    router.push('/')
-  }
+  useEffect(() => {
+    if (userInfo === undefined || null) return;
+    if (userInfo?.email) {
+      router.push("/dashboard");
+    } else {
+      router.push('/')
+    }
+  }, [userInfo,router])
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {

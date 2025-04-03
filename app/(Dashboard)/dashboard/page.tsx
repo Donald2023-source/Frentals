@@ -1,3 +1,4 @@
+
 import Container from "@/app/Components/Container";
 import Barner from "@/app/Components/Barner";
 import HotProducts from "@/app/Components/HotProducts";
@@ -5,12 +6,15 @@ import CategoryElipse from "@/app/Components/CategoryElipse";
 import ProductList from "@/app/Components/ProductList";
 import GeometricCyclist from "@/app/Components/Bike";
 
-
 const Page = () => {
   return (
     <Container>
       <div className=" w-full">
-        <Barner title="Welcome To Frentals" text="Best farm rental service. We give you exceiptional services at affordable prices" Svg={<GeometricCyclist />} />
+        <Barner
+          title="Welcome To Frentals"
+          text="Best farm rental service. We give you exceiptional services at affordable prices"
+          Svg={<GeometricCyclist />}
+        />
         <CategoryElipse />
 
         <div className="flex flex-col py-2">

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client"
+
 import { Nunito } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
@@ -16,10 +17,7 @@ const nunitoSans = Nunito({
 //   subsets: ["latin"],
 // });
 
-export const metadata: Metadata = {
-  title: "Frentals",
-  description: "Your farming success starts here ",
-};
+
 
 export default function Dashboardlayout({
   children,
@@ -27,6 +25,7 @@ export default function Dashboardlayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <Layout>
       <div >
       <DashboardNav />

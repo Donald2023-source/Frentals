@@ -1,16 +1,23 @@
+"use client"
 import { getHotProducts } from "@/lib/getData";
 import { ProductData, StoreState } from "@/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
-
-const HotProducts = async () => {
-  const HotProducts: ProductData[] = await getHotProducts();
+const HotProducts = () => {
+  const [hotProducts, setHotProducts] = useState<ProductData[]>([])
+  useEffect(() => {
+    const hotProducts = async () => {
+      const HotProducts: ProductData[] = await getHotProducts();
+      setHotProducts(HotProducts)
+    };
+    hotProducts()
+  }, []);
 
   return (
     <div className="flex overflow-auto max-w-full gap-5 ">
-      {HotProducts.map((item) => (
-        <ProductCard item={item} />
+      {hotProducts.map((item) => (
+        <ProductCard key={item?._id} item={item} />
       ))}
     </div>
   );

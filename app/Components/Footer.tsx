@@ -18,8 +18,9 @@ const Footer = () => {
             <div key={index} className="">
               <h2 className="text-white font-bold text-lg">{item.title}</h2>
               <div>
-                {item.listItem.map((list) => (
+                {item.listItem.map((list,idx) => (
                   <Link
+                  key={idx}
                     href={"/"}
                     className="text-base py-2 font-semibold flex flex-col text-white/80"
                   >

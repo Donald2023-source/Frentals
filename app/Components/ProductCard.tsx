@@ -14,6 +14,7 @@ interface Props {
 }
 
 const ProductCard = ({ item }: Props) => {
+  // Use item._id to create unique state for each card
   const [isVisible, setIsVisible] = useState(false);
 
   const descriptionList = item?.description?.flatMap(
@@ -21,11 +22,17 @@ const ProductCard = ({ item }: Props) => {
       block.children.map((child) => child.text)
   );
 
+  // Remove the handleDescription function since we don't need to pass id anymore
+  const toggleDescription = () => {
+    setIsVisible((prev) => !prev);
+  };
+
   return (
     <div>
       <div
+        key={item?._id}
         className={twMerge(
-          "border shadow rounded-lg pb-4 md:h-[26rem] w-64 md:w-72"
+          "border shadow rounded-lg pb-4 flex-grow md:h-full w-64 md:w-72"
         )}
       >
         <Link href={`/products/${item?.slug?.current}`}>
@@ -42,7 +49,7 @@ const ProductCard = ({ item }: Props) => {
           <h4 className="font-semibold text-lg border-b text-center py-1">
             {item?.title}
           </h4>
-          <div className="flex items-center border-b justify-between  py-1 md:px-3">
+          <div className="flex items-center border-b justify-between py-1 md:px-3">
             <p className="text-semibold text-gray-500">Rent Price</p>
             <span className="text-sm text-green-500">
               <FormatedPrice
@@ -55,17 +62,19 @@ const ProductCard = ({ item }: Props) => {
           <div className="flex flex-col flex-grow">
             {descriptionList?.length > 0 && (
               <ul
-                className={`text-sm text-gray-600 px-5 ${isVisible ? "line-clamp-none" : "line-clamp-2"}`}
+                className={`text-sm text-gray-600 px-5 ${
+                  isVisible ? "line-clamp-none" : "line-clamp-2"
+                }`}
               >
                 {descriptionList.map((text, idx) => (
                   <li className="list-disc" key={idx}>
-                    {text}{" "}
+                    {text}
                   </li>
                 ))}
               </ul>
             )}
             <span
-              onClick={() => setIsVisible(!isVisible)}
+              onClick={toggleDescription}
               className="text-[#3E803E] cursor-pointer text-xs"
             >
               {isVisible ? "Hide" : "See More"}
@@ -74,7 +83,7 @@ const ProductCard = ({ item }: Props) => {
           <div className="mt-auto">
             <Button
               item={item}
-              className="flex items-end justify-end"
+              className="flex items-center justify-center"
               text="Reserve Now"
             />
           </div>

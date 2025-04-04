@@ -1,121 +1,188 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { groq } from "next-sanity";
+import { getProducts } from "@/lib/getData";
+import { ProductData } from "@/types";
+import { client } from "@/sanity/lib/client";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import FormatedPrice from "@/app/Components/FormatedPrice";
+import ProductCard from "@/app/Components/ProductCard";
+import Container from "@/app/Components/Container";
+import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
+import ErrorPage from "@/app/Components/ErrorPage";
+import ProductDetailWireframe from "@/app/Components/ProductDetailWireframe"; // New import
 
-  import React from "react";
-  import { groq } from "next-sanity";
-  import { getProducts } from "@/lib/getData";
-  import { ProductData } from "@/types";
-  import { client } from "@/sanity/lib/client";
-  import Image from "next/image";
-  import { urlFor } from "@/sanity/lib/image";
-  import FormatedPrice from "@/app/Components/FormatedPrice";
-  import Button from "@/app/Components/Button";
-  import ProductCard from "@/app/Components/ProductCard";
-  import Container from "@/app/Components/Container";
-  import dynamic from "next/dynamic";
-  const ProductActions = dynamic(() => import("@/app/Components/ProductActions"));
-  
-  // Define the params type correctly for a dynamic route
-  interface Params {
-    slug: string[];
-  }
+const ProductActions = dynamic(() => import("@/app/Components/ProductActions"));
 
-  interface PageProps {
-    params: Promise<Params>;
-  }
+const Page = () => {
+  const params = useParams();
+  const slug = params?.slug as string;
 
-  const Page = async ({ params }: PageProps) => {
-    const resolvedParams = await params;
-    if (!resolvedParams?.slug) {
-      return <h2>No slug found</h2>;
-    } else {
-      console.log("Slug:", resolvedParams.slug);
-    }
+  const [state, setState] = useState<{
+    product: ProductData | null;
+    products: ProductData[] | null;
+    loading: boolean;
+    error: boolean;
+  }>({
+    product: null,
+    products: null,
+    loading: false,
+    error: false,
+  });
 
-    // Fetch the product details based on slug
-    const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
-    const product: ProductData = await client.fetch(query, {
-      slug: resolvedParams.slug,
-    });
-    const Products: ProductData[] = await getProducts();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!slug) {
+        setState({
+          product: null,
+          products: null,
+          loading: false,
+          error: true,
+        });
+        return;
+      }
 
-    // console.log("Fetched Products:", Products);
-    // console.log("Fetched Product:", product);
+      setState((prev) => ({ ...prev, loading: true }));
 
-    // Extract description list
-    const descriptionList =
-      product?.description?.flatMap((block: { children: { text: string }[] }) =>
-        block.children.map((child) => child.text)
-      ) || [];
+      try {
+        const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
+        const product: ProductData = await client.fetch(query, { slug });
 
+        const productsResult = await getProducts();
+        if (productsResult.error) {
+          throw new Error("Failed to fetch related products");
+        }
+
+        setState({
+          product: product || null,
+          products: productsResult,
+          loading: false,
+          error: !product,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setState({
+          product: null,
+          products: null,
+          loading: false,
+          error: true,
+        });
+      }
+    };
+
+    fetchData();
+  }, [slug]);
+
+  console.log(state.products)
+
+  // Loading state with new wireframe
+  if (state.loading) {
     return (
-      <Container className="border">
-        <div className="flex lg:flex-row w-full flex-col px-1 items-center gap-10">
-          {/* Product Image */}
-          <div className="lg:w-[70%] w-full">
-            {product?.image ? (
-              <Image
-                width={500}
-                height={500}
-                src={urlFor(product.image).url()}
-                alt={product.title}
-                className="w-full rounded-lg md:h-[28rem] h-72 object-cover"
-              />
-            ) : (
-              <p className="text-gray-500">No image available</p>
-            )}
-          </div>
+      <Container>
+        <ProductDetailWireframe
+          item={{ _id: "loading", slug: { _type: "slug", current: "loading" } }}
+        />
+      </Container>
+    );
+  }
 
-          {/* Product Details */}
-          <div className="flex flex-col px-10 gap-8">
-            <h2 className="text-2xl font-bold tracking-wider">
-              {product?.title}
-            </h2>
-            <div>
-              {descriptionList.map((item, idx) => (
-                <li className="list-item px-3 text-gray-500 py-1" key={idx}>
-                  {item}
-                </li>
-              ))}
-            </div>
+  // Error state
+  if (state.error) {
+    return (
+      <ErrorPage
+        message={state.product ? "Something went wrong" : "Product not found"}
+      />
+    );
+  }
 
-            {/* Price section */}
-            <div className="flex gap-10">
-              <p className="text-green-400 font-semibold">
-                <FormatedPrice className="text-black" amount={product?.price} /> /
-                day
-              </p>
-              <p className="text-green-400 font-semibold">
-                <FormatedPrice
-                  className="text-black"
-                  amount={product?.price * 5}
-                />{" "}
-                / week
-              </p>
-              <p className="text-green-400 font-semibold">
-                <FormatedPrice
-                  className="text-black"
-                  amount={product?.price * 29}
-                />{" "}
-                / month
-              </p>
-            </div>
+  if (!state.product) return null;
 
-            <ProductActions product={product} />
-          </div>
+  const descriptionList =
+    state.product.description?.flatMap(
+      (block: { children: { text: string }[] }) =>
+        block.children.map((child) => child.text)
+    ) || [];
+
+  return (
+    <Container className="border">
+      <div className="flex lg:flex-row w-full flex-col px-1 items-center gap-10">
+        {/* Product Image */}
+        <div className="lg:w-[70%] w-full">
+          {state.product.image ? (
+            <Image
+              width={500}
+              height={500}
+              src={urlFor(state.product.image).url()}
+              alt={state.product.title}
+              className="w-full rounded-lg md:h-[28rem] h-72 object-cover"
+            />
+          ) : (
+            <p className="text-gray-500">No image available</p>
+          )}
         </div>
 
-        {/* More Like This Section */}
+        {/* Product Details */}
+        <div className="flex flex-col px-10 gap-8">
+          <h2 className="text-2xl font-bold tracking-wider">
+            {state.product.title}
+          </h2>
+          <div>
+            {descriptionList.map((item, idx) => (
+              <li className="list-item px-3 text-gray-500 py-1" key={idx}>
+                {item}
+              </li>
+            ))}
+          </div>
+
+          {/* Price section */}
+          <div className="flex gap-10">
+            <p className="text-green-400 font-semibold">
+              <FormatedPrice
+                className="text-black"
+                amount={state.product.price ?? 0}
+              />{" "}
+              / day
+            </p>
+            <p className="text-green-400 font-semibold">
+              <FormatedPrice
+                className="text-black"
+                amount={(state.product.price ?? 0) * 5}
+              />{" "}
+              / week
+            </p>
+            <p className="text-green-400 font-semibold">
+              <FormatedPrice
+                className="text-black"
+                amount={(state.product.price ?? 0) * 29}
+              />{" "}
+              / month
+            </p>
+          </div>
+
+          <ProductActions product={state.product} />
+        </div>
+      </div>
+
+      {/* More Like This Section */}
+    
         <div>
           <h2 className="text-3xl font-bold tracking-wider py-10">
             More Like This
           </h2>
           <div className="flex overflow-auto gap-10">
-            {Products.map((item) => (
+            {state?.products?.map((item) => (
+              <>
               <ProductCard key={item._id} item={item} />
+              {console.log(item._id, item.title, item.slug.current)}
+              </>
             ))}
           </div>
         </div>
-      </Container>
-    );
-  };
+      
+    </Container>
+  );
+};
 
-  export default Page;
+export default Page;

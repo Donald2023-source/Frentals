@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector, UseSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductData, StoreState } from "@/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -12,14 +12,29 @@ import {
 import { toast } from "sonner";
 import FormatedPrice from "./FormatedPrice";
 import PriceSelection from "./PriceSelection";
+
 const CartItem = ({ item }: { item: ProductData }) => {
   const { cart } = useSelector((state: StoreState) => state?.frentals);
   const dispatch = useDispatch();
 
-  const [selectedPrice, setSelectedPrice] = useState<number>(item?.price); // Default to per day price
+  const [selectedPrice, setSelectedPrice] = useState<number>(
+    item?.price * item?.quantity
+  ); 
 
   const handlePriceChange = (price: number) => {
     setSelectedPrice(price);
+  };
+
+  const handleQuantity = (action: "increase" | "decrease") => {
+    if (action === "decrease" && item.quantity > 1) {
+      dispatch(decreaseQuantity(item._id));
+    } else if (action === "decrease" && item.quantity <= 1) {
+      toast.error("Quantity cannot be less than 1");
+    } else if (action === "increase" && item.quantity < 10) {
+      dispatch(increaseQuantity(item._id));
+    } else if (action === "increase" && item.quantity >= 10) {
+      toast.error("Maximum quantity of 10 reached");
+    }
   };
 
   return (
@@ -39,15 +54,17 @@ const CartItem = ({ item }: { item: ProductData }) => {
             </h2>
             <div className="flex items-center gap-3">
               <button
-                onClick={() => dispatch(decreaseQuantity(item._id))}
+                onClick={() => handleQuantity("decrease")}
                 className="md:w-7 md:h-7 w-5 h-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+                disabled={item.quantity <= 1} 
               >
                 -
               </button>
               <h2>{item?.quantity}</h2>
               <button
-                onClick={() => dispatch(increaseQuantity(item._id))}
+                onClick={() => handleQuantity("increase")}
                 className="md:w-7 md:h-7 h-5 w-5 hover:scale-105 hoverEffect cursor-pointer flex items-center justify-center rounded p-1 bg-green-200"
+                disabled={item.quantity >= 10}
               >
                 +
               </button>
@@ -56,15 +73,14 @@ const CartItem = ({ item }: { item: ProductData }) => {
 
           <PriceSelection item={item} onPriceChange={handlePriceChange} />
 
-          
-          <FormatedPrice className="md:text-base text-sm" amount={selectedPrice} />
-
+          <FormatedPrice
+            className="md:text-base text-sm"
+            amount={selectedPrice * item?.quantity}
+          />
         </div>
       </div>
-          
     </div>
   );
 };
 
 export default CartItem;
-

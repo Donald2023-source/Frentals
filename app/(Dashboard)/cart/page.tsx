@@ -147,9 +147,15 @@ const page = () => {
         disabled={!userInfo}
       />
 
-      <p className="text-center py-4">
+      {
+        userInfo ? (
+          ''
+        ) : (
+          <p className="text-center py-4">
         You have not signed In. <Link className="text-green-900 font-bold" href={"/signup"}>Sign-up</Link>
-      </p>
+      </p>  
+        )
+      }
     </div>
   );
 };

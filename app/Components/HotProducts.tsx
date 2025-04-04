@@ -10,6 +10,11 @@ const HotProducts = () => {
     const hotProducts = async () => {
       const HotProducts: ProductData[] = await getHotProducts();
       setHotProducts(HotProducts)
+      if (HotProducts.length === 0) {
+        return <div>Loading</div>
+      } else {
+        console.log('')
+      }
     };
     hotProducts()
   }, []);

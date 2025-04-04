@@ -5,7 +5,7 @@ import symbol from "@/assets/Symbol.png";
 import Navbar from "./Navbar";
 const Hero = () => {
   return (
-    <div className="h-[80vh]">
+    <div className="md:h-[80vh] h-[70vh]">
       <div className="h-full relative">
         <Image
           priority

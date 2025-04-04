@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import heroImg from "@/assets/hero.jpeg";
 import Image from "next/image";
@@ -9,14 +9,10 @@ import { useSelector } from "react-redux";
 import { StoreState } from "@/types";
 import Link from "next/link";
 const Hero2 = () => {
+  const { userInfo } = useSelector((state: StoreState) => state.frentals);
 
-  const { userInfo } = useSelector((state:StoreState) => state.frentals)
-
-
-
-  
   return (
-    <div className="h-[90vh] relative">
+    <div className="md:h-[90vh] h-[65vh] relative">
       <div className="h-full relative">
         <Image
           className="w-full h-full object-cover"
@@ -37,13 +33,14 @@ const Hero2 = () => {
               Future
             </h2>
             <p className="">Your Farming Success Starts Here....</p>
-            <Link href={ userInfo ? '/services' : '/'} className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
-              
-              { userInfo ? 'Shop Now' : 'Get Started'}
+            <Link
+              href={userInfo ? "/services" : "/"}
+              className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer"
+            >
+              {userInfo ? "Shop Now" : "Get Started"}
               <span>
                 <Image src={symbol} alt="img" />
               </span>
-
             </Link>
           </div>
 

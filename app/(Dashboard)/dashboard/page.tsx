@@ -7,6 +7,8 @@ import ProductList from "@/app/Components/ProductList";
 import GeometricCyclist from "@/app/Components/Bike";
 
 const Page = () => {
+
+  
   return (
     <Container>
       <div className=" w-full">

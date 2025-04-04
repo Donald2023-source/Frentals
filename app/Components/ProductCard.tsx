@@ -14,7 +14,6 @@ interface Props {
 }
 
 const ProductCard = ({ item }: Props) => {
-  // Use item._id to create unique state for each card
   const [isVisible, setIsVisible] = useState(false);
 
   const descriptionList = item?.description?.flatMap(
@@ -22,7 +21,6 @@ const ProductCard = ({ item }: Props) => {
       block.children.map((child) => child.text)
   );
 
-  // Remove the handleDescription function since we don't need to pass id anymore
   const toggleDescription = () => {
     setIsVisible((prev) => !prev);
   };

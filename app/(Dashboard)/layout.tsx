@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
 import { Nunito } from "next/font/google";
 import "../globals.css";
-import { Toaster } from "sonner";
+import { toast, Toaster } from "sonner";
 import DashboardNav from "../Components/DashboardNav";
 import Layout from "../Components/Layout";
 import Footer from "../Components/Footer";
+import { useEffect, useState } from "react";
 
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
@@ -17,23 +18,44 @@ const nunitoSans = Nunito({
 //   subsets: ["latin"],
 // });
 
-
-
 export default function Dashboardlayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    
-    <Layout>
-      <div >
-      <DashboardNav />
-      {children}
-      <Footer />
-      <Toaster />
-      </div>
+  const [isOnline, setOnline] = useState<boolean>(true);
 
+  const updateNetworkStatus = () => {
+    setOnline(navigator.onLine);
+  };
+
+  useEffect(() => {
+    window.addEventListener("load", updateNetworkStatus);
+    window.addEventListener("online", updateNetworkStatus);
+    window.addEventListener("offline", updateNetworkStatus);
+
+    return () => {
+      window.removeEventListener("load", updateNetworkStatus);
+      window.removeEventListener("online", updateNetworkStatus);
+      window.removeEventListener("offline", updateNetworkStatus);
+    };
+  }, [navigator.onLine]);
+
+  if (isOnline) {
+    console.log("You're Online");
+  } else {
+    toast.error("Check Connection");
+    console.log("You're offline")
+  }
+
+  return (
+    <Layout>
+      <div>
+        <DashboardNav />
+        {children}
+        <Footer />
+        <Toaster />
+      </div>
     </Layout>
   );
 }

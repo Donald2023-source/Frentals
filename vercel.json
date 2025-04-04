@@ -1,32 +1,35 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/_next/static/(.*)",
+      "dest": "/_next/static/$1"
+    },
+    {
+      "src": "/_next/image(.*)",
+      "dest": "/_next/image$1"
+    },
+    {
+      "src": "/api/saveorder",
+      "methods": ["POST"],
+      "dest": "/api/saveorder"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1",
+      "headers": {
+        "x-vercel-rewrite": "true"
       }
-    ],
-    "routes": [
-      {
-        "src": "/_next/static/(.*)",
-        "dest": "/_next/static/$1"
-      },
-      {
-        "src": "/_next/image(.*)",
-        "dest": "/_next/image$1"
-      },
-      {
-        "src": "/api/saveorder",
-        "methods": ["POST"],
-        "dest": "/api/saveorder"
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/"
-      }
-    ]
-  }
+    }
+  ]
+}

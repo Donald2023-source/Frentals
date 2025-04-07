@@ -5,8 +5,12 @@ import { getCategory } from "@/lib/getData";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
-const CategoryElipse = () => {
+interface Props {
+  className?:string
+}
+const CategoryElipse = ({ className} : Props) => {
   const [categories, setCategories] = React.useState<Category[]>([]);
 
   useEffect(() => {
@@ -18,7 +22,7 @@ const CategoryElipse = () => {
   }, [categories]);
 
   return (
-    <div className="py-3 w-full">
+    <div className={twMerge('py-3 w-full', className)}>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-10 w-full justify-items-stretch">
         {categories.map((item) => (
           <Link

@@ -11,15 +11,15 @@ interface Props {
 
 const Barner = ({ title, text, Svg }: Props) => {
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
-  console.log(userInfo)
+  console.log(userInfo);
 
   return (
     <div className="w-full flex flex-col justify-end">
       <div className="w-full md:px-10 px-7 py-3 md:py-5 bg-[#3E803E] text-white rounded-lg">
         <div className="flex items-center justify-between w-full relative">
           <div className="md:w-[45%] w-[70%] absolute flex flex-col gap-1 md:gap-4">
-            <h2 className="md:text-4xl md:leading-12 text-lg font-bold">
-              {title} {userInfo?.name ? userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1, 10) : ""}
+            <h2 className="md:text-4xl flex flex-col md:leading-12 text-lg font-bold">
+               <span>Hi {userInfo?.name.split(" ")[0].charAt(0).toUpperCase() + userInfo?.name.split(" ")[0].slice(1)},</span> {title}
             </h2>
             <p className="md:leading-8 leading-[23px] w-full md:text-sm text-xs">
               {text}

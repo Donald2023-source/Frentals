@@ -3,26 +3,33 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "installCommand": "npm install --legacy-peer-deps",
-        "buildCommand": "npm run build",
-        "outputDirectory": "dist"
-      }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/next"
     }
   ],
   "routes": [
+    {
+      "src": "/_next/static/(.*)",
+      "dest": "/_next/static/$1"
+    },
+    {
+      "src": "/_next/image(.*)",
+      "dest": "/_next/image$1"
+    },
+    {
+      "src": "/api/saveorder",
+      "methods": ["POST"],
+      "dest": "/api/saveorder"
+    },
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/$1",
+      "headers": {
+        "x-vercel-rewrite": "true"
+      }
     }
   ]
 }

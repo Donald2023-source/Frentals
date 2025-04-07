@@ -12,7 +12,8 @@ import Container from "@/app/Components/Container";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import ErrorPage from "@/app/Components/ErrorPage";
-import ProductDetailWireframe from "@/app/Components/ProductDetailWireframe"; // New import
+import ProductDetailWireframe from "@/app/Components/ProductDetailWireframe";
+import ProductList from "@/app/Components/ProductList";
 
 const ProductActions = dynamic(() => import("@/app/Components/ProductActions"));
 
@@ -49,7 +50,6 @@ const Page = () => {
       try {
         const query = groq`*[_type == 'product' && slug.current == $slug][0]{ ... }`;
         const product: ProductData = await client.fetch(query, { slug });
-
         const productsResult = await getProducts();
         if (productsResult.error) {
           throw new Error("Failed to fetch related products");
@@ -75,9 +75,6 @@ const Page = () => {
     fetchData();
   }, [slug]);
 
-  console.log(state.products)
-
-  // Loading state with new wireframe
   if (state.loading) {
     return (
       <Container>
@@ -88,7 +85,6 @@ const Page = () => {
     );
   }
 
-  // Error state
   if (state.error) {
     return (
       <ErrorPage
@@ -106,81 +102,76 @@ const Page = () => {
     ) || [];
 
   return (
-    <Container className="border mx-auto">
-      <div className="flex lg:flex-row w-full flex-col px-1 items-center gap-10">
+    <Container className="max-w-7xl mx-auto px-4 py-8">
+      <div className="flex flex-col lg:flex-row items-center md:p-5 justify-center gap-12">
         {/* Product Image */}
-        <div className="lg:w-[70%] w-full">
+        <div className="w-full lg:w-1/2 flex justify-center">
           {state.product.image ? (
             <Image
               width={500}
               height={500}
               src={urlFor(state.product.image).url()}
               alt={state.product.title}
-              className="w-full rounded-lg md:h-[28rem] h-72 object-cover"
+              className="w-full max-w-md rounded-lg object-cover h-64 md:h-[28rem]"
             />
           ) : (
-            <p className="text-gray-500">No image available</p>
+            <p className="text-gray-500 text-center">No image available</p>
           )}
         </div>
 
         {/* Product Details */}
-        <div className="flex flex-col px-10 gap-8">
-          <h2 className="text-2xl font-bold tracking-wider">
+        <div className="w-full lg:w-1/2 flex flex-col items-center gap-6">
+          <h2 className="text-3xl font-bold tracking-wide">
             {state.product.title}
           </h2>
-          <div>
+          <ul className="space-y-2">
             {descriptionList.map((item, idx) => (
-              <li className="list-item px-3 text-gray-500 py-1" key={idx}>
+              <li className="text-gray-600 list-disc list-inside" key={idx}>
                 {item}
               </li>
             ))}
-          </div>
+          </ul>
 
           {/* Price section */}
-          <div className="flex gap-10">
-            <p className="text-green-400 font-semibold">
+          <div className="flex  gap-6 mt-4">
+            <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-black"
+                className="text-green-600 font-semibold"
                 amount={state.product.price ?? 0}
               />{" "}
-              / day
+              <span className="text-gray-600">/ day</span>
             </p>
-            <p className="text-green-400 font-semibold">
+            <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-black"
+                className="text-green-600 font-semibold"
                 amount={(state.product.price ?? 0) * 5}
               />{" "}
-              / week
+              <span className="text-gray-600">/ week</span>
             </p>
-            <p className="text-green-400 font-semibold">
+            <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-black"
+                className="text-green-600 font-semibold"
                 amount={(state.product.price ?? 0) * 29}
               />{" "}
-              / month
+              <span className="text-gray-600">/ month</span>
             </p>
           </div>
 
-          <ProductActions product={state.product} />
+          <div className="mt-6">
+            <ProductActions product={state.product} />
+          </div>
         </div>
       </div>
 
       {/* More Like This Section */}
-    
-        <div>
-          <h2 className="text-3xl font-bold tracking-wider py-10">
+      {state.products && (
+        <div className="mt-12">
+          <h2 className="text-3xl font-bold tracking-wide text-center mb-8">
             More Like This
           </h2>
-          <div className="flex overflow-auto gap-10">
-            {state?.products?.map((item) => (
-              <>
-              <ProductCard key={item._id} item={item} />
-              {console.log(item._id, item.title, item.slug.current)}
-              </>
-            ))}
-          </div>
+          <ProductList />
         </div>
-      
+      )}
     </Container>
   );
 };

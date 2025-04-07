@@ -31,7 +31,7 @@ const DashboardNav = () => {
   ];
 
   const { userInfo, cart } = useSelector((state: StoreState) => state.frentals);
-  const userLogo = userInfo?.name.slice(0, 1);
+  const userLogo = userInfo?.name.slice(0, 1).toUpperCase();
   const path = usePathname();
 
   const handleOpen = () => {

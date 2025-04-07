@@ -5,7 +5,7 @@ import Footer from "./Components/Footer";
 import { HeroUIProvider } from "@heroui/system";
 import { Toaster } from "sonner";
 import Layout from "./Components/Layout";
-
+import NextTopLoader from "nextjs-toploader";
 const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Layout>
+          <NextTopLoader />
           {children}
           <Toaster />
         </Layout>

@@ -19,7 +19,7 @@ const Page = () => {
         />
         <CategoryElipse />
 
-        <div className="flex flex-col py-2">
+        <div className="flex flex-col md:pl-0 pl-2 py-2">
           <h2 className="text-[20px] py-3 font-semibold">Products</h2>
           <ProductList />
         </div>

@@ -30,12 +30,12 @@ const ProductCard = ({ item }: Props) => {
       <div
         key={item?._id}
         className={twMerge(
-          "border shadow rounded-lg pb-4 flex-grow md:h-full w-64 md:w-72"
+          "border shadow rounded-lg pb-4 flex-grow md:h-full w-72 md:w-80"
         )}
       >
         <Link href={`/products/${item?.slug?.current}`}>
           <Image
-            className="md:h-52 w-64 h-44 md:w-72 rounded-lg object-cover"
+            className="md:h-52 h-44 w-72 rounded-lg object-cover"
             priority
             height={300}
             width={300}
@@ -43,11 +43,11 @@ const ProductCard = ({ item }: Props) => {
             alt={item?.title}
           />
         </Link>
-        <div className="flex flex-col gap-2 px-3">
+        <div className="flex flex-col gap-2 px-4">
           <h4 className="font-semibold text-lg border-b text-center py-1">
             {item?.title}
           </h4>
-          <div className="flex items-center border-b justify-between py-1 md:px-3">
+          <div className="flex items-center border-b justify-between py-2 md:px-3">
             <p className="text-semibold text-gray-500">Rent Price</p>
             <span className="text-sm text-green-500">
               <FormatedPrice

@@ -45,15 +45,15 @@ const DashboardNav = () => {
     <div className="md:px-5 px-3 py-3 flex items-center justify-between border-b border-gray-100">
       {/* Logo & Branding */}
       <div className="flex items-center gap-12">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center md:gap-4 gap-2">
           <button
             className="lg:hidden text-gray-500 hover:text-[#3E803E] transition"
             onClick={handleOpen}
           >
             {menuOpen ? (
-              <X className="cursor-pointer" size={28} />
+              <X className="cursor-pointer" size={25} />
             ) : (
-              <Menu className="cursor-pointer" size={28} />
+              <Menu className="cursor-pointer" size={23} />
             )}
           </button>
           <Image
@@ -61,7 +61,7 @@ const DashboardNav = () => {
             src={logo}
             alt="logo"
           />
-          <h2 className="font-semibold text-lg text-gray-400">Frentals</h2>
+          <h2 className="font-semibold md:text-lg text-gray-400">Frentals</h2>
         </div>
 
         {/* Desktop Navigation */}

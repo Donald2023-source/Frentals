@@ -106,7 +106,7 @@ const Page = () => {
     ) || [];
 
   return (
-    <Container className="border">
+    <Container className="border mx-auto">
       <div className="flex lg:flex-row w-full flex-col px-1 items-center gap-10">
         {/* Product Image */}
         <div className="lg:w-[70%] w-full">

@@ -21,7 +21,7 @@ const Barner = ({ title, text, Svg }: Props) => {
             <h2 className="md:text-4xl flex flex-col md:leading-12 text-lg font-bold">
                <span>Hi {userInfo?.name.split(" ")[0].charAt(0).toUpperCase() + userInfo?.name.split(" ")[0].slice(1)},</span> {title}
             </h2>
-            <p className="md:leading-8 leading-[23px] w-full md:text-sm text-xs">
+            <p className="md:leading-8 md:block hidden leading-[23px] w-full md:text-sm text-xs">
               {text}
             </p>
           </div>

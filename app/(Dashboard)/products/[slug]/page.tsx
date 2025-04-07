@@ -103,7 +103,7 @@ const Page = () => {
 
   return (
     <Container className="max-w-7xl mx-auto px-4 py-8">
-      <div className="flex flex-col lg:flex-row items-center md:p-5 justify-center gap-12">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-20">
         {/* Product Image */}
         <div className="w-full lg:w-1/2 flex justify-center">
           {state.product.image ? (
@@ -112,7 +112,7 @@ const Page = () => {
               height={500}
               src={urlFor(state.product.image).url()}
               alt={state.product.title}
-              className="w-full max-w-md rounded-lg object-cover h-64 md:h-[28rem]"
+              className="w-full max-w-lg rounded-lg object-cover h-64 md:h-[28rem]"
             />
           ) : (
             <p className="text-gray-500 text-center">No image available</p>

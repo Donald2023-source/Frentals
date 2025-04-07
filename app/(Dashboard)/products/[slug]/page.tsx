@@ -120,7 +120,7 @@ const Page = () => {
         </div>
 
         {/* Product Details */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center gap-6">
+        <div className="w-full lg:w-1/2 flex flex-col items-left px-2 gap-6">
           <h2 className="text-3xl font-bold tracking-wide">
             {state.product.title}
           </h2>
@@ -133,7 +133,7 @@ const Page = () => {
           </ul>
 
           {/* Price section */}
-          <div className="flex  gap-6 mt-4">
+          <div className="flex flex-wrap  gap-6 mt-4">
             <p className="text-lg font-medium">
               <FormatedPrice
                 className="text-green-600 font-semibold"

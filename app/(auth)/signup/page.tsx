@@ -10,6 +10,8 @@ import { StoreState } from "@/types";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { ColorRing } from "react-loader-spinner";
+
 const page = () => {
   // const [name, setName] = useState("")
   // const [email, setEmail] = useState("")
@@ -29,12 +31,26 @@ const page = () => {
   };
 
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   const router = useRouter();
-  
+
+  const loader = (
+    <ColorRing
+      visible={true}
+      height="40"
+      width="40"
+      ariaLabel="color-ring-loading"
+      wrapperStyle={{}}
+      wrapperClass="color-ring-wrapper"
+      colors={["#d3d3d3", "#a9a9a9", "#808080", "#696969", "#dcdcdc"]}
+    />
+  );
+
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     try {
       e.preventDefault();
 
@@ -61,11 +77,14 @@ const page = () => {
             id: user?.uid,
           })
         );
+        setIsLoading(false);
       } else {
         console.error("Signup failed:", data);
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -171,7 +190,13 @@ const page = () => {
                   type="submit"
                   className="py-2 my-4 px-10 bg-[#3E803E] text-white rounded-lg cursor-pointer hover:scale-105 hoverEffect"
                 >
-                  Submit
+                  {isLoading ? (
+                    <div className="flex justify-center items-center gap-2">
+                      {loader} signing up
+                    </div>
+                  ) : (
+                    <span className="text-sm font-semibold">Sign Up</span>
+                  )}
                 </button>
               </form>
             </div>

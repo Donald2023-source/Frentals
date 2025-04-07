@@ -136,21 +136,21 @@ const Page = () => {
           <div className="flex flex-wrap  gap-6 mt-4">
             <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-green-600 font-semibold"
+                className="text-green-600 text-base font-semibold"
                 amount={state.product.price ?? 0}
               />{" "}
               <span className="text-gray-600">/ day</span>
             </p>
             <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-green-600 font-semibold"
+                className="text-green-600 text-base font-semibold"
                 amount={(state.product.price ?? 0) * 5}
               />{" "}
               <span className="text-gray-600">/ week</span>
             </p>
             <p className="text-lg font-medium">
               <FormatedPrice
-                className="text-green-600 font-semibold"
+                className="text-green-600 text-base font-semibold"
                 amount={(state.product.price ?? 0) * 29}
               />{" "}
               <span className="text-gray-600">/ month</span>

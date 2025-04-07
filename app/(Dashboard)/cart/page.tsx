@@ -145,6 +145,7 @@ const page = () => {
         text="Checkout"
         onClick={handleCheckout}
         disabled={!userInfo}
+        className="my-7"
       />
 
       {

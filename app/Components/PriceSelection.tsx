@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import FormatedPrice from "./FormatedPrice"; // Formats currency
 import { ProductData } from "@/types";
+import { ArrowDown } from "lucide-react";
 
 const priceOptions = [
   { label: "per day", multiplier: 1 },
@@ -40,9 +41,9 @@ const PriceSelection = ({ item, onPriceChange }: Props) => {
     <div className="relative">
       <h2
         onClick={() => setIsVisible(true)}
-        className="mt-4 text-sm text-green-800 hover:underline cursor-pointer"
+        className="mt-4 text-sm flex items-center gap-1 text-green-800 hover:underline cursor-pointer"
       >
-        Select Duration
+         Duration <ArrowDown size={16} className="inline" />{" "}
       </h2>
 
       {isVisible && (

@@ -3,6 +3,7 @@ import heroImg from "@/assets/hero.jpeg";
 import Image from "next/image";
 import symbol from "@/assets/Symbol.png";
 import Navbar from "./Navbar";
+import Link from "next/link";
 const Hero = () => {
   return (
     <div className="md:h-[80vh] h-[65vh]">
@@ -25,12 +26,12 @@ const Hero = () => {
             Future
           </h2>
           <p className="">Your Farming Success Starts Here....</p>
-          <button className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
+          <Link href="/signup" className="flex items-center space-x-1 py-2 px-6 rounded-lg bg-[#3E803E] hover:scale-105 transform transition duration-300 ease-in-out cursor-pointer">
             Get started
             <span>
               <Image src={symbol} alt="img" />
             </span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -45,9 +45,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div
-          className={userInfo ? "hidden" : "lg:flex hidden space-x-4"}
-        >
+        <div className={userInfo ? "hidden" : "lg:flex hidden space-x-4"}>
           <Link
             href={"/signup"}
             className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"

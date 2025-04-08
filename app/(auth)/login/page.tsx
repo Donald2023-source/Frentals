@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { ColorRing } from "react-loader-spinner";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase"; 
+import Link from "next/link";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -146,6 +147,9 @@ const LoginPage = () => {
                   )}
                 </button>
               </form>
+            </div>
+            <div className="font-semibold flex items-center justify-center gap-2 md:text-base text-sm">
+            Don't have an Account? <Link className="text-[#3E803E]" href="/signup">Sign-up</Link>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ColorRing } from "react-loader-spinner";
+import Link from "next/link";
 
 const page = () => {
   // const [name, setName] = useState("")
@@ -199,6 +200,12 @@ const page = () => {
                   )}
                 </button>
               </form>
+            </div>
+            <div className="font-semibold flex items-center justify-center gap-2 md:text-base text-sm">
+              Already have an Account?{" "}
+              <Link className="text-[#3E803E]" href="/login">
+                Login
+              </Link>
             </div>
           </div>
         </div>

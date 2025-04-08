@@ -46,13 +46,20 @@ const Navbar = () => {
         </ul>
 
         <div
-          className={userInfo ? "hidden" : "lg:flex hidden space-x-4 hiddem"}
+          className={userInfo ? "hidden" : "lg:flex hidden space-x-4"}
         >
           <Link
             href={"/signup"}
             className="py-2 px-5 cursor-pointer rounded-lg bg-[#3E803E] hover:scale-105 transition-all"
           >
             Sign up
+          </Link>
+
+          <Link
+            href={"/login"}
+            className="py-2 px-5 cursor-pointer rounded-lg border hover:scale-105 transition-all"
+          >
+            Login
           </Link>
         </div>
 
@@ -94,7 +101,7 @@ const Navbar = () => {
               href={"/login"}
               className="md:border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all"
             >
-              Sign In
+              Login
             </Link>
             <Link
               href={"/signup"}

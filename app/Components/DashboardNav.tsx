@@ -92,11 +92,14 @@ const DashboardNav = () => {
             {cart.length}
           </h2>
         </Link>
+        <Link href={"/settings"}>
         <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
           <AvatarFallback className="font-bold text-lg p-3">
             {userLogo}
           </AvatarFallback>
         </Avatar>
+        </Link>
+       
       </div>
 
       {menuOpen && (

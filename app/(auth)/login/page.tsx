@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ColorRing } from "react-loader-spinner";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase"; // Import your Firebase auth
+import { auth } from "@/firebase"; 
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({

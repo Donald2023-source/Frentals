@@ -142,10 +142,6 @@ const DashboardNav = () => {
                 </Link>
               ))}
 
-              <h2 className="flex items-center gap-4 text-gray-500">
-                <User />
-                Profile
-              </h2>
             </nav>
           </motion.div>
         </>

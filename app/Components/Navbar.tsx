@@ -91,7 +91,7 @@ const Navbar = () => {
 
           <div className="flex flex-col gap-6">
             <Link
-              href={"/signin"}
+              href={"/login"}
               className="md:border cursor-pointer py-2 px-5 rounded-lg hover:scale-105 transition-all"
             >
               Sign In

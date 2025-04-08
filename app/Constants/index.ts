@@ -11,7 +11,6 @@ import { FaRegStar } from "react-icons/fa";
     { name: "Services", link: "/Services" },
     { name: "About Us", link: "/about" },
     { name: "Contact Us", link: "/contact" },
-    { name: "Cart", link: "/cart" },
   ];
 
 export const whyItems = [

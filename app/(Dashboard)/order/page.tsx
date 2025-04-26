@@ -3,16 +3,18 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { StoreState } from "@/types";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase";
+import { collection, doc, getDocs } from "firebase/firestore";
+import { auth, db } from "@/firebase";
 
 const Page = () => {
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
   const email = userInfo?.email;
+  console.log(userInfo);
+  console.log("current user", auth?.currentUser);
 
   const fetchOrders = async (email: string) => {
     try {
-      const ordersRef = collection(db, "order", email, "orders");
+      const ordersRef = collection(db, "orders", email, "order");
       const querySnapshot = await getDocs(ordersRef);
 
       const orders = querySnapshot.docs.map((doc) => ({
@@ -30,7 +32,7 @@ const Page = () => {
     if (email) {
       fetchOrders("the@gmail.xom");
     }
-  }, [email]); // only run when email is available
+  }, [email]);
 
   return (
     <div className="py-8">

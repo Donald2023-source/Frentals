@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ColorRing } from "react-loader-spinner";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase"; 
+import { auth } from "@/firebase";
 import Link from "next/link";
 
 const LoginPage = () => {
@@ -45,7 +45,6 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      // Firebase sign-in with email and password
       const userCredential = await signInWithEmailAndPassword(
         auth,
         formData.email,
@@ -54,7 +53,6 @@ const LoginPage = () => {
 
       const user = userCredential.user;
 
-      // Dispatch user info to Redux store
       dispatch(
         addUser({
           name: user.displayName || "User",
@@ -149,7 +147,10 @@ const LoginPage = () => {
               </form>
             </div>
             <div className="font-semibold flex items-center justify-center gap-2 md:text-base text-sm">
-            Don't have an Account? <Link className="text-[#3E803E]" href="/signup">Sign-up</Link>
+              Don't have an Account?{" "}
+              <Link className="text-[#3E803E]" href="/signup">
+                Sign-up
+              </Link>
             </div>
           </div>
         </div>

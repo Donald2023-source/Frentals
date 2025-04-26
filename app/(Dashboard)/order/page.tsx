@@ -30,7 +30,7 @@ const Page = () => {
 
   useEffect(() => {
     if (email) {
-      fetchOrders("the@gmail.xom");
+      fetchOrders(email);
     }
   }, [email]);
 

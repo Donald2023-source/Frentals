@@ -9,6 +9,9 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { addUser } from "@/redux/cartSlice"; // Adjust based on your Redux setup
 import { useRouter } from "next/navigation";
 
+interface order {
+  value: any;
+}
 const Page = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
@@ -80,34 +83,42 @@ const Page = () => {
       setError("Failed to fetch orders: " + (error as Error).message);
     }
   };
+  const [data, setData] = useState([]);
 
-  
+  orders.forEach((item: order) => {
+    setData(item?.value);
+  });
 
   return (
     <div className="py-8">
-      <motion.h2
-        initial={{ x: 0 }}
-        animate={{ x: 50 }}
-        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-        className="text-center font-semibold text-3xl"
-      >
-        Coming Soon!!!
-      </motion.h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
-      ) : orders.length > 0 ? (
-        <ul>
-          {
-            orders.map((order) => (
-              <div>{order}</div>
-            ))
-          }
-        </ul>
-      ) : (
-        <p>No orders found.</p>
-      )}
+      <div>
+        <motion.h2
+          initial={{ x: 0 }}
+          animate={{ x: 50 }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+          className="text-center font-semibold text-3xl"
+        >
+          Coming Soon!!!
+        </motion.h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : orders.length > 0 ? (
+          <ul></ul>
+        ) : (
+          <p>No orders found.</p>
+        )}
+      </div>
+
+      {/* {orders.map((item) => (
+        <div>
+          {item.value.map(
+            (item: any) => console.log(item)
+            // <div>{item}</div>
+          )}
+        </div>
+      ))} */}
     </div>
   );
 };

@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "@/types";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { signOut } from "firebase/auth";
+
 import {
   ShoppingCart,
   Menu,
@@ -20,9 +22,13 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 import { toast } from "sonner";
+import { removeUser } from "@/redux/cartSlice";
+import { auth } from "@/firebase";
+import { useRouter } from "next/navigation";
 
 const DashboardNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  // const [userData, setUserData] = useState
   const navItems = [
     { icon: <Home />, name: "Dashboard", link: "/dashboard" },
     { icon: <ShoppingBag />, name: "Shop", link: "/shop" },
@@ -31,7 +37,11 @@ const DashboardNav = () => {
   ];
 
   const { userInfo, cart } = useSelector((state: StoreState) => state.frentals);
-  const userLogo = userInfo?.name.slice(0, 1).toUpperCase();
+
+  const dispatch = useDispatch();
+
+  const userLogo = userInfo?.name?.slice(0, 1).toUpperCase();
+
   const path = usePathname();
 
   const handleOpen = () => {
@@ -41,6 +51,8 @@ const DashboardNav = () => {
       toast.error("Please sign up");
     }
   };
+
+  const router = useRouter();
   return (
     <div className="md:px-5 px-3 py-3 flex items-center justify-between border-b border-gray-100">
       {/* Logo & Branding */}
@@ -62,6 +74,17 @@ const DashboardNav = () => {
             alt="logo"
           />
           <h2 className="font-semibold md:text-lg text-gray-400">Frentals</h2>
+          <h2
+            onClick={() => {
+              if (userInfo) {
+                dispatch(removeUser());
+                signOut(auth);
+                router.push("/");
+              }
+            }}
+          >
+            SIgn out
+          </h2>
         </div>
 
         {/* Desktop Navigation */}
@@ -93,13 +116,12 @@ const DashboardNav = () => {
           </h2>
         </Link>
         <Link href={"/settings"}>
-        <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
-          <AvatarFallback className="font-bold text-lg p-3">
-            {userLogo}
-          </AvatarFallback>
-        </Avatar>
+          <Avatar className="md:w-13 md:block md:h-13 h-10 w-10 hover:scale-105 cursor-pointer">
+            <AvatarFallback className="font-bold text-lg p-3">
+              {userLogo}
+            </AvatarFallback>
+          </Avatar>
         </Link>
-       
       </div>
 
       {menuOpen && (
@@ -144,7 +166,6 @@ const DashboardNav = () => {
                   </div>
                 </Link>
               ))}
-
             </nav>
           </motion.div>
         </>

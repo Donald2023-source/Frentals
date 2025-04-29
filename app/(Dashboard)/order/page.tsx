@@ -1,38 +1,88 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { StoreState } from "@/types";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "@/firebase";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { addUser } from "@/redux/cartSlice"; // Adjust based on your Redux setup
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const dispatch = useDispatch();
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
-  const email = userInfo?.email;
-  console.log(userInfo);
-  console.log("current user", auth?.currentUser);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log("userInfo:", userInfo);
+
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user: User | null) => {
+        setLoading(false);
+        if (user) {
+          console.log("Firebase current user:", user);
+          const firebaseEmail = user.email;
+
+          // Sync Redux userInfo with Firebase user
+          if (firebaseEmail && firebaseEmail !== userInfo?.email) {
+            console.log("Syncing Redux with Firebase email:", firebaseEmail);
+            dispatch(addUser({ email: firebaseEmail }));
+          }
+
+          // Fetch orders if email is available
+          if (firebaseEmail) {
+            fetchOrders(firebaseEmail);
+          } else {
+            setError("No email found for authenticated user");
+          }
+        } else {
+          console.log("No Firebase authenticated user");
+          setError("Please sign in to view orders");
+          // Optionally clear Redux userInfo if user is not authenticated
+          if (userInfo?.email) {
+            console.log("Clearing stale Redux userInfo");
+            dispatch(addUser(null));
+          }
+        }
+      },
+      (authError) => {
+        console.error("Auth state error:", authError);
+        setError("Authentication error occurred");
+        setLoading(false);
+      }
+    );
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [dispatch, userInfo?.email]);
+
+  const router = useRouter()
+  if(!userInfo) {
+    router.push('/')
+  }
 
   const fetchOrders = async (email: string) => {
     try {
+      console.log("Querying Firestore path:", `order/${email}/orders`);
       const ordersRef = collection(db, "orders", email, "order");
       const querySnapshot = await getDocs(ordersRef);
 
-      const orders = querySnapshot.docs.map((doc) => ({
+      const ordersData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(orders);
-      return orders;
+      console.log("Fetched orders:", ordersData);
+      setOrders(ordersData);
     } catch (error) {
       console.error("Error fetching orders:", error);
+      setError("Failed to fetch orders: " + (error as Error).message);
     }
   };
-
-  useEffect(() => {
-    if (email) {
-      fetchOrders(email);
-    }
-  }, [email]);
 
   return (
     <div className="py-8">
@@ -44,6 +94,19 @@ const Page = () => {
       >
         Coming Soon!!!
       </motion.h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : orders.length > 0 ? (
+        <ul>
+          {orders.map((order) => (
+            <li key={order.id}>{JSON.stringify(order)}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No orders found.</p>
+      )}
     </div>
   );
 };

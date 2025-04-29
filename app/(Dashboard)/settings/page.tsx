@@ -2,10 +2,11 @@
 import Container from "@/app/Components/Container";
 import Loader from "@/app/Components/Loader";
 import { AvatarFallback } from "@/components/ui/avatar";
-import { db } from "@/firebase";
+import { auth, db } from "@/firebase";
 import { removeUser } from "@/redux/cartSlice";
 import { StoreState } from "@/types";
 import { Avatar } from "@radix-ui/react-avatar";
+import { signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -106,6 +107,7 @@ const Page = () => {
                 onClick={() => {
                   if (userInfo) {
                     dispatch(removeUser());
+                    signOut(auth);
                     router.push("/");
                   }
                 }}

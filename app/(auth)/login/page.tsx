@@ -55,7 +55,7 @@ const LoginPage = () => {
 
       dispatch(
         addUser({
-          name: user.displayName || "User",
+          name: user?.displayName || "User",
           email: user.email || "",
           id: user.uid,
         })
@@ -66,7 +66,6 @@ const LoginPage = () => {
     } catch (error: any) {
       console.error("Login error:", error);
 
-      // Handle specific Firebase errors
       switch (error.code) {
         case "auth/wrong-password":
           toast.error("Incorrect password");

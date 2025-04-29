@@ -54,7 +54,6 @@ const page = () => {
     setIsLoading(true);
     try {
       e.preventDefault();
-
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
@@ -64,10 +63,9 @@ const page = () => {
       });
 
       const data = await response.json();
+      console.log(data);
 
-      if (response.ok) {
-        // console.log("User created successfully:", data);
-        // console.log(data.user);
+      if (data.success === true) {
         router.push("/dashboard");
         const user = data.user;
         console.log(user);

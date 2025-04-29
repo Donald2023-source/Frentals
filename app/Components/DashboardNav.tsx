@@ -28,7 +28,7 @@ import { useRouter } from "next/navigation";
 
 const DashboardNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  // const [userData, setUserData] = useState
+
   const navItems = [
     { icon: <Home />, name: "Dashboard", link: "/dashboard" },
     { icon: <ShoppingBag />, name: "Shop", link: "/shop" },

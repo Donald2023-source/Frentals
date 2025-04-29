@@ -16,7 +16,6 @@ const Barner = ({ title, text, Svg }: Props) => {
   if (userInfo) {
     setUserData(userInfo);
   }
-  console.log("user", userInfo);
 
   return (
     <div className="w-full flex flex-col justify-end">

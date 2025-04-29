@@ -19,7 +19,7 @@ const Page = () => {
   useEffect(() => {
     console.log("userInfo:", userInfo);
 
-    // Listen for authentication state changes
+  
     const unsubscribe = onAuthStateChanged(
       auth,
       (user: User | null) => {
@@ -56,8 +56,6 @@ const Page = () => {
         setLoading(false);
       }
     );
-
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [dispatch, userInfo?.email]);
 

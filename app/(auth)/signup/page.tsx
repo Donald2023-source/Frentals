@@ -64,10 +64,10 @@ const page = () => {
 
       const data = await response.json();
       console.log(data);
+      const user = data.user;
 
-      if (data.success === true) {
+      if (user?.email) {
         router.push("/dashboard");
-        const user = data.user;
         console.log(user);
         dispatch(
           addUser({
@@ -78,7 +78,7 @@ const page = () => {
         );
         setIsLoading(false);
       } else {
-        console.error("Signup failed:", data);
+        console.error("Signup failed:", data);  
       }
     } catch (error) {
       console.error("Error:", error);
@@ -89,15 +89,6 @@ const page = () => {
 
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
   const { cart } = useSelector((state: StoreState) => state.frentals);
-
-  // console.log(cart);
-
-  // console.log(userInfo);
-
-  if (userInfo) {
-    console.log("user", userInfo);
-    router.push("/dashboard");
-  }
 
   const handleSignout = () => {
     dispatch(removeUser());

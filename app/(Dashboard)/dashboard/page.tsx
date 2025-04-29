@@ -6,9 +6,7 @@ import CategoryElipse from "@/app/Components/CategoryElipse";
 import ProductList from "@/app/Components/ProductList";
 import GeometricCyclist from "@/app/Components/Bike";
 
-const Page = () => {
-
-  
+const Page = () => { 
   return (
     <Container>
       <div className=" w-full">

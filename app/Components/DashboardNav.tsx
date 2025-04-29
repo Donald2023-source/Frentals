@@ -37,10 +37,10 @@ const DashboardNav = () => {
   ];
 
   const { userInfo, cart } = useSelector((state: StoreState) => state.frentals);
-
   const dispatch = useDispatch();
 
   const userLogo = userInfo?.name?.slice(0, 1).toUpperCase();
+  const router = useRouter();
 
   const path = usePathname();
 
@@ -52,7 +52,6 @@ const DashboardNav = () => {
     }
   };
 
-  const router = useRouter();
   return (
     <div className="md:px-5 px-3 py-3 flex items-center justify-between border-b border-gray-100">
       {/* Logo & Branding */}
@@ -75,13 +74,13 @@ const DashboardNav = () => {
           />
           <h2 className="font-semibold md:text-lg text-gray-400">Frentals</h2>
           <h2
-            onClick={() => {
-              if (userInfo) {
-                dispatch(removeUser());
-                signOut(auth);
-                router.push("/");
-              }
-            }}
+            // onClick={() => {
+            //   if (userInfo) {
+            //     dispatch(removeUser());
+            //     signOut(auth);
+            //     router.push("/");
+            //   }
+            // }}
           >
             SIgn out
           </h2>

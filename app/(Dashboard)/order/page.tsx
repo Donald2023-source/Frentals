@@ -19,7 +19,6 @@ const Page = () => {
   useEffect(() => {
     console.log("userInfo:", userInfo);
 
-  
     const unsubscribe = onAuthStateChanged(
       auth,
       (user: User | null) => {
@@ -59,15 +58,15 @@ const Page = () => {
     return () => unsubscribe();
   }, [dispatch, userInfo?.email]);
 
-  const router = useRouter()
-  if(!userInfo) {
-    router.push('/')
+  const router = useRouter();
+  if (!userInfo) {
+    router.push("/");
   }
 
   const fetchOrders = async (email: string) => {
     try {
       console.log("Querying Firestore path:", `order/${email}/orders`);
-      const ordersRef = collection(db, "orders", email, "order");
+      const ordersRef = collection(db, "order", email, "orders");
       const querySnapshot = await getDocs(ordersRef);
 
       const ordersData = querySnapshot.docs.map((doc) => ({
@@ -81,6 +80,8 @@ const Page = () => {
       setError("Failed to fetch orders: " + (error as Error).message);
     }
   };
+
+  
 
   return (
     <div className="py-8">
@@ -98,9 +99,11 @@ const Page = () => {
         <p className="text-red-500">{error}</p>
       ) : orders.length > 0 ? (
         <ul>
-          {orders.map((order) => (
-            <li key={order.id}>{JSON.stringify(order)}</li>
-          ))}
+          {
+            orders.map((order) => (
+              <div>{order}</div>
+            ))
+          }
         </ul>
       ) : (
         <p>No orders found.</p>

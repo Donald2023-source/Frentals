@@ -10,12 +10,10 @@ interface Props {
 }
 
 const Barner = ({ title, text, Svg }: Props) => {
-  const [userData, setUserData] = useState<any>([]);
+ 
   const { userInfo } = useSelector((state: StoreState) => state.frentals);
 
-  if (userInfo) {
-    setUserData(userInfo);
-  }
+  
 
   return (
     <div className="w-full flex flex-col justify-end">
@@ -25,8 +23,8 @@ const Barner = ({ title, text, Svg }: Props) => {
             <h2 className="md:text-4xl flex flex-col md:leading-12 text-lg font-bold">
               <span>
                 Hi{" "}
-                {userData?.name?.split(" ")[0].charAt(0).toUpperCase() +
-                  userData?.name?.split(" ")[0].slice(1) || "user"}
+                {userInfo?.name?.split(" ")[0].charAt(0).toUpperCase() +
+                  userInfo?.name?.split(" ")[0].slice(1) || "user"}
                 ,
               </span>{" "}
               {title}

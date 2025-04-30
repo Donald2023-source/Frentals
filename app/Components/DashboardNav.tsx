@@ -73,17 +73,6 @@ const DashboardNav = () => {
             alt="logo"
           />
           <h2 className="font-semibold md:text-lg text-gray-400">Frentals</h2>
-          <h2
-            // onClick={() => {
-            //   if (userInfo) {
-            //     dispatch(removeUser());
-            //     signOut(auth);
-            //     router.push("/");
-            //   }
-            // }}
-          >
-            SIgn out
-          </h2>
         </div>
 
         {/* Desktop Navigation */}

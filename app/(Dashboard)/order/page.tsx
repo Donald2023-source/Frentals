@@ -8,6 +8,7 @@ import { auth, db } from "@/firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { addUser } from "@/redux/cartSlice";
 import { useRouter } from "next/navigation";
+import FormatedPrice from "@/app/Components/FormatedPrice";
 
 // Define the structure of an order item
 interface OrderItem {
@@ -142,18 +143,15 @@ const Page = () => {
             {error}
           </div>
         ) : data.length > 0 ? (
-          <ul className="space-y-4">
+          <ul className="space-y-10">
             {data.map((item, index) => (
-              <li
-                key={item._id || index}
-                className="p-4 border rounded shadow-sm bg-white"
-              >
+              <li key={item._id || index} className="p-4 border-b bg-white">
                 <div className="flex flex-col sm:flex-row justify-between">
-                  <div>
+                  <div className="md:w-44">
                     <span className="font-semibold">Products:</span>{" "}
                     {item.title || "N/A"}
                   </div>
-                  <div>
+                  <div className="md:w-80 ">
                     <span className="font-semibold">ID:</span>{" "}
                     {item._id || "N/A"}
                   </div>
@@ -162,11 +160,10 @@ const Page = () => {
                     {item.quantity || "N/A"}
                   </div>
                   <div>
-                    <span className="font-semibold">Price:</span> $
-                    {item.price ? item.price.toFixed(2) : "N/A"}
+                    <span className="font-semibold">Price:</span>
+                    <FormatedPrice amount={item?.price} />
                   </div>
                 </div>
-               
               </li>
             ))}
           </ul>

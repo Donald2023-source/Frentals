@@ -25,8 +25,10 @@ export const POST = async (request: NextRequest) => {
       await userOrderRef.set(orderItem, { merge: true }); // Correct syntax for merge option
     }
 
+    const date = new Date();
+
     return NextResponse.json(
-      { success: true, message: "Order saved successfully" },
+      { success: true, message: "Order saved successfully", date: date },
       { status: 200 }
     );
   } catch (error) {

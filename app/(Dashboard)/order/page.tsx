@@ -150,7 +150,7 @@ const Page = () => {
               >
                 <div className="flex flex-col sm:flex-row justify-between">
                   <div>
-                    <span className="font-semibold">Product:</span>{" "}
+                    <span className="font-semibold">Products:</span>{" "}
                     {item.title || "N/A"}
                   </div>
                   <div>
@@ -166,18 +166,7 @@ const Page = () => {
                     {item.price ? item.price.toFixed(2) : "N/A"}
                   </div>
                 </div>
-                {item.description && (
-                  <div className="mt-2">
-                    <p className="font-semibold">Description:</p>
-                    <ul className="list-disc pl-5">
-                      {item.description.map((desc, i) => (
-                        <li key={i} className="text-sm">
-                          {desc.children[0].text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+               
               </li>
             ))}
           </ul>

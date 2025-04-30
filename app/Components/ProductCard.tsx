@@ -30,7 +30,7 @@ const ProductCard = ({ item }: Props) => {
       <div
         key={item?._id}
         className={twMerge(
-          "border shadow rounded-lg pb-4 flex-grow md:h-full w-72 md:w-80"
+          "border shadow rounded-lg pb-4 flex-grow md:h-full w-[17rem] md:w-80"
         )}
       >
         <Link href={`/products/${item?.slug?.current}`}>
